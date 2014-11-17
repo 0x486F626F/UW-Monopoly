@@ -27,6 +27,6 @@ void Property::generateTextImage() {
 }
 
 Property::Property() {}
-Property::Property(string s) : Cell(s) {
+Property::Property(const string &s, const string &g) : Cell(s, g) {
 	generateTextImage();
 }

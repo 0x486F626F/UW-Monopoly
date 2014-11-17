@@ -12,12 +12,13 @@ class Player;
 class Cell {
 	protected:
 		std::string name;
+		std::string group;
 		std::vector <std::string> textImage;
 		Cell *prev, *next;
 		std::vector <Player *> currentPlayer;
 
 		Cell();
-		Cell(std::string s);
+		Cell(const std::string &s, const std::string &g);
 		~Cell();
 		virtual void generateTextImage() = 0;
 	public:

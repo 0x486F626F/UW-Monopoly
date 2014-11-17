@@ -8,6 +8,6 @@ class Event : public Cell {
 		void generateTextImage();
 	public:
 		Event();
-		Event(std::string s);
+		Event(const std::string &s, const std::string &g);
 };
 #endif

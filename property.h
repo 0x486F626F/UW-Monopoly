@@ -8,6 +8,6 @@ class Property : public Cell {
 		void generateTextImage();
 	public:
 		Property();	
-		Property(std::string s);
+		Property(const std::string &s, const std::string &g);
 };
 #endif

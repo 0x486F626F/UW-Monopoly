@@ -7,22 +7,14 @@ using namespace std;
 Board::Board() {}
 Board::~Board() {}
 
+Board::Board(const string &mapfile) {
+	loadMap(mapfile)
+}
 
-Board::Board(string &mapfile) {
-	td = TextDisplay::getInstance();
-	td->clean();
-
+void loadMap(const string &mapfile) {
 	istringstream stream(mapfile.c_str());
 	stream >> width >> height;
 	int totCell = width * 2 + height * 2 - 4;
-	for(int i = 1; i <= totCell; i ++) {
-		string name, group;
-		getline(stream, name);
-		getline(stream, group);
-		td->addTag(name);
+	for(int i = 0; i < totCell; i ++) {
 	}
-}
-
-void Board::printBoard() {
-	td->printBoard(width, height);
 }

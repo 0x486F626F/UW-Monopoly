@@ -3,7 +3,7 @@
 
 using namespace std;
 Cell::Cell() {}
-Cell::Cell(string s) : name(s) {}
+Cell::Cell(const string &s, const string &g) : name(s), group(g) {}
 Cell::~Cell() {}
 void Cell::print() {
 	for(int i = 0; i < CELLHEIGHT; i ++)

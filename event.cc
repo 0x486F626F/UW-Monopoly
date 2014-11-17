@@ -20,6 +20,6 @@ void Event::generateTextImage() {
 }
 
 Event::Event() {}
-Event::Event(string s) : Cell(s) {
+Event::Event(const string &s, const string &g) : Cell(s, g) {
 	generateTextImage();
 }

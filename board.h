@@ -9,15 +9,12 @@ class Board {
 
 		int width, height;
 		std::vector <Cell*> cells;
-		TextDisplay *td;
 
 		Board *getInstance();
-		void loadMap(std::string mapfile);
+		void loadMap(const std::string &mapfile);
 	public:
 		Board();
-		Board(std::string &mapfile);
+		Board(const std::string &mapfile);
 		~Board();
-
-		void printBoard();
 };
 #endif
