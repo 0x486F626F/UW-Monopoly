@@ -1,13 +1,10 @@
-#include "property.h"
-#include "cell.h"
-#include "event.h"
 #include <iostream>
+
+#include "board.h"
 
 using namespace std;
 
 int main() {
-	Cell *p = new Property("ABCDEFGHIJK", "A");
-	p->print();
-	Cell *q = new Event("ABCDEFGHIJK", "B");
-	q->print();
+	Board *p = new Board("uw.map");
+	p->printAll();
 }

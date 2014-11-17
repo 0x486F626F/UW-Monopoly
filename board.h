@@ -2,7 +2,6 @@
 #define __BOARD_H__
 #include <vector>
 #include "cell.h"
-#include "textdisplay.h"
 class Board {
 	private:
 		static Board *instance;
@@ -16,5 +15,7 @@ class Board {
 		Board();
 		Board(const std::string &mapfile);
 		~Board();
+
+		void printAll();
 };
 #endif
