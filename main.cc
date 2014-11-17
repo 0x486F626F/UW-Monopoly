@@ -8,6 +8,7 @@ using namespace std;
 int main() {
 	Cell *p = new Property("ABCDEFGHIJK");
 	p->print();
+	cout << endl;
 	Cell *q = new Event("ABCDEFGHIJK");
 	q->print();
 }
