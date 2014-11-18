@@ -5,6 +5,7 @@ using namespace std;
 void Property::generateTextImage() {
 	textImage.clear();
 	string tmp;
+	if(sold) tmp = owner->getInit();
 	tmp.resize(CELLWIDTH, ' ');
 	textImage.push_back(tmp);
 	tmp = "";
@@ -28,15 +29,17 @@ void Property::generateTextImage() {
 }
 
 Property::Property() {}
-Property::Property(const string &s, const string &g) : Cell(s, g) {
+Property::Property(const string &s, const string &g) : Cell(s, g), sold(0), mortgaged(0) {
 	generateTextImage();
 }
 
 void Property::setCost(const int c) { cost = c; }
 void Property::setCostImprove(const int c) { costImprove = c; }
 void Property::addRent(const int r) { rents.push_back(r); }
-void Property::addPlayer(Player *p) {
-	p->setCurrentCell(this);
-	currentPlayer.push_back(p);
+
+void Property::setOwner(Player *p) {
+	sold = true;
+	p->addProperty(this);
+	owner = p;
 	generateTextImage();
 }

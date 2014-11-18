@@ -7,4 +7,5 @@ using namespace std;
 int main() {
 	Board *p = new Board("uw.map");
 	p->printAll();
+	delete p;
 }

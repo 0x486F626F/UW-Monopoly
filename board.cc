@@ -8,7 +8,11 @@
 using namespace std;
 
 Board::Board() {}
-Board::~Board() {}
+Board::~Board() {
+	delete td;
+	for(int i = 0; i < cells.size(); i ++)
+		delete cells[i];
+}
 
 Board::Board(const string &mapfile) : width(0), height(0) {
 	td = new TextDisplay;
@@ -63,11 +67,21 @@ void Board::loadMap(const string &mapfile) {
 }
 
 void Board::setPlayer(Player *p, Cell *c) { c->addPlayer(p); }
+void Board::removePlayer(Player *p, Cell *c) { c->removePlayer(p);}
+void Board::movePlayer(Player *p, Cell *s, Cell *g) {
+	removePlayer(p, s);
+	setPlayer(p, g);
+}
 
 void Board::printAll() {
 	Player *p1 = new Player("Hobo");
 	Player *p2 = new Player("Alex");
-	setPlayer(p1, cells[1]);
+	setPlayer(p1, cells[0]);
 	setPlayer(p2, cells[1]);
+	cells[1]->setOwner(p1);
 	td->printAll(width, height, cells);
+	movePlayer(p1, cells[0], cells[5]);
+	td->printAll(width, height, cells);
+	delete p1;
+	delete p2;
 }

@@ -17,15 +17,18 @@ class Cell {
 		Cell *prev, *next;
 		std::vector <Player *> currentPlayer;
 
-		Cell();
-		Cell(const std::string &s, const std::string &g);
-		~Cell();
 		virtual void generateTextImage() = 0;
 	public:
+		Cell();
+		virtual ~Cell();
+		Cell(const std::string &s, const std::string &g);
 		virtual void setCost(const int c) = 0;
 		virtual void setCostImprove(const int c) = 0;
 		virtual void addRent(const int c) = 0;
-		virtual void addPlayer(Player *p) = 0;
+		virtual void setOwner(Player *p) = 0;
+
+		void addPlayer(Player *p);
+		void removePlayer(Player *p);
 
 		std::vector <std::string> getTextImage();
 };

@@ -14,6 +14,8 @@ class Board {
 		Board *getInstance();
 		void loadMap(const std::string &mapfile);
 		void setPlayer(Player *p, Cell *c);
+		void removePlayer(Player *p, Cell *c);
+		void movePlayer(Player *p, Cell *s, Cell *g);
 	public:
 		Board();
 		Board(const std::string &mapfile);

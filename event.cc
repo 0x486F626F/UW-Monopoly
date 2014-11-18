@@ -24,8 +24,3 @@ Event::Event() {}
 Event::Event(const string &s, const string &g) : Cell(s, g) {
 	generateTextImage();
 }
-void Event::addPlayer(Player *p) {
-	p->setCurrentCell(this);
-	currentPlayer.push_back(p);
-	generateTextImage();
-}
