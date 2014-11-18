@@ -2,6 +2,9 @@
 #include "cell.h"
 #include "facility.h"
 #include "property.h"
+#include "textdisplay.h"
+#include "xdisplay.h"
+#include "player.h"
 
 #include <iostream>
 #include <sstream>

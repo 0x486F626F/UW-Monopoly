@@ -4,9 +4,10 @@
 #include <vector>
 #include <string>
 
-#include "cell.h"
-#include "textdisplay.h"
-#include "xdisplay.h"
+class TextDisplay;
+class XDisplay;
+class Player;
+class Cell;
 
 class Board {
 	private:

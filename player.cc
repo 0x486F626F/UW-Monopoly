@@ -1,4 +1,6 @@
 #include "player.h"
+#include "cell.h"
+#include "dice.h"
 
 #include <iostream>
 

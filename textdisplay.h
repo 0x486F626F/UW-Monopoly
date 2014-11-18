@@ -2,7 +2,8 @@
 #define __TEXTDISPLAY_H__
 #include <vector>
 #include <string>
-#include "cell.h"
+
+class Cell;
 
 class TextDisplay {
 	private:

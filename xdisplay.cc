@@ -1,4 +1,6 @@
 #include "xdisplay.h"
+#include "window.h"
+#include "cell.h"
 
 using namespace std;
 

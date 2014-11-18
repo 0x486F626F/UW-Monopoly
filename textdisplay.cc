@@ -1,4 +1,5 @@
 #include "textdisplay.h"
+#include "cell.h"
 
 #include <iostream>
 #include <vector>

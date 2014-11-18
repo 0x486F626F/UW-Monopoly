@@ -4,10 +4,8 @@
 #include <vector>
 #include <string>
 
-#include "cell.h"
-#include "dice.h"
-
 class Cell;
+class Dice;
 
 class Player {
 	private:

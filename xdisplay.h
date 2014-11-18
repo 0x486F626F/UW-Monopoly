@@ -3,8 +3,8 @@
 
 #include <vector>
 
-#include "window.h"
-#include "cell.h"
+class Xwindow;
+class Cell;
 
 class XDisplay {
 	private:

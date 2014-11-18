@@ -3,9 +3,9 @@
 
 #include <string>
 #include <vector>
-
 #include "cell.h"
-#include "player.h"
+
+class Player;
 
 class Property : public Cell {
 	private:

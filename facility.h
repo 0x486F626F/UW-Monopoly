@@ -2,8 +2,8 @@
 #define __FACILITY_H__
 
 #include <string>
-
 #include "cell.h"
+class Player;
 
 class Facility : public Cell {
 	private:
