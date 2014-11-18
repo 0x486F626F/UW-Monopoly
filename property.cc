@@ -29,7 +29,7 @@ void Property::generateTextImage() {
 }
 
 Property::Property() {}
-Property::Property(const string &s, const string &g) : Cell(s, g), sold(0), mortgaged(0) {
+Property::Property(const int i, const string &s, const string &g) : Cell(i, s, g), sold(0), mortgaged(0) {
 	generateTextImage();
 }
 
@@ -41,5 +41,12 @@ void Property::setOwner(Player *p) {
 	sold = true;
 	p->addProperty(this);
 	owner = p;
+	generateTextImage();
+}
+
+void Property::removeOwner(Player *p) {
+	sold = false;
+	p->removeProperty(this);
+	owner = NULL;
 	generateTextImage();
 }

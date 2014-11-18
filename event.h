@@ -9,10 +9,11 @@ class Event : public Cell {
 		void generateTextImage();
 	public:
 		Event();
-		Event(const std::string &s, const std::string &g);
+		Event(const int i, const std::string &s, const std::string &g);
 		void setCost(const int c) {}
 		void setCostImprove(const int c) {}
 		void addRent(const int r) {}
 		void setOwner(Player *p) {}
+		void removeOwner(Player *p) {}
 };
 #endif

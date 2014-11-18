@@ -20,6 +20,7 @@ class Player {
 		char getInit();
 		void setCurrentCell(Cell *c);
 		void addProperty(Cell *c);
+		void removeProperty(Cell *c);
 		std::string getName();
 };
 #endif

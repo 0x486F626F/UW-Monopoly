@@ -32,8 +32,8 @@ void Board::loadMap(const string &mapfile) {
 		getline(stream, group);
 
 		Cell *p;
-		if(group == "NONE") p = new Event(name, group);
-		else p = new Property(name, group);
+		if(group == "NONE") p = new Event(i, name, group);
+		else p = new Property(i, name, group);
 
 		int cost, n, rent;
 		stream >> cost;

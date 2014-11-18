@@ -14,10 +14,11 @@ class Property : public Cell {
 		Player *owner;
 	public:
 		Property();	
-		Property(const std::string &s, const std::string &g);
+		Property(const int i, const std::string &s, const std::string &g);
 		void setCost(const int c);
 		void setCostImprove(const int c);
 		void addRent(const int r);
 		void setOwner(Player *p);
+		void removeOwner(Player *p);
 };
 #endif

@@ -3,10 +3,12 @@
 
 using namespace std;
 Cell::Cell() {}
-Cell::Cell(const string &s, const string &g) : name(s), group(g) {}
+Cell::Cell(const int i, const string &s, const string &g) : ID(i), name(s), group(g) {}
 Cell::~Cell() {}
 
 std::vector <std::string> Cell::getTextImage() { return textImage; }
+
+int Cell::getID() { return ID; }
 
 void Cell::addPlayer(Player *p) {
 	p->setCurrentCell(this);

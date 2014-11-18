@@ -11,6 +11,7 @@ class Player;
 
 class Cell {
 	protected:
+		int ID;
 		std::string name;
 		std::string group;
 		std::vector <std::string> textImage;
@@ -21,12 +22,15 @@ class Cell {
 	public:
 		Cell();
 		virtual ~Cell();
-		Cell(const std::string &s, const std::string &g);
+		Cell(const int i, const std::string &s, const std::string &g);
+
 		virtual void setCost(const int c) = 0;
 		virtual void setCostImprove(const int c) = 0;
 		virtual void addRent(const int c) = 0;
 		virtual void setOwner(Player *p) = 0;
+		virtual void removeOwner(Player *p) = 0;
 
+		int getID();
 		void addPlayer(Player *p);
 		void removePlayer(Player *p);
 
