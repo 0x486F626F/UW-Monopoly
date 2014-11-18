@@ -22,6 +22,11 @@ class Cell {
 		~Cell();
 		virtual void generateTextImage() = 0;
 	public:
-		void print();
+		virtual void setCost(const int c) = 0;
+		virtual void setCostImprove(const int c) = 0;
+		virtual void addRent(const int c) = 0;
+		virtual void addPlayer(Player *p) = 0;
+
+		std::vector <std::string> getTextImage();
 };
 #endif

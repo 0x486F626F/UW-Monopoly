@@ -3,6 +3,7 @@
 using namespace std;
 
 void Property::generateTextImage() {
+	textImage.clear();
 	string tmp;
 	tmp.resize(CELLWIDTH, ' ');
 	textImage.push_back(tmp);
@@ -28,5 +29,14 @@ void Property::generateTextImage() {
 
 Property::Property() {}
 Property::Property(const string &s, const string &g) : Cell(s, g) {
+	generateTextImage();
+}
+
+void Property::setCost(const int c) { cost = c; }
+void Property::setCostImprove(const int c) { costImprove = c; }
+void Property::addRent(const int r) { rents.push_back(r); }
+void Property::addPlayer(Player *p) {
+	p->setCurrentCell(this);
+	currentPlayer.push_back(p);
 	generateTextImage();
 }

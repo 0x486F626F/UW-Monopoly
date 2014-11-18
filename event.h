@@ -9,5 +9,9 @@ class Event : public Cell {
 	public:
 		Event();
 		Event(const std::string &s, const std::string &g);
+		void setCost(const int c) {};
+		void setCostImprove(const int c) {};
+		void addRent(const int r) {};
+		void addPlayer(Player *p);
 };
 #endif

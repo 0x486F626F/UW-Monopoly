@@ -2,18 +2,18 @@
 #define __TEXTDISPLAY_H__
 #include <vector>
 #include <string>
+#include "cell.h"
+
 class TextDisplay {
 	private:
-		static TextDisplay *instance;
+		std:: string top, bot, emp;
 
-		std::vector <std::string> tags;
-		int width, height
+		void printHorizontal(const int w, const int l, const int r, const std::vector <Cell *> &cells);
+		void printVertical(const int w, const int l, const int r, const std::vector <Cell *> &cells, const std::string central);
 	public:
-		static TextDisplay *getInstance();
 		TextDisplay();
 		~TextDisplay();
-		void addTag(std::string str);
-		void clean();
-		void printBoard(int w, int h);
+
+		void printAll(const int w, const int h, const std::vector<Cell *> &cells);
 };
 #endif
