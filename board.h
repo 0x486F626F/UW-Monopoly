@@ -20,6 +20,7 @@ class Board {
 		int numPlayer, numCell;
 		std::vector <Cell*> cells;
 		std::vector <Player*> players;
+
 		TextDisplay *td;
 		XDisplay *xd;
 		

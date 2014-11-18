@@ -4,6 +4,7 @@
 #include <vector>
 
 #include "window.h"
+#include "cell.h"
 
 class XDisplay {
 	private:
@@ -12,7 +13,7 @@ class XDisplay {
 		XDisplay(const int w, const int h);
 		~XDisplay();
 
-		void drawCell(std::vector < std::vector<int> > v);
+		void drawCell(Cell *c);
 };
 
 #endif
