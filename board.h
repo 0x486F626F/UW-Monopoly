@@ -6,7 +6,7 @@
 
 #include "cell.h"
 #include "textdisplay.h"
-//#include "Display/xdisplay.h"
+#include "xdisplay.h"
 
 class Board {
 	private:
@@ -21,7 +21,7 @@ class Board {
 		std::vector <Cell*> cells;
 		std::vector <Player*> players;
 		TextDisplay *td;
-		//XDisplay *xd;
+		XDisplay *xd;
 		
 		Board(const std::string save, const bool testing);
 		~Board();

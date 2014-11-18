@@ -16,6 +16,8 @@ class Cell {
 		int ID;
 		std::string name, group;
 		std::vector <std::string> textImage;
+		int Xx, Xy;
+		std::vector <std::vector <int> > XImage;
 		std::vector <Player*> currentPlayer;
 
 		virtual void generateTextImage() = 0;
@@ -34,6 +36,7 @@ class Cell {
 		//virtual void event(Player *p) = 0;
 
 		int getID();
+		void setXCoords(const int x, const int y);
 		void addPlayer(Player *p);
 		void removePlayer(Player *p);
 		void movePlayer(Player *p);

@@ -26,6 +26,7 @@ Board::Board(const string save, const bool test) : savefile(save), testing(test)
 }
 Board::~Board() {
 	delete td;
+	delete xd;
 	for(int i = 0; i < numCell; i ++)
 		delete cells[i];
 	for(int i = 0; i < numPlayer; i ++)
@@ -80,6 +81,7 @@ void Board::loadMap(const string &mapfile) {
 		getline(stream, tmp);
 		getline(stream, tmp);
 	}
+	xd = new XDisplay(width, height);
 }
 
 void Board::loadGame() {

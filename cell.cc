@@ -10,6 +10,8 @@ Cell::Cell(const int i, const std::string &s, const std::string &g) :
 
 int Cell::getID() { return ID; }
 
+void Cell::setXCoords(const int x, const int y) { Xx = x, Xy = y; }
+
 void Cell::addPlayer(Player *p) {
 	p->setCurrentCell(this);
 	currentPlayer.push_back(p);
