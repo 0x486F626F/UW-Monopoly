@@ -1,49 +1,63 @@
 #include "board.h"
-#include "event.h"
+#include "cell.h"
+#include "facility.h"
 #include "property.h"
 
 #include <iostream>
-#include <fstream>
 #include <sstream>
+#include <fstream>
+#include <cstdlib>
 using namespace std;
 
-Board::Board() {}
+/*****Instance*****/
+void Board::cleanInstance() { delete instance; }
+Board *Board::getInstance(const string save, const bool testing) {
+	if(!instance) {
+		instance = new Board(save, testing);
+		atexit(cleanInstance);
+	}
+	return instance;
+}
+Board *Board::instance = NULL;
+
+/*****Constructor*****/
+Board::Board(const string save, const bool test) : savefile(save), testing(test) {
+	td = new TextDisplay;
+}
 Board::~Board() {
 	delete td;
-	for(int i = 0; i < cells.size(); i ++)
+	for(int i = 0; i < numCell; i ++)
 		delete cells[i];
+	for(int i = 0; i < numPlayer; i ++)
+		delete players[i];
 }
 
-Board::Board(const string &mapfile) : width(0), height(0) {
-	td = new TextDisplay;
-	loadMap(mapfile);
-}
-
+/*****setGame*****/
 void Board::loadMap(const string &mapfile) {
 	string tmp;
 	ifstream stream(mapfile.c_str());
 	getline(stream, tmp);
 	istringstream str(tmp);
 	str >> width >> height;
-	int totCell = width * 2 + height * 2 - 4;
-	for(int i = 0; i < totCell; i ++) {
+	numCell = width * 2 + height * 2 - 4;
+
+	for(int i = 0; i < numCell; i ++) {
+		int cost, n, rent;
 		string name, group;
+
 		getline(stream, name);
 		getline(stream, group);
 
-		Cell *p;
-		if(group == "NONE") p = new Event(i, name, group);
-		else p = new Property(i, name, group);
+		Cell *p; //= group == "NONE" ? new Facility(i, name, group) : new Property(i, name, group);
+		if(group == "NONE") p = new Facility(i, name, group);
+		else p = new Property(i, name, group);	
 
-		int cost, n, rent;
 		stream >> cost;
 		if(cost) {
 			stream >> cost >> rent;
 			p->setCost(cost);
 			p->addRent(rent);
 		}
-		else p->setCost(0x3f3f3f3f);
-
 
 		stream >> cost;
 		if(cost) {
@@ -51,14 +65,16 @@ void Board::loadMap(const string &mapfile) {
 			p->setCostImprove(cost);
 			while(n --) {
 				stream >> rent;
+
 				p->addRent(rent);
 			}
 		}
-		else p->setCostImprove(0x3f3f3f3f);
 
 		stream >> n;
 		for(int i = 0; i < n; i ++) {
+			//set event
 		}
+
 		cells.push_back(p);
 
 		getline(stream, tmp);
@@ -66,22 +82,45 @@ void Board::loadMap(const string &mapfile) {
 	}
 }
 
-void Board::setPlayer(Player *p, Cell *c) { c->addPlayer(p); }
-void Board::removePlayer(Player *p, Cell *c) { c->removePlayer(p);}
-void Board::movePlayer(Player *p, Cell *s, Cell *g) {
-	removePlayer(p, s);
-	setPlayer(p, g);
+void Board::loadGame() {
 }
 
-void Board::printAll() {
-	Player *p1 = new Player("Hobo");
-	Player *p2 = new Player("Alex");
-	setPlayer(p1, cells[0]);
-	setPlayer(p2, cells[1]);
-	cells[1]->setOwner(p1);
+void Board::initGame() {
+	string mapfile = "uw.map";
+	numPlayer = 6;
+
+	loadMap(mapfile);	
+	for(int i = 0; i < numPlayer; i ++) {
+		players.push_back(new Player(i, string("") + char('A' + i)));
+		cout << players[i]->getInit() << endl;
+		cells[0]->addPlayer(players[i]);
+	}
+
+	printBoard();
+	for(int i = 0; !gameEnd();) {
+		string str;
+		cin >> str;
+		if(str == "next") i = (i + 1) % numPlayer;
+		if(str == "roll") {
+			int step = players[i]->roll(testing);
+			int id = players[i]->getCurrentCell()->getID();
+			id = (id + step) % numCell;
+			cells[id]->movePlayer(players[i]);	
+		}
+		printBoard();
+	}
+
+}
+
+bool Board::gameEnd() { return false; }
+
+/*****printBoard*****/
+void Board::printBoard() {
 	td->printAll(width, height, cells);
-	movePlayer(p1, cells[0], cells[5]);
-	td->printAll(width, height, cells);
-	delete p1;
-	delete p2;
+}
+
+/*****startGame*****/
+void Board::startGame() {
+	if(savefile.length() > 0) loadGame();
+	else initGame();
 }

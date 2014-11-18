@@ -2,6 +2,10 @@
 
 using namespace std;
 
+Property::Property() {}
+
+Property::Property(const int i, const std::string &s, const std::string &g) : Cell(i, s, g) {}
+
 void Property::generateTextImage() {
 	textImage.clear();
 	string tmp;
@@ -28,25 +32,16 @@ void Property::generateTextImage() {
 	textImage.push_back(tmp);
 }
 
-Property::Property() {}
-Property::Property(const int i, const string &s, const string &g) : Cell(i, s, g), sold(0), mortgaged(0) {
-	generateTextImage();
-}
-
 void Property::setCost(const int c) { cost = c; }
 void Property::setCostImprove(const int c) { costImprove = c; }
 void Property::addRent(const int r) { rents.push_back(r); }
-
 void Property::setOwner(Player *p) {
 	sold = true;
 	p->addProperty(this);
 	owner = p;
-	generateTextImage();
 }
-
-void Property::removeOwner(Player *p) {
-	sold = false;
-	p->removeProperty(this);
-	owner = NULL;
-	generateTextImage();
+void Property::swapOwner(Player *p1, Player *p2) {
+	p1->removeProperty(this);
+	p2->addProperty(this);
+	owner = p2;
 }

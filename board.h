@@ -1,26 +1,42 @@
 #ifndef __BOARD_H__
 #define __BOARD_H__
+
 #include <vector>
+#include <string>
+
 #include "cell.h"
 #include "textdisplay.h"
+//#include "Display/xdisplay.h"
+
 class Board {
 	private:
 		static Board *instance;
 
-		int width, height;
-		std::vector <Cell*> cells;
-		TextDisplay *td;
+		static void cleanInstance();
 
-		Board *getInstance();
-		void loadMap(const std::string &mapfile);
-		void setPlayer(Player *p, Cell *c);
-		void removePlayer(Player *p, Cell *c);
-		void movePlayer(Player *p, Cell *s, Cell *g);
-	public:
-		Board();
-		Board(const std::string &mapfile);
+		std::string savefile;
+		bool testing;
+		int width, height;
+		int numPlayer, numCell;
+		std::vector <Cell*> cells;
+		std::vector <Player*> players;
+		TextDisplay *td;
+		//XDisplay *xd;
+		
+		Board(const std::string save, const bool testing);
 		~Board();
 
-		void printAll();
+		void loadMap(const std::string &mapfile);
+		void initGame();
+		void loadGame();
+		void printBoard();
+
+		bool gameEnd();
+		void movePlayer(Player *p, Cell *s, Cell *g);
+
+	public:
+		static Board *getInstance(const std::string save, const bool testing);
+
+		void startGame();
 };
 #endif
