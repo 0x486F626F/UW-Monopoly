@@ -6,6 +6,7 @@
 
 using namespace std;
 
+//constructor and destructor
 Player::~Player() {}
 Player::Player(const int i, const std::string &s) : ID(i), name(s), numDice(2) {
 	dice = Dice::getInstance(numDice);

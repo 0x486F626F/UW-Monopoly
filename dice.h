@@ -11,7 +11,7 @@ class Dice {
 	private:
 	   //dice implemented as a singleton
 		static Dice *instance;
-		//represents the number facing up
+		//represents the number of dice
 		int n;
 
 		static void cleanInstance();

@@ -3,6 +3,8 @@
 
 using namespace std;
 
+
+//constructor and destructor
 Group::Group(const int i, const std::string &s) : ID(i), name(s) {}
 Group::~Group() {}
 

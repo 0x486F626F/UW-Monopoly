@@ -14,10 +14,14 @@ class Group {
 	public:
 		Group(const int i, const std::string &s);
 		~Group();
-
+      
+      //get the name of the group
 		std::string getName();
+		//get ID of the group
 		int getID();
+		//check if the group is monopolized
 		bool isMonopoly();
+		//add a property to the group
 		void addProperty(Property *p);
 };
 
