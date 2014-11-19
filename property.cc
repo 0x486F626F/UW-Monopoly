@@ -56,3 +56,6 @@ bool Property::isImproveable() { return improveable && level < rents.size() - 1;
 int Property::getOwnerID() { return owner->getID(); }
 void Property::setGroup(Group *g) { group = g; }
 Group *Property::getGroup() { return group; }
+
+void Property::event(Player *p) {
+}

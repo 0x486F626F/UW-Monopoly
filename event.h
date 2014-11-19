@@ -5,7 +5,7 @@
 
 class Event : public Cell {
 	protected:
-		Cell &c;
+		Cell &theCell;
 		Event(Cell &c);
 		~Event();
 };

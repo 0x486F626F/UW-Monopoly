@@ -35,7 +35,7 @@ class Property : public Cell {
 		int getOwnerID();
 		void setGroup(Group *g);
 
-		//void event(Player *p);
+		void event(Player *p);
 };
 
 #endif
