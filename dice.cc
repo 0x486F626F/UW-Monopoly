@@ -2,8 +2,12 @@
 
 using namespace std;
 
+//constructor
 Dice::Dice(const int v) : n(v) {}
+
+//destructor
 Dice::~Dice() {}
+
 vector <int> Dice::roll() {
 	vector <int> v;
 	for(int i = 0; i < n; i ++)
