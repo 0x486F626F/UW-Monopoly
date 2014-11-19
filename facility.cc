@@ -22,3 +22,21 @@ void Facility::generateTextImage() {
 	tmp.resize(CELLWIDTH, ' ');
 	textImage.push_back(tmp);
 }
+
+void Facility::setCost(const int c) {}
+
+void Facility::setCostImprove(const int c) {}
+
+void Facility::addRent(const int r) {}
+
+void Facility::setOwner(Player *p) {}
+
+void Facility::swapOwner(Player *p1, Player *p2) {}
+
+bool Facility::isBuyable() { return false; }
+
+bool Facility::isImproveable() { return false; }
+
+Group* Facility::getGroup() { return NULL; }
+
+void Facility::event(Player *p) {}

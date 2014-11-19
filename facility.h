@@ -14,16 +14,16 @@ class Facility : public Cell {
 		Facility();
 		Facility(const int i, const std::string &s);
 		
-		void setCost(const int c) {}
-		void setCostImprove(const int c) {}
-		void addRent(const int r) {}
-		void setOwner(Player *p) {}
-		void swapOwner(Player *p1, Player *p2) {}
-		bool isBuyable() { return false; }
-		bool isImproveable() { return false; }
-		Group *getGroup() { return NULL; }
+		void setCost();
+		void setCostImprove();
+		void addRent();
+		void setOwner();
+		void swapOwner();
+		bool isBuyable();
+		bool isImproveable();
+		Group *getGroup();
 
-		void event(Player *p) {}
+		void event();
 };
 
 #endif
