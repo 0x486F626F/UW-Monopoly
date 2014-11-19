@@ -4,10 +4,10 @@
 #include <vector>
 #include <string>
 
-class TextDisplay;
-class XDisplay;
 class Player;
 class Cell;
+class TextDisplay;
+//class XDisplay;
 
 class Board {
 	private:
@@ -23,7 +23,7 @@ class Board {
 		std::vector <Player*> players;
 
 		TextDisplay *td;
-		XDisplay *xd;
+		//XDisplay *xd;
 		
 		Board(const std::string save, const bool testing);
 		~Board();
