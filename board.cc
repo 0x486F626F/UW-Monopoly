@@ -80,9 +80,7 @@ void Board::loadMap(const string &mapfile) {
 			stream >> cost >> rent;
 			p->setCost(cost);
 			p->addRent(rent);
-			cout << p->getName() << endl;
 			p = new SellProperty(*p);
-			cout << p->getName() << endl;
 		}
 
 		stream >> cost;

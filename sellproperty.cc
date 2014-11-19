@@ -3,7 +3,7 @@
 
 using namespace std;
 
-SellProperty::SellProperty(Cell &c) : Event(c) {cout << c.getName() << "||" << theCell.getName() << endl;}
+SellProperty::SellProperty(Cell &c) : Event(c) {} 
 SellProperty::~SellProperty() {}
 
 void SellProperty::generateTextImage() { theCell.generateTextImage(); }
