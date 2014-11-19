@@ -6,13 +6,16 @@
 #include "cell.h"
 
 class Player;
+class Group;
 
 class Property : public Cell {
 	private:
-		int cost, costImprove;
+		int cost, costImprove, level;
 		std::vector <int> rents;
 		bool sold, mortgaged;
+		bool buyable, improveable;
 		Player *owner;
+		Group *group;
 
 		void generateTextImage();
 
@@ -25,6 +28,12 @@ class Property : public Cell {
 		void addRent(const int r);
 		void setOwner(Player *p);
 		void swapOwner(Player *p1, Player *p2);
+
+		bool isBuyable();
+		bool isImproveable();
+		
+		int getOwnerID();
+		void setGroup(Group *g);
 
 		//void event(Player *p);
 };

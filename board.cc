@@ -1,5 +1,6 @@
 #include "board.h"
 #include "cell.h"
+#include "group.h"
 #include "facility.h"
 #include "property.h"
 #include "textdisplay.h"
@@ -34,6 +35,8 @@ Board::~Board() {
 		delete cells[i];
 	for(int i = 0; i < numPlayer; i ++)
 		delete players[i];
+	for(int i = 0; i < groups.size(); i ++)
+		delete groups[i];
 }
 
 /*****setGame*****/
@@ -54,7 +57,12 @@ void Board::loadMap(const string &mapfile) {
 
 		Cell *p; //= group == "NONE" ? new Facility(i, name, group) : new Property(i, name, group);
 		if(group == "NONE") p = new Facility(i, name, group);
-		else p = new Property(i, name, group);	
+		else {
+			Property *tp = new Property(i, name, group);	
+			p = tp;
+			for(vector <Group*>::iterator i = groups.begin(); i != groups.end(); i ++)
+				if((*i)->getName() == group) { (*i)->addProperty(tp); }
+		}
 
 		stream >> cost;
 		if(cost) {

@@ -5,7 +5,10 @@ using namespace std;
 
 Property::Property() {}
 
-Property::Property(const int i, const std::string &s, const std::string &g) : Cell(i, s, g) {}
+Property::Property(const int i, const std::string &s, const std::string &g) : Cell(i, s, g) {
+	sold = false;
+	mortgaged;
+}
 
 void Property::generateTextImage() {
 	textImage.clear();
@@ -33,8 +36,8 @@ void Property::generateTextImage() {
 	textImage.push_back(tmp);
 }
 
-void Property::setCost(const int c) { cost = c; }
-void Property::setCostImprove(const int c) { costImprove = c; }
+void Property::setCost(const int c) { cost = c; buyable = true; }
+void Property::setCostImprove(const int c) { costImprove = c; improveable = true; } 
 void Property::addRent(const int r) { rents.push_back(r); }
 void Property::setOwner(Player *p) {
 	sold = true;
@@ -46,3 +49,9 @@ void Property::swapOwner(Player *p1, Player *p2) {
 	p2->addProperty(this);
 	owner = p2;
 }
+
+bool Property::isBuyable() { return buyable && !sold; }
+bool Property::isImproveable() { return improveable && level < rents.size() - 1; }
+
+int Property::getOwnerID() { return owner->getID(); }
+void Property::setGroup(Group *g) { group = g; }
