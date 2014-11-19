@@ -3,7 +3,6 @@
 
 using namespace std;
 
-//constructor and destructor
 Facility::Facility() {}
 Facility::Facility(const int i, const std::string &s) : Cell(i, s) {}
 
