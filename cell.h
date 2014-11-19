@@ -37,13 +37,13 @@ class Cell {
 
 		virtual void event(Player *p) = 0;
 
-		int getID();
+		virtual int getID();
 		virtual std::string getName();
-		void setXCoords(const int x, const int y);
-		void addPlayer(Player *p);
-		void removePlayer(Player *p);
-		void movePlayer(Player *p);
+		virtual void setXCoords(const int x, const int y);
+		virtual void addPlayer(Player *p);
+		virtual void removePlayer(Player *p);
+		virtual void movePlayer(Player *p);
 
-		std::vector <std::string> getTextImage();
+		virtual std::vector <std::string> getTextImage();
 };
 #endif

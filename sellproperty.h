@@ -1,6 +1,7 @@
 #ifndef __SELLPROPERTY_H__
 #define __SELLPROPERTY_H__
-
+#include <vector>
+#include <string>
 #include "event.h"
 
 class Player;
@@ -21,6 +22,15 @@ class SellProperty : public Event {
 		Group *getGroup();
 		bool isBuyable();
 		bool isImproveable();
+
+		int getID();
+		std::string getName();
+		void setXCoords(const int x, const int y);
+		void addPlayer(Player *p);
+		void removePlayer(Player *p);
+		void movePlayer(Player *p);
+
+		std::vector <std::string> getTextImage();
 
 		void event(Player *p);
 };
