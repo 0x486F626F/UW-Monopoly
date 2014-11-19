@@ -12,7 +12,7 @@ class TextDisplay;
 
 class Board {
 	private:
-	   //Board is setup as a singleton
+		//Board is setup as a singleton
 		static Board *instance;
 
 		static void cleanInstance();
@@ -29,21 +29,21 @@ class Board {
 
 		TextDisplay *td;
 		//XDisplay *xd;
-		
+
 		Board(const std::string save, const bool testing);
 		~Board();
-      
-      
-      //load the map of the game in accordance to the map file
+
+
+		//load the map of the game in accordance to the map file
 		void loadMap(const std::string &mapfile);
 		//initialize a game of 6 players
 		void initGame();
 		void loadGame();
 		//print the current state of the board
 		void printBoard();
-      
-      
-      // terminate a game and return false
+
+
+		// terminate a game and return false
 		bool gameEnd();
 		void movePlayer(Player *p, Cell *s, Cell *g);
 

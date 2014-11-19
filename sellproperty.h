@@ -7,11 +7,13 @@ class Player;
 class Group;
 
 class SellProperty : public Event {
+	private:
+		void generateTextImage();
 	public:
 		SellProperty(Cell &c);
 		~SellProperty();
 
-		void setCost(const c);
+		void setCost(const int c);
 		void setCostImprove(const int c);
 		void addRent(const int r);
 		void setOwner(Player *p);

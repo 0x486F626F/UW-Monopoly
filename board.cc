@@ -7,6 +7,8 @@
 //#include "xdisplay.h"
 #include "player.h"
 
+#include "sellproperty.h"
+
 #include <iostream>
 #include <sstream>
 #include <fstream>
@@ -78,6 +80,9 @@ void Board::loadMap(const string &mapfile) {
 			stream >> cost >> rent;
 			p->setCost(cost);
 			p->addRent(rent);
+			cout << p->getName() << endl;
+			p = new SellProperty(*p);
+			cout << p->getName() << endl;
 		}
 
 		stream >> cost;
@@ -117,11 +122,6 @@ void Board::initGame() {
 		cells[0]->addPlayer(players[i]);
 	}
 
-	cout << numGroup << endl;
-	for(int i = 0; i < numCell; i ++)
-		if(cells[i]->isBuyable())
-			cout << cells[i]->getName() << " " << cells[i]->getGroup()->getName() << endl;
-
 	printBoard();
 	for(int i = 0; !gameEnd();) {
 		string str;
@@ -132,6 +132,7 @@ void Board::initGame() {
 			int id = players[i]->getCurrentCell()->getID();
 			id = (id + step) % numCell;
 			cells[id]->movePlayer(players[i]);	
+			cells[id]->event(players[i]);
 		}
 		printBoard();
 	}

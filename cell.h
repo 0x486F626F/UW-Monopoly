@@ -19,13 +19,13 @@ class Cell {
 		std::vector <std::vector <int> > XImage;
 		std::vector <Player*> currentPlayer;
 
-		virtual void generateTextImage() = 0;
 
 	public:
 		Cell();
 		virtual ~Cell();
 		Cell(const int i, const std::string &s);
 
+		virtual void generateTextImage() = 0;
 		virtual void setCost(const int c) = 0;
 		virtual void setCostImprove(const int c) = 0;
 		virtual void addRent(const int r) = 0;
@@ -38,7 +38,7 @@ class Cell {
 		virtual void event(Player *p) = 0;
 
 		int getID();
-		std::string getName();
+		virtual std::string getName();
 		void setXCoords(const int x, const int y);
 		void addPlayer(Player *p);
 		void removePlayer(Player *p);
