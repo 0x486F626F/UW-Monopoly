@@ -35,7 +35,7 @@ class Cell {
 		virtual bool isBuyable() = 0;
 		virtual bool isImproveable() = 0;
 
-		//virtual void event(Player *p) = 0;
+		virtual void event(Player *p) = 0;
 
 		int getID();
 		std::string getName();

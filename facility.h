@@ -23,7 +23,7 @@ class Facility : public Cell {
 		bool isImproveable() { return false; }
 		Group *getGroup() { return NULL; }
 
-		//void event(Player *p);
+		void event(Player *p) {}
 };
 
 #endif
