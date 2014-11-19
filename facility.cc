@@ -4,8 +4,7 @@
 using namespace std;
 
 Facility::Facility() {}
-Facility::Facility(const int i, const std::string &s, const std::string &g) :
-	Cell(i, s, g) {}
+Facility::Facility(const int i, const std::string &s) : Cell(i, s) {}
 
 void Facility::generateTextImage() {
 	textImage.clear();

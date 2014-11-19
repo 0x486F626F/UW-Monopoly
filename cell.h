@@ -8,11 +8,12 @@ const int CELLWIDTH = 7;
 const int CELLHEIGHT = 4;
 
 class Player;
+class Group;
 
 class Cell {
 	protected:
 		int ID;
-		std::string name, group;
+		std::string name;
 		std::vector <std::string> textImage;
 		int Xx, Xy;
 		std::vector <std::vector <int> > XImage;
@@ -23,17 +24,21 @@ class Cell {
 	public:
 		Cell();
 		virtual ~Cell();
-		Cell(const int i, const std::string &s, const std::string &g);
+		Cell(const int i, const std::string &s);
 
 		virtual void setCost(const int c) = 0;
 		virtual void setCostImprove(const int c) = 0;
 		virtual void addRent(const int r) = 0;
 		virtual void setOwner(Player *p) = 0;
 		virtual void swapOwner(Player *p1, Player *p2) = 0;
+		virtual Group *getGroup() = 0;
+		virtual bool isBuyable() = 0;
+		virtual bool isImproveable() = 0;
 
 		//virtual void event(Player *p) = 0;
 
 		int getID();
+		std::string getName();
 		void setXCoords(const int x, const int y);
 		void addPlayer(Player *p);
 		void removePlayer(Player *p);

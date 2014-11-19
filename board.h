@@ -19,7 +19,7 @@ class Board {
 		std::string savefile;
 		bool testing;
 		int width, height;
-		int numPlayer, numCell;
+		int numPlayer, numCell, numGroup;
 		std::vector <Cell*> cells;
 		std::vector <Player*> players;
 		std::vector <Group*> groups;

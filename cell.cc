@@ -6,10 +6,12 @@ using namespace std;
 Cell::Cell() {}
 Cell::~Cell() {}
 
-Cell::Cell(const int i, const std::string &s, const std::string &g) :
-	ID(i), name(s), group(g) {}
+Cell::Cell(const int i, const std::string &s) :
+	ID(i), name(s) {}
 
 int Cell::getID() { return ID; }
+
+std::string Cell::getName() { return name; }
 
 void Cell::setXCoords(const int x, const int y) { Xx = x, Xy = y; }
 

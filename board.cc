@@ -26,6 +26,7 @@ Board *Board::instance = NULL;
 
 /*****Constructor*****/
 Board::Board(const string save, const bool test) : savefile(save), testing(test) {
+	numPlayer = numCell = numGroup = 0;
 	td = new TextDisplay;
 }
 Board::~Board() {
@@ -55,13 +56,21 @@ void Board::loadMap(const string &mapfile) {
 		getline(stream, name);
 		getline(stream, group);
 
-		Cell *p; //= group == "NONE" ? new Facility(i, name, group) : new Property(i, name, group);
-		if(group == "NONE") p = new Facility(i, name, group);
+		Cell *p; 
+		if(group == "NONE") p = new Facility(i, name);
 		else {
-			Property *tp = new Property(i, name, group);	
+			Property *tp = new Property(i, name);	
 			p = tp;
+			bool found = false;
 			for(vector <Group*>::iterator i = groups.begin(); i != groups.end(); i ++)
-				if((*i)->getName() == group) { (*i)->addProperty(tp); }
+				if((*i)->getName() == group) { 
+					(*i)->addProperty(tp); 
+					found = true;
+				}
+			if(!found) {
+				groups.push_back(new Group(numGroup ++, group));
+				(*(groups.end() - 1))->addProperty(tp);
+			}
 		}
 
 		stream >> cost;
@@ -105,9 +114,13 @@ void Board::initGame() {
 	loadMap(mapfile);	
 	for(int i = 0; i < numPlayer; i ++) {
 		players.push_back(new Player(i, string("") + char('A' + i)));
-		cout << players[i]->getInit() << endl;
 		cells[0]->addPlayer(players[i]);
 	}
+
+	cout << numGroup << endl;
+	for(int i = 0; i < numCell; i ++)
+		if(cells[i]->isBuyable())
+			cout << cells[i]->getName() << " " << cells[i]->getGroup()->getName() << endl;
 
 	printBoard();
 	for(int i = 0; !gameEnd();) {

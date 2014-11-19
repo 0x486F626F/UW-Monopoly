@@ -5,7 +5,7 @@ using namespace std;
 
 Property::Property() {}
 
-Property::Property(const int i, const std::string &s, const std::string &g) : Cell(i, s, g) {
+Property::Property(const int i, const std::string &s) : Cell(i, s) {
 	sold = false;
 	mortgaged;
 }
@@ -55,3 +55,4 @@ bool Property::isImproveable() { return improveable && level < rents.size() - 1;
 
 int Property::getOwnerID() { return owner->getID(); }
 void Property::setGroup(Group *g) { group = g; }
+Group *Property::getGroup() { return group; }
