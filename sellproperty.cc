@@ -3,6 +3,7 @@
 
 using namespace std;
 
+//constructor and destructor
 SellProperty::SellProperty(Cell &c) : Event(c) {} 
 SellProperty::~SellProperty() {}
 

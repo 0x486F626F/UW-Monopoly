@@ -28,7 +28,7 @@ class Player {
 		
 		//get ID of the player
 		int getID();
-		//???
+		//get name initial of the player
 		char getInit();
 		//get name of player
 		std::string getName();
