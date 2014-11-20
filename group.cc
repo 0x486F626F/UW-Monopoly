@@ -13,6 +13,8 @@ int Group::getID() { return ID; }
 std::string Group::getName() { return name; }
 
 bool Group::isMonopoly() {
+	for(int i = 0; i < properties.size(); i ++)
+		if(!properties[i]->isSold()) return false;
 	for(int i = 1; i < properties.size(); i ++)
 		if(properties[0]->getOwner()->getID() != properties[i]->getOwner()->getID()) return false;
 	return true;

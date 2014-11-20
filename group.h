@@ -14,8 +14,8 @@ class Group {
 	public:
 		Group(const int i, const std::string &s);
 		~Group();
-      
-      //get the name of the group
+
+		//get the name of the group
 		std::string getName();
 		//get ID of the group
 		int getID();

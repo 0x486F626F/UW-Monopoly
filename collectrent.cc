@@ -1,5 +1,6 @@
 #include "collectrent.h"
 #include "player.h"
+#include "group.h"
 #include <iostream>
 
 using namespace std;
@@ -11,6 +12,10 @@ void CollectRent::event(Player *p) {
 	theCell.event(p);
 	if(isSold() && getOwner()->getID() != p->getID()) {
 		int rent = getRent(getLevel());
+		if(getGroup()->isMonopoly()) {
+			cout << "Monolopy!" << endl;
+			rent *= 2;
+		}
 		cout << "Pay rent " << rent << endl;
 		while(1) {
 			if(p->getMoney() >= rent) {
