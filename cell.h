@@ -27,7 +27,9 @@ class Cell {
 
 		virtual void generateTextImage() = 0;
 		virtual void setCost(const int c) = 0;
+		virtual int getCost() = 0;
 		virtual void setCostImprove(const int c) = 0;
+		virtual int getCostImprove() = 0;
 		virtual void addRent(const int r) = 0;
 		virtual void setOwner(Player *p) = 0;
 		virtual void swapOwner(Player *p1, Player *p2) = 0;

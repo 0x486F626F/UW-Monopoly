@@ -57,5 +57,10 @@ int Property::getOwnerID() { return owner->getID(); }
 void Property::setGroup(Group *g) { group = g; }
 Group *Property::getGroup() { return group; }
 
+int Property::getCost() { return cost; }
+int Property::getCostImprove() { return costImprove; }
+
 void Property::event(Player *p) {
 }
+
+

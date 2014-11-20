@@ -42,3 +42,7 @@ int Player::roll(const bool testing) {
 		cnt += v[i];
 	return cnt;
 }
+
+int Player::getMoney() { return money; }
+void Player::setMoney(const int m) { money = m; }
+void Player::addMoney(const int m) { money += m; }

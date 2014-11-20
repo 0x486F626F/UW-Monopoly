@@ -19,6 +19,7 @@ class Player {
 		Dice *dice;
 		//pointer to the current position
 		Cell *currentCell;
+		int money;
 		//what the player owns
 		std::vector <Cell*> property;
 
@@ -43,6 +44,9 @@ class Player {
 		//roll the dice and return sum of dice value
 		int roll(const bool testing);
 
+		int getMoney();
+		void setMoney(const int m);
+		void addMoney(const int m);
 };	
 
 #endif

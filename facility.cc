@@ -3,7 +3,6 @@
 
 using namespace std;
 
-//constructor and destructor
 Facility::Facility() {}
 Facility::Facility(const int i, const std::string &s) : Cell(i, s) {}
 
@@ -25,8 +24,10 @@ void Facility::generateTextImage() {
 }
 
 void Facility::setCost(const int c) {}
+int Facility::getCost() { return 0; }
 
 void Facility::setCostImprove(const int c) {}
+int Facility::getCostImprove() { return 0; }
 
 void Facility::addRent(const int r) {}
 

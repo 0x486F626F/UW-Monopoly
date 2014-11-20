@@ -1,4 +1,5 @@
 #include "sellproperty.h"
+#include "player.h"
 #include <iostream>
 
 using namespace std;
@@ -9,7 +10,9 @@ SellProperty::~SellProperty() {}
 
 void SellProperty::generateTextImage() { theCell.generateTextImage(); }
 void SellProperty::setCost(const int c) { theCell.setCost(c); } 
+int SellProperty::getCost() { return theCell.getCost(); }
 void SellProperty::setCostImprove(const int c) { theCell.setCostImprove(c); }
+int SellProperty::getCostImprove() { return theCell.getCostImprove(); }
 void SellProperty::addRent(const int r) { theCell.addRent(r); }
 void SellProperty::setOwner(Player *p) { theCell.setOwner(p); }
 void SellProperty::swapOwner(Player *p1, Player *p2) { theCell.swapOwner(p1, p2); }
@@ -28,7 +31,17 @@ vector <string> SellProperty::getTextImage() { return theCell.getTextImage(); }
 
 void SellProperty::event(Player *p) {
 	theCell.event(p);
-	if(isBuyable()) {
-		cout << "Do you want to buy " << theCell.getName() << endl;
+	if(isBuyable() && p->getMoney() > getCost()) {
+		while(1) {
+			cout << "Do you want to buy " << theCell.getName() << "? (y/n)" << endl;
+			string response;
+			cin >> response;
+			if(response == "y") {
+				p->addMoney(-getCost());
+				setOwner(p);
+				break;
+			}
+			else if(response == "n") break;
+		}
 	}
 }

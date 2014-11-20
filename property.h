@@ -29,8 +29,10 @@ class Property : public Cell {
 		
 		//set the cost of the property
 		void setCost(const int c);
+		int getCost();
 		//set the improvement cost
 		void setCostImprove(const int c);
+		int getCostImprove();
 		//update the current rent amount
 		void addRent(const int r);
 		//set the owner of the property

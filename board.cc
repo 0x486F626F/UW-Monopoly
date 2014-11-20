@@ -118,6 +118,7 @@ void Board::initGame() {
 	for(int i = 0; i < numPlayer; i ++) {
 		players.push_back(new Player(i, string("") + char('A' + i)));
 		cells[0]->addPlayer(players[i]);
+		players[i]->setMoney(1500);
 	}
 
 	printBoard();

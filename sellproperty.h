@@ -15,7 +15,9 @@ class SellProperty : public Event {
 		~SellProperty();
 
 		void setCost(const int c);
+		int getCost();
 		void setCostImprove(const int c);
+		int getCostImprove();
 		void addRent(const int r);
 		void setOwner(Player *p);
 		void swapOwner(Player *p1, Player *p2);
