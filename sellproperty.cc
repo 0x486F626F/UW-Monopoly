@@ -1,5 +1,6 @@
 #include "sellproperty.h"
 #include "player.h"
+#include "strategy.h"
 #include <iostream>
 
 using namespace std;
@@ -11,16 +12,10 @@ SellProperty::~SellProperty() {}
 void SellProperty::event(Player *p) {
 	theCell.event(p);
 	if(canBuy() && p->getMoney() > getCost()) {
-		while(1) {
-			cout << "Do you want to buy " << theCell.getName() << "? (y/n)" << endl;
-			string response;
-			cin >> response;
-			if(response == "y") {
-				p->addMoney(-getCost());
-				setOwner(p);
-				break;
-			}
-			else if(response == "n") break;
+		cout << "Do you want to buy " << theCell.getName() << "? (y/n)" << endl;
+		if(p->getStrategy()->buyProperty(this, p)) {
+			p->addMoney(-getCost());
+			setOwner(p);
 		}
 	}
 }

@@ -6,6 +6,7 @@
 
 class Cell;
 class Dice;
+class Strategy;
 
 class Player {
 	private:
@@ -22,6 +23,8 @@ class Player {
 		int money;
 		//what the player owns
 		std::vector <Cell*> property;
+
+		Strategy *stg;
 
 	public:
 		~Player();
@@ -47,6 +50,9 @@ class Player {
 		int getMoney();
 		void setMoney(const int m);
 		void addMoney(const int m);
+
+		void	setStrategy(const int type);
+		Strategy*	getStrategy();
 
 		void printInfo();
 };	

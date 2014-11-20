@@ -1,13 +1,16 @@
 #include "player.h"
 #include "cell.h"
 #include "dice.h"
+#include "human.h"
 
 #include <iostream>
 
 using namespace std;
 
 //constructor and destructor
-Player::~Player() {}
+Player::~Player() {
+	delete stg;
+}
 Player::Player(const int i, const std::string &s) : ID(i), name(s), numDice(2) {
 	dice = Dice::getInstance(numDice);
 }
@@ -46,6 +49,11 @@ int Player::roll(const bool testing) {
 int Player::getMoney() { return money; }
 void Player::setMoney(const int m) { money = m; }
 void Player::addMoney(const int m) { money += m; }
+
+void	Player::setStrategy(const int type) { 
+	if(type == 0) stg = new Human;
+}
+Strategy*	Player::getStrategy() { return stg; }
 
 void Player::printInfo() {
 	cout << name << " " << money << endl;

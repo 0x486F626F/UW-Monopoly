@@ -7,6 +7,9 @@
 //#include "xdisplay.h"
 #include "player.h"
 
+#include "strategy.h"
+#include "human.h"
+
 #include "sellproperty.h"
 #include "collectrent.h"
 
@@ -121,20 +124,21 @@ void Board::initGame() {
 		players.push_back(new Player(i, string("") + char('A' + i)));
 		cells[0]->addPlayer(players[i]);
 		players[i]->setMoney(1500);
+		players[i]->setStrategy(0);
 	}
 
 	printBoard();
 	printPlayerInfo();
-	for(int i = 0; !gameEnd();) {
-		string str;
-		cin >> str;
-		if(str == "next") i = (i + 1) % numPlayer;
-		if(str == "roll") {
-			int step = players[i]->roll(testing);
-			int id = players[i]->getCurrentCell()->getID();
-			id = (id + step) % numCell;
-			cells[id]->movePlayer(players[i]);	
-			cells[id]->event(players[i]);
+	for(int i = 0; !gameEnd(); i = (i + 1) % numPlayer) {
+		int decision;
+		while(decision = players[i]->getStrategy()->command(players[i])) {
+			if(decision == 1) {
+				int step = players[i]->roll(testing);
+				int id = players[i]->getCurrentCell()->getID();
+				id = (id + step) % numCell;
+				cells[id]->movePlayer(players[i]);	
+				cells[id]->event(players[i]);
+			}
 		}
 		printBoard();
 		printPlayerInfo();
