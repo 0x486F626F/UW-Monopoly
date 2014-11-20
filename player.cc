@@ -55,6 +55,11 @@ void	Player::setStrategy(const int type) {
 }
 Strategy*	Player::getStrategy() { return stg; }
 
+int		Player::getLeftRoll() { return leftRoll; }
+void	Player::setLeftRoll(const int r) { leftRoll = r; }
+int		Player::getRest() { return rest; }
+void	Player::setRest(const int r) { rest = r; }
+
 void Player::printInfo() {
 	cout << name << " " << money << endl;
 	cout << property.size() << endl;

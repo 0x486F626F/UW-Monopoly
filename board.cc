@@ -125,6 +125,7 @@ void Board::initGame() {
 		cells[0]->addPlayer(players[i]);
 		players[i]->setMoney(1500);
 		players[i]->setStrategy(0);
+		players[i]->setLeftRoll(1);
 	}
 
 	printBoard();
@@ -133,15 +134,20 @@ void Board::initGame() {
 		int decision;
 		while(decision = players[i]->getStrategy()->command(players[i])) {
 			if(decision == 1) {
-				int step = players[i]->roll(testing);
-				int id = players[i]->getCurrentCell()->getID();
-				id = (id + step) % numCell;
-				cells[id]->movePlayer(players[i]);	
-				cells[id]->event(players[i]);
+				if(players[i]->getLeftRoll() > 0) {
+					players[i]->setLeftRoll(players[i]->getLeftRoll() - 1);
+					int step = players[i]->roll(testing);
+					int id = players[i]->getCurrentCell()->getID();
+					id = (id + step) % numCell;
+					cells[id]->movePlayer(players[i]);	
+					cells[id]->event(players[i]);
+				}
+				else cout << "You have rolled" << endl;
 			}
+			printBoard();
 		}
-		printBoard();
 		printPlayerInfo();
+		players[i]->setLeftRoll(1);
 	}
 
 }

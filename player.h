@@ -25,6 +25,9 @@ class Player {
 		std::vector <Cell*> property;
 
 		Strategy *stg;
+		int		leftRoll;
+		int		rest;
+		bool	bankrupted;
 
 	public:
 		~Player();
@@ -53,6 +56,12 @@ class Player {
 
 		void	setStrategy(const int type);
 		Strategy*	getStrategy();
+
+		int		getLeftRoll();
+		void	setLeftRoll(const int r);
+
+		int		getRest();
+		void	setRest(const int r);
 
 		void printInfo();
 };	
