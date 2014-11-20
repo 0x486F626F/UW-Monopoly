@@ -8,6 +8,7 @@
 #include "player.h"
 
 #include "sellproperty.h"
+#include "collectrent.h"
 
 #include <iostream>
 #include <sstream>
@@ -81,6 +82,7 @@ void Board::loadMap(const string &mapfile) {
 			p->setCost(cost);
 			p->addRent(rent);
 			p = new SellProperty(*p);
+			p = new CollectRent(*p);
 		}
 
 		stream >> cost;
