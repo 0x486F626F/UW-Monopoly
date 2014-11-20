@@ -46,3 +46,10 @@ int Player::roll(const bool testing) {
 int Player::getMoney() { return money; }
 void Player::setMoney(const int m) { money = m; }
 void Player::addMoney(const int m) { money += m; }
+
+void Player::printInfo() {
+	cout << name << " " << money << endl;
+	cout << property.size() << endl;
+	for(int i = 0; i < property.size(); i ++)
+		cout << property[i]->getID() << " " << property[i]->getName() << endl;
+}

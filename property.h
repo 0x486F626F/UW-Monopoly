@@ -37,6 +37,7 @@ class Property : public Cell {
 		void addRent(const int r);
 		//set the owner of the property
 		void setOwner(Player *p);
+		Player *getOwner();
 		//swap ownership
 		void swapOwner(Player *p1, Player *p2);
 		//get the group information

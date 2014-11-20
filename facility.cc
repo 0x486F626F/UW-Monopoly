@@ -32,6 +32,7 @@ int Facility::getCostImprove() { return 0; }
 void Facility::addRent(const int r) {}
 
 void Facility::setOwner(Player *p) {}
+Player *Facility::getOwner() { return NULL; }
 
 void Facility::swapOwner(Player *p1, Player *p2) {}
 

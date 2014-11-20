@@ -41,7 +41,8 @@ class Board {
 		void loadGame();
 		//print the current state of the board
 		void printBoard();
-
+		
+		void printPlayerInfo();
 
 		// terminate a game and return false
 		bool gameEnd();

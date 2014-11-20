@@ -122,6 +122,7 @@ void Board::initGame() {
 	}
 
 	printBoard();
+	printPlayerInfo();
 	for(int i = 0; !gameEnd();) {
 		string str;
 		cin >> str;
@@ -134,6 +135,7 @@ void Board::initGame() {
 			cells[id]->event(players[i]);
 		}
 		printBoard();
+		printPlayerInfo();
 	}
 
 }
@@ -149,4 +151,10 @@ void Board::printBoard() {
 void Board::startGame() {
 	if(savefile.length() > 0) loadGame();
 	else initGame();
+}
+
+void Board::printPlayerInfo() {
+	for(int i = 0; i < numPlayer; i ++) {
+		players[i]->printInfo();	
+	}
 }

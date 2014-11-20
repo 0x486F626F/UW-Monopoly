@@ -16,6 +16,7 @@ class Event : public Cell {
 		int getCostImprove();
 		void addRent(const int r);
 		void setOwner(Player *p);
+		Player *getOwner();
 		void swapOwner(Player *p1, Player *p2);
 		Group *getGroup();
 		bool isBuyable();

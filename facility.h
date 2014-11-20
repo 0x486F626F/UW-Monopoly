@@ -23,6 +23,7 @@ class Facility : public Cell {
 		void addRent(const int r);
 		//facility has no owner
 		void setOwner(Player *p);
+		Player *getOwner();
 		void swapOwner(Player *p1, Player *p2);
 		//all facility is neither buyable or improvable, therefore return false when asked isBuyable()/isImprovable()
 		bool isBuyable();

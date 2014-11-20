@@ -12,6 +12,7 @@ void Event::setCostImprove(const int c) { theCell.setCostImprove(c); }
 int Event::getCostImprove() { return theCell.getCostImprove(); }
 void Event::addRent(const int r) { theCell.addRent(r); }
 void Event::setOwner(Player *p) { theCell.setOwner(p); }
+Player *Event::getOwner() { return theCell.getOwner(); }
 void Event::swapOwner(Player *p1, Player *p2) { theCell.swapOwner(p1, p2); }
 Group *Event::getGroup() { return theCell.getGroup(); }
 bool Event::isBuyable() { return theCell.isBuyable(); }

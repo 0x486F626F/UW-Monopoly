@@ -44,6 +44,7 @@ void Property::setOwner(Player *p) {
 	p->addProperty(this);
 	owner = p;
 }
+Player *Property::getOwner() { return owner; }
 void Property::swapOwner(Player *p1, Player *p2) {
 	p1->removeProperty(this);
 	p2->addProperty(this);

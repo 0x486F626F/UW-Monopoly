@@ -47,6 +47,8 @@ class Player {
 		int getMoney();
 		void setMoney(const int m);
 		void addMoney(const int m);
+
+		void printInfo();
 };	
 
 #endif

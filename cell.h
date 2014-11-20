@@ -32,6 +32,7 @@ class Cell {
 		virtual int getCostImprove() = 0;
 		virtual void addRent(const int r) = 0;
 		virtual void setOwner(Player *p) = 0;
+		virtual Player *getOwner() = 0;
 		virtual void swapOwner(Player *p1, Player *p2) = 0;
 		virtual Group *getGroup() = 0;
 		virtual bool isBuyable() = 0;
