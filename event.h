@@ -8,30 +8,34 @@ class Event : public Cell {
 		Cell &theCell;
 		Event(Cell &c);
 		~Event();
-		void generateTextImage();
 	public:
-		void setCost(const int c);
-		int getCost();
-		void setCostImprove(const int c);
-		int getCostImprove();
-		void addRent(const int r);
-		void setOwner(Player *p);
-		Player *getOwner();
-		void swapOwner(Player *p1, Player *p2);
-		Group *getGroup();
-		bool isBuyable();
-		bool isImproveable();
-
 		int getID();
 		std::string getName();
-		void setXCoords(const int x, const int y);
 		void addPlayer(Player *p);
 		void removePlayer(Player *p);
 		void movePlayer(Player *p);
-
 		std::vector <std::string> getTextImage();
+		void generateTextImage();
 
-
+		int getCost();
+		void setCost(const int c);
+		int getCostImprove();
+		void setCostImprove(const int c);
+		int getLevel();
+		void setLevel(const int l);
+		Player *getOwner();
+		void setOwner(Player *p);
+		void swapOwner(Player *p1, Player *p2);
+		Group *getGroup();
+		void setGroup(Group *g);
+		void addRent(const int r);
+		int getRent(const int l);
+		bool isSold();
+		bool isMortgaged();
+		void mortgage();
+		void unmortgage();
+		bool canBuy();
+		bool canImprove();
 };
 
 #endif

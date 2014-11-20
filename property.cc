@@ -7,7 +7,7 @@ Property::Property() {}
 
 Property::Property(const int i, const std::string &s) : Cell(i, s) {
 	sold = false;
-	mortgaged;
+	mortgaged = false;
 }
 
 void Property::generateTextImage() {
@@ -36,9 +36,12 @@ void Property::generateTextImage() {
 	textImage.push_back(tmp);
 }
 
-void Property::setCost(const int c) { cost = c; buyable = true; }
-void Property::setCostImprove(const int c) { costImprove = c; improveable = true; } 
-void Property::addRent(const int r) { rents.push_back(r); }
+int Property::getCost() { return cost; }
+void Property::setCost(const int c) { cost = c; }
+int Property::getCostImprove() { return costImprove; }
+void Property::setCostImprove(const int c) { costImprove = c; } 
+int Property::getLevel() { return level; }
+void Property::setLevel(const int l) { level = l; }
 void Property::setOwner(Player *p) {
 	sold = true;
 	p->addProperty(this);
@@ -50,18 +53,18 @@ void Property::swapOwner(Player *p1, Player *p2) {
 	p2->addProperty(this);
 	owner = p2;
 }
-
-bool Property::isBuyable() { return buyable && !sold; }
-bool Property::isImproveable() { return improveable && level < rents.size() - 1; }
-
-int Property::getOwnerID() { return owner->getID(); }
-void Property::setGroup(Group *g) { group = g; }
 Group *Property::getGroup() { return group; }
-
-int Property::getCost() { return cost; }
-int Property::getCostImprove() { return costImprove; }
-
-void Property::event(Player *p) {
+void Property::setGroup(Group *g) { group = g; }
+void Property::addRent(const int r) { rents.push_back(r); }
+int Property::getRent(const int l) { return rents[l]; }
+bool Property::isSold() { return sold; }
+bool Property::isMortgaged() { return mortgaged; }
+void Property::mortgage() {
+	mortgaged = true;
+	//owner->addMoney(cost);
 }
-
-
+void Property::unmortgage() {
+	mortgaged = false;
+}
+bool Property::canBuy() { return !sold; }
+bool Property::canImprove() { return rents.size() > 1; }

@@ -14,24 +14,6 @@ class Facility : public Cell {
 	public:
 		Facility();
 		Facility(const int i, const std::string &s);
-		
-		//facility has no cost/improvement cost or rent
-		void setCost(const int c);
-		int getCost();
-		void setCostImprove(const int c);
-		int getCostImprove();
-		void addRent(const int r);
-		//facility has no owner
-		void setOwner(Player *p);
-		Player *getOwner();
-		void swapOwner(Player *p1, Player *p2);
-		//all facility is neither buyable or improvable, therefore return false when asked isBuyable()/isImprovable()
-		bool isBuyable();
-		bool isImproveable();
-		//facilities belong to no group
-		Group *getGroup();
-
-		void event(Player *p);
 };
 
 #endif

@@ -4,16 +4,12 @@
 using namespace std;
 
 Cell::Cell() {}
+Cell::Cell(const int i, const std::string &s) : ID(i), name(s) {}
 Cell::~Cell() {}
-
-Cell::Cell(const int i, const std::string &s) :
-	ID(i), name(s) {}
 
 int Cell::getID() { return ID; }
 
-std::string Cell::getName() { return name; }
-
-void Cell::setXCoords(const int x, const int y) { Xx = x, Xy = y; }
+string Cell::getName() { return name; }
 
 void Cell::addPlayer(Player *p) {
 	p->setCurrentCell(this);
@@ -34,7 +30,31 @@ void Cell::movePlayer(Player *p) {
 	addPlayer(p);
 }
 
+void	Cell::generateTextImage() {}
+
 vector <string> Cell::getTextImage() { 
 	generateTextImage();
 	return textImage; 
 }
+
+void	Cell::event(Player *p) {}
+
+int		Cell::getCost() { return 0; }
+void	Cell::setCost(const int c) {}
+int		Cell::getCostImprove() { return 0; }
+void	Cell::setCostImprove(const int c) {}
+int		Cell::getLevel() { return 0; }
+void	Cell::setLevel(const int l) {}
+Player*	Cell::getOwner() { return NULL; }
+void	Cell::setOwner(Player *p) {}
+void	Cell::swapOwner(Player *p1, Player *p2) {}
+Group*	Cell::getGroup() { return NULL; }
+void	Cell::setGroup(Group *g) {}
+void	Cell::addRent(const int r) {}
+int		Cell::getRent(const int l) { return 0; }
+bool	Cell::isSold() { return false; }
+bool	Cell::isMortgaged() { return false; }
+void	Cell::mortgage() {}
+void	Cell::unmortgage() {}
+bool	Cell::canBuy() {return false;}
+bool	Cell::canImprove() {return false;}

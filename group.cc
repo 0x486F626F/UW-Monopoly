@@ -1,5 +1,6 @@
 #include "group.h"
 #include "property.h"
+#include "player.h"
 
 using namespace std;
 
@@ -13,7 +14,7 @@ std::string Group::getName() { return name; }
 
 bool Group::isMonopoly() {
 	for(int i = 1; i < properties.size(); i ++)
-		if(properties[0]->getOwnerID() != properties[i]->getOwnerID()) return false;
+		if(properties[0]->getOwner()->getID() != properties[i]->getOwner()->getID()) return false;
 	return true;
 }
 

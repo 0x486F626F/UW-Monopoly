@@ -22,24 +22,3 @@ void Facility::generateTextImage() {
 	tmp.resize(CELLWIDTH, ' ');
 	textImage.push_back(tmp);
 }
-
-void Facility::setCost(const int c) {}
-int Facility::getCost() { return 0; }
-
-void Facility::setCostImprove(const int c) {}
-int Facility::getCostImprove() { return 0; }
-
-void Facility::addRent(const int r) {}
-
-void Facility::setOwner(Player *p) {}
-Player *Facility::getOwner() { return NULL; }
-
-void Facility::swapOwner(Player *p1, Player *p2) {}
-
-bool Facility::isBuyable() { return false; }
-
-bool Facility::isImproveable() { return false; }
-
-Group* Facility::getGroup() { return NULL; }
-
-void Facility::event(Player *p) {}
