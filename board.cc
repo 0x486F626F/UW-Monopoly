@@ -14,6 +14,7 @@
 #include "collectrent.h"
 #include "sendtoblock.h"
 #include "blocktimline.h"
+#include "lotterySLC.h"
 
 #include <iostream>
 #include <sstream>
@@ -23,20 +24,20 @@ using namespace std;
 
 /*****Instance*****/
 void Board::cleanInstance() { delete instance; }
-Board *Board::getInstance(const string save, const bool testing) {
+Board *Board::getInstance(const string save, const bool testing) { //{{{
 	if(!instance) {
 		instance = new Board(save, testing);
 		atexit(cleanInstance);
 	}
 	return instance;
-}
+} //}}}
 Board *Board::instance = NULL;
 
 /*****Constructor*****/
-Board::Board(const string save, const bool test) : savefile(save), testing(test) {
+Board::Board(const string save, const bool test) : savefile(save), testing(test) { //{{{
 	numPlayer = numCell = numGroup = 0;
 	td = new TextDisplay;
-}
+} 
 Board::~Board() {
 	delete td;
 	//delete xd;
@@ -46,10 +47,10 @@ Board::~Board() {
 		delete players[i];
 	for(int i = 0; i < groups.size(); i ++)
 		delete groups[i];
-}
+} //}}}
 
 /*****setGame*****/
-void Board::loadMap(const string &mapfile) {
+void Board::loadMap(const string &mapfile) { //{{{
 	string tmp;
 	ifstream stream(mapfile.c_str());
 	getline(stream, tmp);
@@ -117,6 +118,11 @@ void Board::loadMap(const string &mapfile) {
 				stream >> id;
 				p = new SendToBlock(*p, cells[id]);
 			}
+			else if(eventname == "SLC") {
+				int id;
+				stream >> id;
+				p = new LotterySLC(*p, id);
+			}
 		}
 
 		cells.push_back(p);
@@ -125,12 +131,12 @@ void Board::loadMap(const string &mapfile) {
 		getline(stream, tmp);
 	}
 	//xd = new XDisplay(width, height);
-}
+} //}}}
 
 void Board::loadGame() {
 }
 
-void Board::initGame() {
+void Board::initGame() { //{{{
 	string mapfile = "uw.map";
 	numPlayer = 3;
 
@@ -142,7 +148,33 @@ void Board::initGame() {
 		players[i]->setStrategy(0);
 		players[i]->setLeftRoll(1);
 	}
+} //}}}
 
+bool Board::gameEnd() { return false; }
+
+/*****printBoard*****/
+void Board::printBoard() {
+	td->printAll(width, height, cells);
+}
+
+void Board::movePlayerTo(const int idPlayer, const int idCell) {
+	cells[idCell]->movePlayer(players[idPlayer]);
+	cells[idCell]->event(players[idPlayer]);
+}
+
+void Board::movePlayerForward(const int idPlayer, const int step) {
+	int goal = players[idPlayer]->getCurrentCell()->getID() + step;
+	if(goal >= numCell) {
+		cout << "Get OSAP of $200" << endl;
+		players[idPlayer]->addMoney(200);
+	}
+	movePlayerTo(idPlayer, (goal + numCell) % numCell);
+}
+
+/*****startGame*****/
+void Board::startGame() {
+	if(savefile.length() > 0) loadGame();
+	else initGame();
 
 	printBoard();
 	printPlayerInfo();
@@ -155,10 +187,7 @@ void Board::initGame() {
 					if(players[i]->getLeftRoll() > 0) {
 						players[i]->setLeftRoll(players[i]->getLeftRoll() - 1);
 						int step = players[i]->roll(testing);
-						int id = players[i]->getCurrentCell()->getID();
-						id = (id + step) % numCell;
-						cells[id]->movePlayer(players[i]);	
-						cells[id]->event(players[i]);
+						movePlayerForward(i, step);
 					}
 					else cout << "You have rolled" << endl;
 				}
@@ -173,19 +202,6 @@ void Board::initGame() {
 		players[i]->setLeftRoll(1);
 	}
 
-}
-
-bool Board::gameEnd() { return false; }
-
-/*****printBoard*****/
-void Board::printBoard() {
-	td->printAll(width, height, cells);
-}
-
-/*****startGame*****/
-void Board::startGame() {
-	if(savefile.length() > 0) loadGame();
-	else initGame();
 }
 
 void Board::printPlayerInfo() {

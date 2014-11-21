@@ -46,10 +46,12 @@ class Board {
 
 		// terminate a game and return false
 		bool gameEnd();
-		void movePlayer(Player *p, Cell *s, Cell *g);
 
 	public:
 		static Board *getInstance(const std::string save, const bool testing);
+
+		void movePlayerTo(const int idPlayer, const int idCell);
+		void movePlayerForward(const int idPlayer, const int step);
 
 		void startGame();
 };
