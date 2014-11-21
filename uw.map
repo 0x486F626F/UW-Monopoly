@@ -239,7 +239,8 @@ COOP FEE
 NONE
 0
 0
-0
+1
+ModifyMoney -150
 
 DC
 Math

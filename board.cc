@@ -16,6 +16,7 @@
 #include "blocktimline.h"
 #include "lotterySLC.h"
 #include "lotteryNH.h"
+#include "modifymoney.h"
 
 #include <iostream>
 #include <sstream>
@@ -126,6 +127,11 @@ void Board::loadMap(const string &mapfile) { //{{{
 			}
 			else if(eventname == "NH") {
 				p = new LotteryNH(*p);
+			}
+			else if(eventname == "ModifyMoney") {
+				int m;
+				stream >> m;
+				p = new ModifyMoney(*p, m);
 			}
 		}
 
