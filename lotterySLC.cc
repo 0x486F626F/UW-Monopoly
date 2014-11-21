@@ -8,6 +8,7 @@ LotterySLC::LotterySLC(Cell &c, const int id) : Event(c), blockID(id) {}
 LotterySLC::~LotterySLC() {}
 
 void LotterySLC::event(Player *p) {
+	theCell.event(p);
 	int r = rand() % 24;
 	Board *b = Board::getInstance("", 0);
 	if(r < 1) {

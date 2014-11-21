@@ -8,6 +8,7 @@ LotteryNH::LotteryNH(Cell &c) : Event(c) {}
 LotteryNH::~LotteryNH() {}
 
 void LotteryNH::event(Player *p) {
+	theCell.event(p);
 	int r = rand() % 18;
 	int m;
 	if(r < 1) m = 200;

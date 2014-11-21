@@ -17,6 +17,7 @@
 #include "lotterySLC.h"
 #include "lotteryNH.h"
 #include "modifymoney.h"
+#include "rollrent.h"
 
 #include <iostream>
 #include <sstream>
@@ -132,6 +133,9 @@ void Board::loadMap(const string &mapfile) { //{{{
 				int m;
 				stream >> m;
 				p = new ModifyMoney(*p, m);
+			}
+			else if(eventname == "RollRent") {
+				p = new RollRent(*p);
 			}
 		}
 

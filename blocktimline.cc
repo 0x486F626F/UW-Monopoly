@@ -13,14 +13,8 @@ BlockTimline::~BlockTimline() {}
 
 void BlockTimline::event(Player *p) {
 	theCell.event(p);
-   
-   //if a player got trapped for the third rounds, must pay to leave
-	if(p->getBlock() > 3) {
-		cout << "Pay $" << fee << endl << "Unblock!" << endl;
-		p->addMoney(-fee);
-		p->setBlock(0);
-	}
-	else if(p->getBlock() > 0) {
+
+	if(p->getBlock() > 0) {
 		cout << "You are block in " << getName() << endl;
 		cout << "Do you want to roll dice / pay $" << fee << " use " << itemname << "? (r/p/i)" << endl;
 		int decision = p->getStrategy()->unblock(p, fee, itemname);
@@ -34,6 +28,12 @@ void BlockTimline::event(Player *p) {
 				p->setBlock(0);
 			}
 			else p->setBlock(p->getBlock() + 1);
+			//if a player got trapped for the third rounds, must pay to leave
+			if(p->getBlock() > 3) {
+				cout << "Pay $" << fee << endl << "Unblock!" << endl;
+				p->addMoney(-fee);
+				p->setBlock(0);
+			}
 		}
 		else if(decision == 1) {
 			cout << "Pay $" << fee << endl << "Unblock!" << endl;

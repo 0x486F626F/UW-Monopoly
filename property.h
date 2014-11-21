@@ -24,25 +24,25 @@ class Property : public Cell {
 	public:
 		Property();
 		Property(const int i, const std::string &s);
-		int getCost();
-		void setCost(const int c);
-		int getCostImprove();
-		void setCostImprove(const int c);
-		int getLevel();
-		void setLevel(const int l);
-		Player *getOwner();
-		void setOwner(Player *p);
-		void swapOwner(Player *p1, Player *p2);
-		Group *getGroup();
-		void setGroup(Group *g);
-		void addRent(const int r);
-		int getRent(const int l);
-		bool isSold();
-		bool isMortgaged();
-		void mortgage();
-		void unmortgage();
-		bool canBuy();
-		bool canImprove();
+		int		getCost();
+		void	setCost(const int c);
+		int		getCostImprove();
+		void	setCostImprove(const int c);
+		int		getLevel();
+		void	setLevel(const int l);
+		Player*	getOwner();
+		void	setOwner(Player *p);
+		void	swapOwner(Player *p1, Player *p2);
+		Group*	getGroup();
+		void	setGroup(Group *g);
+		void	addRent(const int r);
+		int		getRent(const int l);
+		bool	isSold();
+		bool	isMortgaged();
+		void	mortgage();
+		void	unmortgage();
+		bool	canBuy();
+		bool	canImprove();
 };
 
 #endif
