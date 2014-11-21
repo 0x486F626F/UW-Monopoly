@@ -28,6 +28,7 @@ class Player {
 		int		leftRoll;
 		int		rest;
 		bool	bankrupted;
+		int		block;
 
 	public:
 		~Player();
@@ -62,6 +63,11 @@ class Player {
 
 		int		getRest();
 		void	setRest(const int r);
+
+		int		getBlock();
+		void	setBlock(const int b);
+
+		Dice*	getDice();
 
 		void printInfo();
 };	

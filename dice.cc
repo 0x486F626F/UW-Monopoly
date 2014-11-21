@@ -15,10 +15,7 @@ vector <int> Dice::roll() {
 	return v;
 }
 vector <int> Dice::roll(vector <int> &a) {
-	vector <int> v;
-	for(int i = 0; i < n; i ++)
-		v.push_back(a[i]);
-	return v;
+	return a;
 }
 
 void Dice::cleanInstance() { delete instance; }

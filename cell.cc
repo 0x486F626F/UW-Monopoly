@@ -1,6 +1,6 @@
 #include "cell.h"
 #include "player.h"
-
+#include <iostream>
 using namespace std;
 
 Cell::Cell() {}

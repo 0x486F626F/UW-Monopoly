@@ -2,7 +2,6 @@
 #define __DICE_H__
 
 #include <cstdlib>
-#include <ctime>
 #include <vector>
 
 const int DICEMAX = 6;

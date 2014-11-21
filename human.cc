@@ -26,3 +26,14 @@ bool	Human::buyProperty(Cell *b, Player *p) {
 	}
 	return -1;
 }
+
+int		Human::unblock(Player *p, int fee, std::string itemname) {
+	while(1) {
+		string cmd;
+		cin >> cmd;
+		if(cmd == "r") return 0;
+		if(cmd == "p") return 1;
+		if(cmd == "i") return 2;
+	}
+	return -1;
+}

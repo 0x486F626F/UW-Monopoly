@@ -12,6 +12,8 @@
 
 #include "sellproperty.h"
 #include "collectrent.h"
+#include "sendtoblock.h"
+#include "blocktimline.h"
 
 #include <iostream>
 #include <sstream>
@@ -94,7 +96,6 @@ void Board::loadMap(const string &mapfile) {
 			p->setCostImprove(cost);
 			while(n --) {
 				stream >> rent;
-
 				p->addRent(rent);
 			}
 		}
@@ -102,6 +103,20 @@ void Board::loadMap(const string &mapfile) {
 		stream >> n;
 		for(int i = 0; i < n; i ++) {
 			//set event
+			string eventname;
+			stream >> eventname;
+			if(eventname == "Timline") {
+				int fee;
+				string itemname;
+				stream >> fee >> itemname;
+				cout << p->getID() << endl;
+				p = new BlockTimline(*p, fee, itemname);
+			}
+			else if(eventname == "SendToBlock") {
+				int id;
+				stream >> id;
+				p = new SendToBlock(*p, id, cells);
+			}
 		}
 
 		cells.push_back(p);
@@ -117,7 +132,7 @@ void Board::loadGame() {
 
 void Board::initGame() {
 	string mapfile = "uw.map";
-	numPlayer = 6;
+	numPlayer = 3;
 
 	loadMap(mapfile);	
 	for(int i = 0; i < numPlayer; i ++) {
@@ -128,23 +143,31 @@ void Board::initGame() {
 		players[i]->setLeftRoll(1);
 	}
 
+
 	printBoard();
 	printPlayerInfo();
 	for(int i = 0; !gameEnd(); i = (i + 1) % numPlayer) {
-		int decision;
-		while(decision = players[i]->getStrategy()->command(players[i])) {
-			if(decision == 1) {
-				if(players[i]->getLeftRoll() > 0) {
-					players[i]->setLeftRoll(players[i]->getLeftRoll() - 1);
-					int step = players[i]->roll(testing);
-					int id = players[i]->getCurrentCell()->getID();
-					id = (id + step) % numCell;
-					cells[id]->movePlayer(players[i]);	
-					cells[id]->event(players[i]);
+		cout << players[i]->getName() << "'s turn" << endl;
+		if(!players[i]->getRest() && !players[i]->getBlock()) {
+			int decision;
+			while(decision = players[i]->getStrategy()->command(players[i])) {
+				if(decision == 1) {
+					if(players[i]->getLeftRoll() > 0) {
+						players[i]->setLeftRoll(players[i]->getLeftRoll() - 1);
+						int step = players[i]->roll(testing);
+						int id = players[i]->getCurrentCell()->getID();
+						id = (id + step) % numCell;
+						cells[id]->movePlayer(players[i]);	
+						cells[id]->event(players[i]);
+					}
+					else cout << "You have rolled" << endl;
 				}
-				else cout << "You have rolled" << endl;
+				printBoard();
 			}
-			printBoard();
+		}
+		else {
+			cells[players[i]->getCurrentCell()->getID()]->event(players[i]);
+			break;
 		}
 		printPlayerInfo();
 		players[i]->setLeftRoll(1);

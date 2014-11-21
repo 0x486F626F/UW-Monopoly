@@ -13,6 +13,7 @@ Player::~Player() {
 }
 Player::Player(const int i, const std::string &s) : ID(i), name(s), numDice(2) {
 	dice = Dice::getInstance(numDice);
+	block = rest = 0;
 }
 
 int Player::getID() { return ID; }
@@ -59,6 +60,9 @@ int		Player::getLeftRoll() { return leftRoll; }
 void	Player::setLeftRoll(const int r) { leftRoll = r; }
 int		Player::getRest() { return rest; }
 void	Player::setRest(const int r) { rest = r; }
+int		Player::getBlock() { return block; }
+void	Player::setBlock(const int b) { block = b; }
+Dice*	Player::getDice() { return dice; }
 
 void Player::printInfo() {
 	cout << name << " " << money << endl;

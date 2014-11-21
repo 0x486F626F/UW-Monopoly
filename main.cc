@@ -1,8 +1,11 @@
 #include <string>
 #include "board.h"
+#include <cstdlib>
+#include <ctime>
 using namespace std;
 
 int main(int argc, char *argv[]) {
+	//srand(time());
 	string save;
 	bool testing = false;
 	for(int i = 1; i < argc; i ++)

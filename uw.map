@@ -63,7 +63,8 @@ DC TIMS LINE
 NONE
 0
 0
-0
+1
+Timline 50 RimCup
 
 RCH
 Eng
@@ -183,7 +184,8 @@ GO TO TIMS
 NONE
 0
 0
-0
+1
+SendToBlock 10
 
 EIT
 Sci2

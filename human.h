@@ -10,6 +10,7 @@ class Human : public Strategy {
 		~Human();
 		int		command(Player *p);
 		bool	buyProperty(Cell *b, Player *p);
+		int		unblock(Player *p, int fee, std::string itemname);
 };
 
 #endif
