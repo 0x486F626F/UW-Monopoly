@@ -15,7 +15,6 @@ Player::Player(const int i, const std::string &s) : ID(i), name(s), numDice(2) {
 	dice = Dice::getInstance(numDice);
 }
 
-
 int Player::getID() { return ID; }
 char Player::getInit() { return name[0]; }
 string Player::getName() { return name; }
