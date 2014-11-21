@@ -12,8 +12,8 @@ void CollectRent::event(Player *p) {
 	theCell.event(p);
 	if(isSold() && getOwner()->getID() != p->getID()) {
 		int rent = getRent(getLevel());
-		if(getGroup()->isMonopoly()) {
-			cout << "Monolopy!" << endl;
+		if(getGroup()->isMonopoly() && getLevel() == 0) {
+			cout << "Monolopy! Double base rent!" << endl;
 			rent *= 2;
 		}
 		cout << "Pay rent " << rent << endl;
