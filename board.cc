@@ -15,6 +15,7 @@
 #include "sendtoblock.h"
 #include "blocktimline.h"
 #include "lotterySLC.h"
+#include "lotteryNH.h"
 
 #include <iostream>
 #include <sstream>
@@ -122,6 +123,9 @@ void Board::loadMap(const string &mapfile) { //{{{
 				int id;
 				stream >> id;
 				p = new LotterySLC(*p, id);
+			}
+			else if(eventname == "NH") {
+				p = new LotteryNH(*p);
 			}
 		}
 
