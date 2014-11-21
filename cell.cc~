@@ -19,7 +19,7 @@ void Cell::addPlayer(Player *p) {
 void Cell::removePlayer(Player *p) {
    //removed player does not exist on board
 	p->setCurrentCell(NULL);
-	//remove player from player list
+	//
 	for(vector <Player*>::iterator i = currentPlayer.begin(); i != currentPlayer.end(); i ++)
 		if((*i)->getID() == p->getID()) {
 			currentPlayer.erase(i);
