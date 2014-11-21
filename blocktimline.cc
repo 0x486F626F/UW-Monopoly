@@ -16,7 +16,7 @@ void BlockTimline::event(Player *p) {
 	if(p->getBlock() > 3) {
 		cout << "Pay $" << fee << endl << "Unblock!" << endl;
 		p->addMoney(-fee);
-		p->setBlock(false);
+		p->setBlock(0);
 	}
 	else if(p->getBlock() > 0) {
 		cout << "You are block in " << getName() << endl;
@@ -35,11 +35,11 @@ void BlockTimline::event(Player *p) {
 		else if(decision == 1) {
 			cout << "Pay $" << fee << endl << "Unblock!" << endl;
 			p->addMoney(-fee);
-			p->setBlock(false);
+			p->setBlock(0);
 		}
 		else if(decision == 2) {
 			cout << "Use " << itemname << endl << "Unblock!" << endl;
-			p->setBlock(false);
+			p->setBlock(0);
 			//update use item
 		}
 	}

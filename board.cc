@@ -115,7 +115,7 @@ void Board::loadMap(const string &mapfile) {
 			else if(eventname == "SendToBlock") {
 				int id;
 				stream >> id;
-				p = new SendToBlock(*p, id, cells);
+				p = new SendToBlock(*p, cells[id]);
 			}
 		}
 
@@ -167,7 +167,7 @@ void Board::initGame() {
 		}
 		else {
 			cells[players[i]->getCurrentCell()->getID()]->event(players[i]);
-			break;
+			printBoard();
 		}
 		printPlayerInfo();
 		players[i]->setLeftRoll(1);
