@@ -5,7 +5,7 @@
 using namespace std;
 
 int main(int argc, char *argv[]) {
-	//srand(time());
+	srand(time(0));
 	string save;
 	bool testing = false;
 	for(int i = 1; i < argc; i ++)
