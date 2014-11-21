@@ -91,7 +91,7 @@ void Board::loadMap(const string &mapfile) { //{{{
 			p->setCost(cost);
 			p->addRent(rent);
 			p = new SellProperty(*p);
-			p = new CollectRent(*p);
+			if(rent) p = new CollectRent(*p);
 		}
 
 		stream >> cost;
