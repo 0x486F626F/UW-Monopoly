@@ -29,7 +29,7 @@ class Cell {
 		virtual std::string getName();
 		//add player to game at current cell
 		virtual void addPlayer(Player *p);
-		//remove player from game
+		//remove player from current cell
 		virtual void removePlayer(Player *p);
 		//move player to current cell
 		virtual void movePlayer(Player *p);
