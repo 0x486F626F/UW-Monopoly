@@ -46,6 +46,7 @@ void	Cell::setCost(const int c) {}
 int		Cell::getCostImprove() { return 0; }
 void	Cell::setCostImprove(const int c) {}
 int		Cell::getLevel() { return 0; }
+int		Cell::getMaxLevel() { return 0; }
 void	Cell::setLevel(const int l) {}
 Player*	Cell::getOwner() { return NULL; }
 void	Cell::setOwner(Player *p) {}

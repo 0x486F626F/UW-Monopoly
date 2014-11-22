@@ -46,6 +46,7 @@ class Cell {
 		virtual void setCostImprove(const int c);
 		//imporvement level
 		virtual int getLevel();
+		virtual int	getMaxLevel();
 		virtual void setLevel(const int l);
 		//get owner
 		virtual Player *getOwner();

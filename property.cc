@@ -42,17 +42,13 @@ int Property::getCostImprove() { return costImprove; }
 void Property::setCostImprove(const int c) { costImprove = c; } 
 int Property::getLevel() { return level; }
 void Property::setLevel(const int l) { level = l; }
+int		Property::getMaxLevel() { return rents.size() - 1; }
 void Property::setOwner(Player *p) {
-	sold = true;
-	p->addProperty(this);
+	if(p == NULL) sold = false;
+	else sold = true;
 	owner = p;
 }
 Player *Property::getOwner() { return owner; }
-void Property::swapOwner(Player *p1, Player *p2) {
-	p1->removeProperty(this);
-	p2->addProperty(this);
-	owner = p2;
-}
 Group *Property::getGroup() { return group; }
 void Property::setGroup(Group *g) { group = g; }
 void Property::addRent(const int r) { rents.push_back(r); }

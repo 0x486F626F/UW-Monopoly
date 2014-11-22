@@ -48,7 +48,7 @@ class Board {
 		bool gameEnd();
 
 	public:
-		static Board *getInstance(const std::string save, const bool testing);
+		static Board *getInstance(const std::string save = "", const bool testing = 0);
 
 		void movePlayerTo(const int idPlayer, const int idCell);
 		void movePlayerForward(const int idPlayer, const int step);

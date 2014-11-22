@@ -18,7 +18,7 @@ class Dice {
 		~Dice();
 	public:
 	   //if no dice exist, get a new dice with number v facing upwards, otherwise return the existing dice
-		static Dice *getInstance(const int v);
+		static Dice *getInstance(const int v = 0);
 		//roll a dice and add the rolled value to a vector array
 		std::vector <int> roll();
 		//store the values in vector a into a new vector array
