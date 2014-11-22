@@ -174,9 +174,9 @@ void Board::printBoard() {
 	td->printAll(width, height, cells);
 }
 
-void Board::movePlayerTo(const int idPlayer, const int idCell) {
+void Board::movePlayerTo(const int idPlayer, const int idCell, const bool callEvent) {
 	cells[idCell]->movePlayer(players[idPlayer]);
-	cells[idCell]->event(players[idPlayer]);
+	if(callEvent) cells[idCell]->event(players[idPlayer]);
 }
 
 void Board::movePlayerForward(const int idPlayer, const int step) {

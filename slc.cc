@@ -2,6 +2,7 @@
 #include "behavior.h"
 #include "player.h"
 #include <iostream>
+#include <cstdlib>
 using namespace std;
 
 SLC::SLC(Cell &c, Cell* b) : Event(c), block(b) {}
@@ -18,7 +19,7 @@ void SLC::event(Player *p) {
 	else if(r < 2) {
 		cout << "Go to DC Tims Line" << endl;
 		bh->block(p);
-		bh->movePlayerTo(p, block);
+		bh->movePlayerTo(p, block, 0);
 	}
 	else if(r < 6) {
 		cout << "Move forward 3" << endl;

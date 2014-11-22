@@ -20,7 +20,7 @@ class Behavior {
 
 		std::vector <int>	roll(const bool testing = 0);
 
-		void	movePlayerTo(Player *p, Cell *c);
+		void	movePlayerTo(Player *p, Cell *c, const bool callEvent = 1);
 		void	movePlayerForward(Player *p, const int step);
 
 		void	modifyMoney(Player *p, const int m);

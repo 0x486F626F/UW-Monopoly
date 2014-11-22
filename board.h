@@ -50,7 +50,7 @@ class Board {
 	public:
 		static Board *getInstance(const std::string save = "", const bool testing = 0);
 
-		void movePlayerTo(const int idPlayer, const int idCell);
+		void movePlayerTo(const int idPlayer, const int idCell, const bool callEvent = 1);
 		void movePlayerForward(const int idPlayer, const int step);
 
 		void startGame();
