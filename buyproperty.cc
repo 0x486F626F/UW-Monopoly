@@ -16,6 +16,7 @@ void BuyProperty::event(Player *p) {
 		cout << "Do you want to buy " << theCell.getName() << "? (y/n)" << endl;
 		if(p->getStrategy()->buyProperty(this, p)) {
 			bh->buyProperty(p, this);	
+			bh->modifyMoney(p, getCost());
 		}
 	}
 }

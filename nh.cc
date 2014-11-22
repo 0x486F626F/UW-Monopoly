@@ -3,6 +3,7 @@
 #include "board.h"
 #include "player.h"
 #include <iostream>
+#include <cstdlib>
 using namespace std;
 
 NH::NH(Cell &c) : Event(c) {}
