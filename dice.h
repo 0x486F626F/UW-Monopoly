@@ -21,8 +21,7 @@ class Dice {
 		static Dice *getInstance(const int v = 0);
 		//roll a dice and add the rolled value to a vector array
 		std::vector <int> roll();
-		//store the values in vector a into a new vector array
-		std::vector <int> roll(std::vector <int> &a);
+		int		getNumDice();
 };
 
 #endif

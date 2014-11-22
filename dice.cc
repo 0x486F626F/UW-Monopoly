@@ -15,9 +15,6 @@ vector <int> Dice::roll() {
 		v.push_back(rand() % DICEMAX + 1);
 	return v;
 }
-vector <int> Dice::roll(vector <int> &a) {
-	return a;
-}
 
 void Dice::cleanInstance() { delete instance; }
 
@@ -29,5 +26,7 @@ Dice *Dice::getInstance(const int v) {
 	}
 	return instance;
 }
+
+int		Dice::getNumDice() { return n; }
 
 Dice *Dice::instance = NULL;

@@ -12,7 +12,6 @@ Player::~Player() {
 	delete stg;
 }
 Player::Player(const int i, const std::string &s) : ID(i), name(s), numDice(2) {
-	dice = Dice::getInstance(numDice);
 	block = rest = 0;
 }
 
@@ -30,23 +29,6 @@ void Player::removeProperty(Cell *c) {
 		}
 }
 
-int Player::roll(const bool testing) {
-	vector <int> v;
-	if(testing) {
-		int t;
-		for(int i = 0; i < numDice; i ++) {
-			cin >> t;
-			v.push_back(t);
-		}
-		v = dice->roll(v);
-	}
-	else v = dice->roll();
-	int cnt = 0;
-	for(int i = 0; i < numDice; i ++)
-		cnt += v[i];
-	return cnt;
-}
-
 int Player::getMoney() { return money; }
 void Player::setMoney(const int m) { money = m; }
 void Player::addMoney(const int m) { money += m; }
@@ -62,7 +44,6 @@ int		Player::getRest() { return rest; }
 void	Player::setRest(const int r) { rest = r; }
 int		Player::getBlock() { return block; }
 void	Player::setBlock(const int b) { block = b; }
-Dice*	Player::getDice() { return dice; }
 
 void Player::printInfo() {
 	cout << name << " " << money << endl;

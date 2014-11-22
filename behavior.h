@@ -18,8 +18,7 @@ class Behavior {
 	public:
 		static Behavior*	getInstance();
 
-		std::vector <int>	roll();
-		std::vector <int>	roll(std::vector <int> v);
+		std::vector <int>	roll(const bool testing = 0);
 
 		void	movePlayerTo(Player *p, Cell *c);
 		void	movePlayerForward(Player *p, const int step);
@@ -29,6 +28,8 @@ class Behavior {
 		void	block(Player *p);
 		void	addBlock(Player *p);
 		void	unblock(Player *p);
+		bool	affordable(Player *p, const int m);
+		void	getOSAP(Player *p);
 		//void	bankrupt(Player *p);
 		//void	giveItem(Player *p, Item *it);
 		//void	useItem(Player *p, Item *it);

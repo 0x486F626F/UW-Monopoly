@@ -1,4 +1,5 @@
 #include "rollrent.h"
+#include "behavior.h"
 #include "player.h"
 #include "group.h"
 #include "dice.h"
@@ -15,9 +16,12 @@ void RollRent::event(Player *p) {
 		int multi = 4;
 		if(getGroup()->isMonopoly()) multi = 10;
 		cout << "Rent is " << multi << "*sum of dice" << endl;
-		int d = p->roll(0);
-		cout << "Pay rent $" << d * multi << endl;
-		p->addMoney(-multi * d);
-		getOwner()->addMoney(multi * d);
+		vector <int> d = bh->roll();
+		int tot = 0;
+		for(int i = 0; i < Dice::getInstance()->getNumDice(); i ++)
+			tot += d[i];
+		cout << "Pay rent $" << tot * multi << endl;
+		bh->modifyMoney(p, -multi * tot);
+		bh->modifyMoney(getOwner(), multi * tot);
 	}
 }

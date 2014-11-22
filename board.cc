@@ -1,4 +1,5 @@
 #include "board.h"
+#include "dice.h"
 #include "cell.h"
 #include "group.h"
 #include "facility.h"
@@ -6,16 +7,17 @@
 #include "textdisplay.h"
 //#include "xdisplay.h"
 #include "player.h"
+#include "behavior.h"
 
 #include "strategy.h"
 #include "human.h"
 
-#include "sellproperty.h"
+#include "buyproperty.h"
 #include "collectrent.h"
-#include "sendtoblock.h"
-#include "blocktimline.h"
-#include "lotterySLC.h"
-#include "lotteryNH.h"
+#include "sendtotimline.h"
+#include "timline.h"
+#include "slc.h"
+#include "nh.h"
 #include "modifymoney.h"
 #include "rollrent.h"
 
@@ -90,7 +92,7 @@ void Board::loadMap(const string &mapfile) { //{{{
 			stream >> cost >> rent;
 			p->setCost(cost);
 			p->addRent(rent);
-			p = new SellProperty(*p);
+			p = new BuyProperty(*p);
 			if(rent) p = new CollectRent(*p);
 		}
 
@@ -114,20 +116,20 @@ void Board::loadMap(const string &mapfile) { //{{{
 				string itemname;
 				stream >> fee >> itemname;
 				cout << p->getID() << endl;
-				p = new BlockTimline(*p, fee, itemname);
+				p = new TimLine(*p, fee, itemname);
 			}
 			else if(eventname == "SendToBlock") {
 				int id;
 				stream >> id;
-				p = new SendToBlock(*p, cells[id]);
+				p = new SendToTimLine(*p, cells[id]);
 			}
 			else if(eventname == "SLC") {
 				int id;
 				stream >> id;
-				p = new LotterySLC(*p, id);
+				p = new SLC(*p, cells[id]);
 			}
 			else if(eventname == "NH") {
-				p = new LotteryNH(*p);
+				p = new NH(*p);
 			}
 			else if(eventname == "ModifyMoney") {
 				int m;
@@ -153,6 +155,7 @@ void Board::loadGame() {
 void Board::initGame() { //{{{
 	string mapfile = "uw.map";
 	numPlayer = 3;
+	Dice::getInstance(numDice = 2);
 
 	loadMap(mapfile);	
 	for(int i = 0; i < numPlayer; i ++) {
@@ -200,7 +203,10 @@ void Board::startGame() {
 				if(decision == 1) {
 					if(players[i]->getLeftRoll() > 0) {
 						players[i]->setLeftRoll(players[i]->getLeftRoll() - 1);
-						int step = players[i]->roll(testing);
+						vector <int> d = Behavior::getInstance()->roll(testing);
+						int step = 0;
+						for(int i = 0; i < numDice; i ++)
+							step += d[i];
 						movePlayerForward(i, step);
 					}
 					else cout << "You have rolled" << endl;

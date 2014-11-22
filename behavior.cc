@@ -19,9 +19,21 @@ Behavior*	Behavior::getInstance() {
 	}
 	return instance;
 }
+Behavior*	Behavior::instance = NULL;
 
-vector <int>	Behavior::roll() {return Dice::getInstance()->roll();}
-vector <int>	Behavior::roll(vector <int> v) {return v;}
+vector <int>	Behavior::roll(const bool testing) {
+	vector <int> res;
+	int n = Dice::getInstance()->getNumDice();
+	if(testing) {
+		for(int i = 0; i < n; i ++) {
+			int t;
+			cin >> t;
+			res.push_back(t);
+		}
+	}
+	else res = Dice::getInstance()->roll();
+	return res;
+}
 
 void	Behavior::movePlayerTo(Player *p, Cell *c) {
 	Board::getInstance()->movePlayerTo(p->getID(), c->getID());
@@ -38,9 +50,14 @@ void	Behavior::modifyMoney(Player *p, const int m) {
 	else p->addMoney(m);
 }
 void	Behavior::setMoney(Player *p, const int m) {p->setMoney(m);}
+void	Behavior::getOSAP(Player *p) {
+	cout << "Get OSAP of $200" <<endl;
+	modifyMoney(p, 200);
+}
 void	Behavior::block(Player *p) {p->setBlock(1);}
 void	Behavior::addBlock(Player *p) {p->setBlock(p->getBlock() + 1);}
 void	Behavior::unblock(Player *p) {p->setBlock(0);}
+bool	Behavior::affordable(Player *p, const int m) {return p->getMoney() >= m; }
 //void	Behavior::bankrupt(Player *p) {p->backrupt();}
 
 void	Behavior::buyProperty(Player *p, Cell *c) {
@@ -52,7 +69,7 @@ void	Behavior::buyImprove(Cell *c) {
 	if(c->getLevel() >= c->getMaxLevel()) {
 		cout << "This Property cannot be improved" << endl;
 	}
-	else if(c->getOwner()->getMoney() < c->getCostImprove()) {
+	else if(affordable(c->getOwner(), c->getCostImprove())) {
 		cout << "Money is not enough!" << endl;
 	}
 	else {
@@ -71,14 +88,14 @@ void	Behavior::sellImprove(Cell *c) {
 	}
 }
 
-void	mortgage(Cell *c) {
+void	Behavior::mortgage(Cell *c) {
 	c->mortgage();
 	c->getOwner()->addMoney(c->getCost() / 2);
 }
 
-void	unmortgage(Cell *c) {
+void	Behavior::unmortgage(Cell *c) {
 	int cost = c->getCost() * 6 / 10;
-	if(cost > c->getOwner()->getMoney()) {
+	if(affordable(c->getOwner(), cost)) {
 		cout << "Money is not enough!" << endl;
 	}
 	else {

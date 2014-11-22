@@ -3,11 +3,14 @@
 
 #include "cell.h"
 
+class Behavior;
+
 class Event : public Cell {
 	protected:
 		Cell &theCell;
 		Event(Cell &c);
 		~Event();
+		Behavior *bh;
 	public:
 		int getID();
 		std::string getName();

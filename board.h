@@ -22,7 +22,7 @@ class Board {
 		//determine the size of the board
 		int width, height;
 		//setup the number of players/cells/groups
-		int numPlayer, numCell, numGroup;
+		int numPlayer, numCell, numGroup, numDice;
 		std::vector <Cell*> cells;
 		std::vector <Player*> players;
 		std::vector <Group*> groups;

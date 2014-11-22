@@ -1,4 +1,5 @@
 #include "collectrent.h"
+#include "behavior.h"
 #include "player.h"
 #include "group.h"
 #include <iostream>
@@ -16,15 +17,15 @@ void CollectRent::event(Player *p) {
 		int rent = getRent(getLevel());
 		//check if the group is monopolized
 		if(getGroup()->isMonopoly() && getLevel() == 0) {
-			cout << "Monolopy!" << endl;
+			cout << "Monolopy! Double Rent" << endl;
 			rent *= 2;
 		}
 		cout << "Pay rent " << rent << endl;
 		while(1) {
 			// player has enought money to pay rent
-			if(p->getMoney() >= rent) {
-				p->addMoney(-rent);
-				getOwner()->addMoney(rent);
+			if(bh->affordable(p, rent)) {
+				bh->modifyMoney(p, -rent);
+				bh->modifyMoney(getOwner(), rent);
 				break;
 			}
 			//insufficient fund, need to sell off or trade or declare bankruptcy

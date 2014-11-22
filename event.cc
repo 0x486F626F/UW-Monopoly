@@ -1,8 +1,11 @@
 #include "event.h"
+#include "behavior.h"
 #include <iostream>
 using namespace std;
 
-Event::Event(Cell &c) : theCell(c) {} 
+Event::Event(Cell &c) : theCell(c) {
+	bh = Behavior::getInstance();
+} 
 Event::~Event() { delete &theCell; }
 
 int		Event::getID() { return theCell.getID(); }

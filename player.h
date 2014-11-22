@@ -5,7 +5,6 @@
 #include <string>
 
 class Cell;
-class Dice;
 class Strategy;
 
 class Player {
@@ -16,8 +15,6 @@ class Player {
 		std::string name;
 		//number of dice the palyer roll each round
 		int numDice;
-		//dice instance
-		Dice *dice;
 		//pointer to the current position
 		Cell *currentCell;
 		int money;
@@ -48,8 +45,6 @@ class Player {
 		void addProperty(Cell *c);
 		//remoce a property from a player
 		void removeProperty(Cell *c);
-		//roll the dice and return sum of dice value
-		int roll(const bool testing);
 
 		int getMoney();
 		void setMoney(const int m);
@@ -67,9 +62,7 @@ class Player {
 		int		getBlock();
 		void	setBlock(const int b);
 
-		Dice*	getDice();
-
-		void printInfo();
+		void	printInfo();
 };	
 
 #endif
