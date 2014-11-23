@@ -29,9 +29,16 @@ void Player::removeProperty(Cell *c) {
 		}
 }
 
-int Player::getMoney() { return money; }
-void Player::setMoney(const int m) { money = m; }
-void Player::addMoney(const int m) { money += m; }
+int		Player::getMoney() { return money; }
+void	Player::setMoney(const int m) { money = m; }
+void	Player::addMoney(const int m) { money += m; }
+int		Player::cntProperty() {
+	int cnt = money;
+	for(int i = 0; i < property.size(); i ++)
+		if(!property[i]->isMortgaged())
+			cnt += property[i]->getCost();
+	return cnt;
+}
 
 void	Player::setStrategy(const int type) { 
 	if(type == 0) stg = new Human;
@@ -47,6 +54,7 @@ void	Player::setBlock(const int b) { block = b; }
 
 void Player::printInfo() {
 	cout << name << " " << money << endl;
+	cout << "Total PPT:	" << cntProperty() << endl;
 	cout << getRest() << " " << getBlock() << endl;
 	cout << property.size() << endl;
 	for(int i = 0; i < property.size(); i ++)

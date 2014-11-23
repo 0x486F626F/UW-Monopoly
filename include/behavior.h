@@ -27,6 +27,7 @@ class Behavior {
 
 		void	modifyMoney(Player *p, const int m);
 		void	setMoney(Player *P, const int m);
+		int		cntProperty(Player *p);
 		void	block(Player *p);
 		void	addBlock(Player *p);
 		void	unblock(Player *p);
@@ -40,6 +41,7 @@ class Behavior {
 
 		bool	strategyBuyProperty(Player *p, Cell *c);
 		int		strategyUnblock(Player *p, const int fee, const int itemID);
+		int		strategyTuition(const int fee, const int rate, Player *p);
 
 		void	buyProperty(Player *p, Cell *c);
 		void	buyImprove(Cell *c);

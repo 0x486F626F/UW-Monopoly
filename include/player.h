@@ -32,23 +32,24 @@ class Player {
 		Player(const int ID, const std::string &s);
 		
 		//get ID of the player
-		int getID();
+		int		getID();
 		//get name initial of the player
-		char getInit();
+		char	getInit();
 		//get name of player
-		std::string getName();
+		std::string	getName();
 		//place player to the destinated cell
 		void setCurrentCell(Cell *c);
 		//get current position
-		Cell *getCurrentCell();
+		Cell*	getCurrentCell();
 		//add a property to the player
-		void addProperty(Cell *c);
+		void	addProperty(Cell *c);
 		//remoce a property from a player
-		void removeProperty(Cell *c);
+		void	removeProperty(Cell *c);
 
-		int getMoney();
-		void setMoney(const int m);
-		void addMoney(const int m);
+		int		getMoney();
+		void	setMoney(const int m);
+		void	addMoney(const int m);
+		int		cntProperty();
 
 		void	setStrategy(const int type);
 		Strategy*	getStrategy();

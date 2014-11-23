@@ -37,3 +37,12 @@ int		Human::unblock(Player *p, const int fee, const int itemID) {
 	}
 	return -1;
 }
+
+int		Human::tuition(const int fee, const int rate, Player *p) {
+	while(1) {
+		string cmd;
+		cin >> cmd;
+		if(cmd == "a") return 0;
+		if(cmd == "b") return 1;
+	}
+}

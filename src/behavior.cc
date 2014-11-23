@@ -52,6 +52,7 @@ void	Behavior::modifyMoney(Player *p, const int m) {
 	else p->addMoney(m);
 }
 void	Behavior::setMoney(Player *p, const int m) {p->setMoney(m);}
+int		Behavior::cntProperty(Player *p) {return p->cntProperty();}
 void	Behavior::getOSAP(Player *p) {
 	cout << "Get OSAP of $200" <<endl;
 	modifyMoney(p, 200);
@@ -116,6 +117,8 @@ bool	Behavior::same(Player *p1, Player *p2) {return p1->getID() == p2->getID();}
 bool	Behavior::isMonopoly(Group *g) {return g->isMonopoly();}
 
 int		Behavior::numDice() {return Dice::getInstance()->getNumDice();}
+
+int		Behavior::strategyTuition(const int fee, const int rate, Player *p) {return p->getStrategy()->tuition(fee, rate, p);}
 
 int		Behavior::strategyUnblock(Player *p, const int fee, const int itemID) {return p->getStrategy()->unblock(p, fee, itemID); }
 

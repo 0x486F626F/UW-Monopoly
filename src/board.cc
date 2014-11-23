@@ -21,6 +21,7 @@
 #include "modifymoney.h"
 #include "rollrent.h"
 #include "showmsg.h"
+#include "tuition.h"
 
 #include <iostream>
 #include <sstream>
@@ -145,6 +146,9 @@ void Board::loadMap(const string &mapfile) { //{{{
 				getline(stream, msg);
 				msg.erase(msg.begin());
 				p = new ShowMsg(*p, msg);
+			}
+			else if(eventname == "Tuition") {
+				p = new Tuition(*p);
 			}
 		}
 
