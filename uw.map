@@ -128,7 +128,9 @@ GOOSE NESTING
 NONE
 0
 0
-0
+1
+ShowMsg GOOSE ATTACK!!!!
+
 
 EV1
 Env

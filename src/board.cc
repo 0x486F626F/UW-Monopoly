@@ -20,6 +20,7 @@
 #include "nh.h"
 #include "modifymoney.h"
 #include "rollrent.h"
+#include "showmsg.h"
 
 #include <iostream>
 #include <sstream>
@@ -138,6 +139,12 @@ void Board::loadMap(const string &mapfile) { //{{{
 			}
 			else if(eventname == "RollRent") {
 				p = new RollRent(*p);
+			}
+			else if(eventname == "ShowMsg") {
+				string msg;
+				getline(stream, msg);
+				msg.erase(msg.begin());
+				p = new ShowMsg(*p, msg);
 			}
 		}
 

@@ -2,7 +2,7 @@ CXX = g++
 CXXFLAGS = -Wall -Wextra -MMD -Iinclude -Iinclude/events -Iinclude/display -Iinclude/strategy
 EXEC = bb7k
 
-EVENTS = src/events/buyproperty.o src/events/collectrent.o src/events/event.o src/events/nh.o src/events/sendtotimline.o src/events/timline.o src/events/modifymoney.o src/events/rollrent.o src/events/slc.o
+EVENTS = src/events/buyproperty.o src/events/collectrent.o src/events/event.o src/events/nh.o src/events/sendtotimline.o src/events/timline.o src/events/modifymoney.o src/events/rollrent.o src/events/slc.o src/events/showmsg.o
 EVENTS_DEP = ${EVENTS:.o=.d}
 
 DISPLAY = src/display/textdisplay.o
@@ -24,5 +24,4 @@ ${EXEC}: ${OBJECTS} ${EVENTS} ${DISPLAY} ${STRATEGY}
 clean:
 	rm ${OBJECTS_DEP} ${EVENTS_DEP} ${DISPLAY_DEP} ${STRATEGY_DEP}
 	rm ${OBJECTS} ${EVENTS} ${DISPLAY} ${STRATEGY}
-
- 
+	rm ${EXEC}
