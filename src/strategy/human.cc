@@ -27,7 +27,7 @@ bool	Human::buyProperty(Cell *b, Player *p) {
 	return -1;
 }
 
-int		Human::unblock(Player *p, int fee, std::string itemname) {
+int		Human::unblock(Player *p, const int fee, const int itemID) {
 	while(1) {
 		string cmd;
 		cin >> cmd;

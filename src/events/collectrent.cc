@@ -1,7 +1,5 @@
 #include "collectrent.h"
 #include "behavior.h"
-#include "player.h"
-#include "group.h"
 #include <iostream>
 
 using namespace std;
@@ -12,11 +10,11 @@ CollectRent::~CollectRent() {}
 void CollectRent::event(Player *p) {
 	theCell.event(p);
 	//check if the the property is owned and Player p is not the owner
-	if(isSold() && getOwner()->getID() != p->getID()) {
+	if(isSold() && bh->same(getOwner(), p)) {
 		//get current rent level
 		int rent = getRent(getLevel());
 		//check if the group is monopolized
-		if(getGroup()->isMonopoly() && getLevel() == 0) {
+		if(bh->isMonopoly(getGroup()) && getLevel() == 0) {
 			cout << "Monolopy! Double Rent" << endl;
 			rent *= 2;
 		}

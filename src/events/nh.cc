@@ -1,7 +1,5 @@
 #include "nh.h"
 #include "behavior.h"
-#include "board.h"
-#include "player.h"
 #include <iostream>
 #include <cstdlib>
 using namespace std;

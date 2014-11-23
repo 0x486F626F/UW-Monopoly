@@ -15,11 +15,12 @@ TimLine::~TimLine() {}
 void TimLine::event(Player *p) {
 	theCell.event(p);
 
-	if(p->getBlock() > 0) {
+	if(bh->getBlock(p) > 0) {
 		cout << "You are block in " << getName() << endl;
 		while(1) {
 			cout << "Do you want to roll dice / pay $" << fee << " use " << itemname << "? (r/p/i)" << endl;
-			int decision = p->getStrategy()->unblock(p, fee, itemname);
+			int itemID = bh->getItemID(itemname);
+			int decision = bh->strategyUnblock(p, fee, itemID);
 			if(decision == 0) {
 				cout << "Roll dice ";
 				vector <int> t = bh->roll();

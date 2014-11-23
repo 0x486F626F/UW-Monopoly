@@ -1,5 +1,5 @@
 #include "showmsg.h"
-#include <iostream>
+#include "behavior.h"
 
 using namespace std;
 
@@ -8,5 +8,5 @@ ShowMsg::~ShowMsg() {}
 
 void ShowMsg::event(Player *p) {
 	theCell.event(p);
-	cout << msg << endl;
+	bh->printMsg(msg);
 }

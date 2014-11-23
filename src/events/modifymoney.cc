@@ -1,6 +1,5 @@
 #include "modifymoney.h"
 #include "behavior.h"
-#include "player.h"
 #include <iostream>
 using namespace std;
 

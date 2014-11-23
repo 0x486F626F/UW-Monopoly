@@ -1,5 +1,7 @@
 #include "behavior.h"
+#include "strategy.h"
 #include "player.h"
+#include "group.h"
 #include "board.h"
 #include "dice.h"
 #include "cell.h"
@@ -57,6 +59,7 @@ void	Behavior::getOSAP(Player *p) {
 void	Behavior::block(Player *p) {p->setBlock(1);}
 void	Behavior::addBlock(Player *p) {p->setBlock(p->getBlock() + 1);}
 void	Behavior::unblock(Player *p) {p->setBlock(0);}
+int		Behavior::getBlock(Player *p) {return p->getBlock();}
 bool	Behavior::affordable(Player *p, const int m) {return p->getMoney() >= m; }
 //void	Behavior::bankrupt(Player *p) {p->backrupt();}
 
@@ -102,4 +105,21 @@ void	Behavior::unmortgage(Cell *c) {
 		c->unmortgage();
 		c->getOwner()->addMoney(-cost);
 	}
+}
+
+void	Behavior::printMsg(const string &s) {cout << s << endl;}
+
+bool	Behavior::strategyBuyProperty(Player *p, Cell *c) {return p->getStrategy()->buyProperty(c, p);}
+
+bool	Behavior::same(Player *p1, Player *p2) {return p1->getID() == p2->getID();}
+
+bool	Behavior::isMonopoly(Group *g) {return g->isMonopoly();}
+
+int		Behavior::numDice() {return Dice::getInstance()->getNumDice();}
+
+int		Behavior::strategyUnblock(Player *p, const int fee, const int itemID) {return p->getStrategy()->unblock(p, fee, itemID); }
+
+int		Behavior::getItemID(const string &s) {
+	//search ID
+	return 0;
 }
