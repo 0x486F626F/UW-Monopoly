@@ -1,67 +1,15 @@
-FLAGS = -Wall -Iinclude/events -Iinclude
+CXX = g++
+CXXFLAGS = -Wall -Wextra -MMD
+EXEC = bb7k
+OBJECTS = main.o behavior.o buyproperty.o collectrent.o event.o group.o nh.o property.o sendtotimline.o strategy.o timline.o board.o cell.o dice.o facility.o human.o modifymoney.o player.o rollrent.o slc.o textdisplay.o
+DEPENDS = ${OBJECTS:.o=.d}
 
-event.o:
-	g++ ${FLAGS} -c code/event.cc
+${EXEC}: ${OBJECTS}
+	${CXX} ${CXXFLAGS} ${OBJECTS} -o ${EXEC}
 
-behavior.o:
-	g++ ${FLAGS} -c code/behavior.cc
-
-buyproperty.o:
-	g++ ${FLAGS} -c code/buyproperty.cc
-
-collectrent.o:
-	g++ ${FLAGS} -c code/collectrent.cc
-
-group.o:
-	g++ ${FLAGS} -c code/group.cc
-
-nh.o:
-	g++ ${FLAGS} -c code/nh.cc
-
-property.o:
-	g++ ${FLAGS} -c code/property.cc
-
-sendtotimline.o:
-	g++ ${FLAGS} -c code/sendtotimline.cc
-
-strategy.o:
-	g++ ${FLAGS} -c code/strategy.cc
-
-timline.o:
-	g++ ${FLAGS} -c code/timline.cc
-
-board.o:
-	g++ ${FLAGS} -c code/board.cc
-
-cell.o:
-	g++ ${FLAGS} -c code/cell.cc
-
-dice.o:
-	g++ ${FLAGS} -c code/dice.cc
-
-facility.o:
-	g++ ${FLAGS} -c code/facility.cc
-
-human.o:
-	g++ ${FLAGS} -c code/human.cc
-
-modifymoney.o:
-	g++ ${FLAGS} -c code/modifymoney.cc
-
-player.o:
-	g++ ${FLAGS} -c code/player.cc
-
-rollrent.o:
-	g++ ${FLAGS} -c code/rollrent.cc
-
-slc.o:
-	g++ ${FLAGS} -c code/slc.cc
-
-textdisplay.o:
-	g++ ${FLAGS} -c code/textdisplay.cc
-
+-include ${DEPENDS}
 
 .PHONY: clean
 
 clean:
-	rm *.o
+	rm ${OBJECTS} ${EXEC} ${DEPENDS}
