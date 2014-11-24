@@ -13,7 +13,8 @@ Property::Property(const int i, const std::string &s) : Cell(i, s) {
 void Property::generateTextImage() {
 	textImage.clear();
 	string tmp;
-	if(sold) tmp = owner->getInit();
+	tmp = string("LV") + char('0' + getLevel());
+	if(sold) tmp = tmp + " " + owner->getInit();
 	tmp.resize(CELLWIDTH, ' ');
 	textImage.push_back(tmp);
 	tmp = "";
