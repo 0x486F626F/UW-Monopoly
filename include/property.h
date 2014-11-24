@@ -10,7 +10,7 @@ class Group;
 
 class Property : public Cell {
 	private:
-		int cost, costImprove, level, maxLevel;
+		int cost, costImprove, level;
 		std::vector <int> rents;
 		//status of the property
 		bool sold, mortgaged;
