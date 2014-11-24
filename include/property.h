@@ -10,7 +10,7 @@ class Group;
 
 class Property : public Cell {
 	private:
-		int cost, costImprove, level;
+		int cost, costImprove, level, maxLevel;
 		std::vector <int> rents;
 		//status of the property
 		bool sold, mortgaged;
@@ -33,6 +33,7 @@ class Property : public Cell {
 		void	setLevel(const int l);
 		Player*	getOwner();
 		void	setOwner(Player *p);
+		//void	swapOwner(Player *p1, Player *p2);
 		Group*	getGroup();
 		void	setGroup(Group *g);
 		void	addRent(const int r);

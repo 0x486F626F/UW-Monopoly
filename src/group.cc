@@ -9,10 +9,10 @@ using namespace std;
 Group::Group(const int i, const std::string &s) : ID(i), name(s) {}
 Group::~Group() {}
 
-int Group::getID() { return ID; }
+int		Group::getID() { return ID; }
 std::string Group::getName() { return name; }
 
-bool Group::isMonopoly() {
+bool	Group::isMonopoly() {
 	for(int i = 0; i < properties.size(); i ++)
 		if(!properties[i]->isSold()) return false;
 	for(int i = 1; i < properties.size(); i ++)
@@ -20,7 +20,13 @@ bool Group::isMonopoly() {
 	return true;
 }
 
-void Group::addProperty(Property *p) {
+bool	Group::noImprovement() {
+	for(int i = 0; i < properties.size(); i ++)
+		if(properties[i]->getLevel() > 0) return false;
+	return true;
+}
+
+void	Group::addProperty(Property *p) {
 	properties.push_back(p);
 	p->setGroup(this);
 }

@@ -21,11 +21,12 @@ int		Event::getCost() { return theCell.getCost(); }
 void	Event::setCostImprove(const int c) { theCell.setCostImprove(c); }
 int		Event::getCostImprove() { return theCell.getCostImprove(); }
 int		Event::getLevel() { return theCell.getLevel(); }
+int		Event::getMaxLevel() { return theCell.getMaxLevel(); }
 void	Event::setLevel(const int l) { theCell.setLevel(l); }
-Player	*Event::getOwner() { return theCell.getOwner(); }
+Player*	Event::getOwner() { return theCell.getOwner(); }
 void	Event::setOwner(Player	*p) { theCell.setOwner(p); }
 void	Event::swapOwner(Player *p1, Player *p2) { theCell.swapOwner(p1, p2); }
-Group	*Event::getGroup() { return theCell.getGroup(); }
+Group*	Event::getGroup() { return theCell.getGroup(); }
 void	Event::setGroup(Group	*g) { theCell.setGroup(g); }
 void	Event::addRent(const int r) { theCell.addRent(r); }
 int		Event::getRent(const int l) { return theCell.getRent(l); }

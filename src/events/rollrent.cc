@@ -9,7 +9,7 @@ RollRent::~RollRent() {}
 
 void RollRent::event(Player *p) {
 	theCell.event(p);
-	if(isSold() && bh->same(getOwner(), p)) {
+	if(isSold() && !bh->same(getOwner(), p)) {
 		int multi = 4;
 		if(bh->isMonopoly(getGroup())) multi = 10;
 		cout << "Rent is " << multi << "*sum of dice" << endl;

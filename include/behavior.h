@@ -44,8 +44,8 @@ class Behavior {
 		int		strategyTuition(const int fee, const int rate, Player *p);
 
 		void	buyProperty(Player *p, Cell *c);
-		void	buyImprove(Cell *c);
-		void	sellImprove(Cell *c);
+		void	buyImprove(Player *p, const std::string &s);
+		void	sellImprove(Player *p, const std::string &s);
 		void	mortgage(Cell *c);
 		void	unmortgage(Cell *c);
 

@@ -42,6 +42,7 @@ Board *Board::instance = NULL;
 
 /*****Constructor*****/
 Board::Board(const string save, const bool test) : savefile(save), testing(test) { //{{{
+	bh = Behavior::getInstance();
 	numPlayer = numCell = numGroup = 0;
 	td = new TextDisplay;
 } 
@@ -75,17 +76,16 @@ void Board::loadMap(const string &mapfile) { //{{{
 		Cell *p; 
 		if(group == "NONE") p = new Facility(i, name);
 		else {
-			Property *tp = new Property(i, name);	
-			p = tp;
+			p = new Property(i, name);	
 			bool found = false;
 			for(vector <Group*>::iterator i = groups.begin(); i != groups.end(); i ++)
 				if((*i)->getName() == group) { 
-					(*i)->addProperty(tp); 
+					(*i)->addProperty(dynamic_cast <Property*> (p)); 
 					found = true;
 				}
 			if(!found) {
 				groups.push_back(new Group(numGroup ++, group));
-				(*(groups.end() - 1))->addProperty(tp);
+				(*(groups.end() - 1))->addProperty(dynamic_cast <Property*> (p));
 			}
 		}
 
@@ -104,9 +104,11 @@ void Board::loadMap(const string &mapfile) { //{{{
 			p->setCostImprove(cost);
 			while(n --) {
 				stream >> rent;
+				cout << n << " " << rent << endl;
 				p->addRent(rent);
 			}
 		}
+
 
 		stream >> n;
 		for(int i = 0; i < n; i ++) {
@@ -221,6 +223,12 @@ void Board::startGame() {
 						movePlayerForward(i, step);
 					}
 					else cout << "You have rolled" << endl;
+				}
+				else if(decision == 2) {
+					string pName, op;
+					cin >> pName >> op;
+					if(op == "buy") bh->buyImprove(players[i], pName);
+					else if(op == "sell") bh->sellImprove(players[i], pName);
 				}
 				printBoard();
 			}

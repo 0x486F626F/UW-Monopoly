@@ -13,6 +13,7 @@ int		Human::command(Player *p) {
 		cin >> cmd;
 		if(cmd == "roll") return 1;
 		if(cmd == "next") return 0;
+		if(cmd == "improve") return 2;
 	}
 	return -1;
 }

@@ -69,26 +69,41 @@ void	Behavior::buyProperty(Player *p, Cell *c) {
 	p->addProperty(c);
 }
 
-void	Behavior::buyImprove(Cell *c) {
-	if(c->getLevel() >= c->getMaxLevel()) {
-		cout << "This Property cannot be improved" << endl;
-	}
-	else if(affordable(c->getOwner(), c->getCostImprove())) {
-		cout << "Money is not enough!" << endl;
+void	Behavior::buyImprove(Player *p, const string &s) {
+	Cell *c = p->findProperty(s);
+	if(c == NULL) {
+		cout << p->getName() << " does not have " << s << endl;
+		return;
 	}
 	else {
-		c->getOwner()->addMoney(-c->getCostImprove());
-		c->setLevel(c->getLevel() + 1);
+		if(c->getLevel() >= c->getMaxLevel() || !c->getGroup()->isMonopoly()) {
+			cout << c->getLevel() << c->getMaxLevel() << (!c->getGroup()->isMonopoly()) << endl;
+			cout << "This Property cannot be improved" << endl;
+		}
+		else if(!affordable(c->getOwner(), c->getCostImprove())) {
+			cout << "Money is not enough!" << endl;
+		}
+		else {
+			c->getOwner()->addMoney(-c->getCostImprove());
+			c->setLevel(c->getLevel() + 1);
+		}
 	}
 }
 
-void	Behavior::sellImprove(Cell *c) {
-	if(c->getLevel() < 1) {
-		cout << "No Improvement can be sold!" << endl;
-	}
+void	Behavior::sellImprove(Player *p, const string &s) {
+	Cell *c = p->findProperty(s);
+	if(c == NULL) {
+		cout << p->getName() << " does not have " << s << endl;
+		return;
+	} 
 	else {
-		c->setLevel(c->getLevel() - 1);
-		c->getOwner()->addMoney(c->getCostImprove() / 2);
+		if(c->getLevel() < 1) {
+			cout << "No Improvement can be sold!" << endl;
+		}
+		else {
+			c->setLevel(c->getLevel() - 1);
+			c->getOwner()->addMoney(c->getCostImprove() / 2);
+		}
 	}
 }
 
@@ -99,7 +114,7 @@ void	Behavior::mortgage(Cell *c) {
 
 void	Behavior::unmortgage(Cell *c) {
 	int cost = c->getCost() * 6 / 10;
-	if(affordable(c->getOwner(), cost)) {
+	if(!affordable(c->getOwner(), cost)) {
 		cout << "Money is not enough!" << endl;
 	}
 	else {

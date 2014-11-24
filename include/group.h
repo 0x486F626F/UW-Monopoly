@@ -23,6 +23,7 @@ class Group {
 		bool isMonopoly();
 		//add a property to the group
 		void addProperty(Property *p);
+		bool	noImprovement();
 };
 
 #endif

@@ -40,6 +40,10 @@ void TimLine::event(Player *p) {
 					}
 					bh->modifyMoney(p, -fee);
 					bh->unblock(p);
+					int sum = 0;
+					for(int i = 0; i < bh->numDice(); i ++)
+						sum += t[i];
+					bh->movePlayerForward(p, sum);
 				}
 				break;
 			}

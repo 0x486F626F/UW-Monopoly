@@ -1,6 +1,6 @@
 #include "property.h"
 #include "player.h"
-
+#include <iostream>
 using namespace std;
 
 Property::Property() {}
@@ -37,12 +37,13 @@ void Property::generateTextImage() {
 }
 
 int Property::getCost() { return cost; }
-void Property::setCost(const int c) { cost = c; }
+void Property::setCost(const int c) { cost = c, maxLevel = 0; }
 int Property::getCostImprove() { return costImprove; }
 void Property::setCostImprove(const int c) { costImprove = c; } 
 int Property::getLevel() { return level; }
 void Property::setLevel(const int l) { level = l; }
-int		Property::getMaxLevel() { return rents.size() - 1; }
+int		Property::getMaxLevel() { return maxLevel; }
+//int Property::getMaxLevel() { cout << "size" << rents.size() << endl; return rents.size() - 1; }
 void Property::setOwner(Player *p) {
 	if(p == NULL) sold = false;
 	else sold = true;
@@ -51,7 +52,7 @@ void Property::setOwner(Player *p) {
 Player *Property::getOwner() { return owner; }
 Group *Property::getGroup() { return group; }
 void Property::setGroup(Group *g) { group = g; }
-void Property::addRent(const int r) { rents.push_back(r); }
+void Property::addRent(const int r) { rents.push_back(r), maxLevel ++; }
 int Property::getRent(const int l) { return rents[l]; }
 bool Property::isSold() { return sold; }
 bool Property::isMortgaged() { return mortgaged; }

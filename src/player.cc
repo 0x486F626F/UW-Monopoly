@@ -28,6 +28,11 @@ void Player::removeProperty(Cell *c) {
 			break;
 		}
 }
+Cell*	Player::findProperty(const string &s) {
+	for(vector <Cell*>::iterator i = property.begin(); i != property.end(); i ++)
+		if((*i)->getName() == s) return *i;
+	return NULL;
+}
 
 int		Player::getMoney() { return money; }
 void	Player::setMoney(const int m) { money = m; }

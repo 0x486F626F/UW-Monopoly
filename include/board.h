@@ -7,6 +7,7 @@
 class Player;
 class Cell;
 class Group;
+class Behavior;
 class TextDisplay;
 //class XDisplay;
 
@@ -27,6 +28,7 @@ class Board {
 		std::vector <Player*> players;
 		std::vector <Group*> groups;
 
+		Behavior *bh;
 		TextDisplay *td;
 		//XDisplay *xd;
 

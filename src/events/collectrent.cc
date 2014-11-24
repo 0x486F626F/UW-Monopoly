@@ -10,7 +10,7 @@ CollectRent::~CollectRent() {}
 void CollectRent::event(Player *p) {
 	theCell.event(p);
 	//check if the the property is owned and Player p is not the owner
-	if(isSold() && bh->same(getOwner(), p)) {
+	if(isSold() && !bh->same(getOwner(), p)) {
 		//get current rent level
 		int rent = getRent(getLevel());
 		//check if the group is monopolized

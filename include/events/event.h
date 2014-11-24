@@ -25,6 +25,7 @@ class Event : public Cell {
 		int getCostImprove();
 		void setCostImprove(const int c);
 		int getLevel();
+		int		getMaxLevel();
 		void setLevel(const int l);
 		Player *getOwner();
 		void setOwner(Player *p);
