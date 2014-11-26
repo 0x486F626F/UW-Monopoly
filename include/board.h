@@ -51,8 +51,10 @@ class Board {
 
 	public:
 		static Board *getInstance(const std::string save = "", const bool testing = 0);
-
+      
+      //move player to a particular cell
 		void movePlayerTo(const int idPlayer, const int idCell, const bool callEvent = 1);
+		//scan player's next move (check if the player will pass or land on collect OSAP)
 		void movePlayerForward(const int idPlayer, const int step);
 
 		void startGame();

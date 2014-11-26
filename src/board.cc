@@ -187,15 +187,19 @@ void Board::printBoard() {
 
 void Board::movePlayerTo(const int idPlayer, const int idCell, const bool callEvent) {
 	cells[idCell]->movePlayer(players[idPlayer]);
+	//activate event only when callevent is true. when player is sent to DC Tim Line, the callevent is false and thus event only activated the next round
 	if(callEvent) cells[idCell]->event(players[idPlayer]);
 }
 
 void Board::movePlayerForward(const int idPlayer, const int step) {
+   //note step could be negative (in SLC)
 	int goal = players[idPlayer]->getCurrentCell()->getID() + step;
+	//player pass or land on collect OSAP
 	if(goal >= numCell) {
 		cout << "Get OSAP of $200" << endl;
 		players[idPlayer]->addMoney(200);
 	}
+	//add numCell and take Mod for the correct number of move forward
 	movePlayerTo(idPlayer, (goal + numCell) % numCell);
 }
 
