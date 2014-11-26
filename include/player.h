@@ -46,15 +46,20 @@ class Player {
 		//remoce a property from a player
 		void	removeProperty(Cell *c);
 		Cell*	findProperty(const std::string &s);
-
+      
+      
+      //access player's money balance
 		int		getMoney();
 		void	setMoney(const int m);
 		void	addMoney(const int m);
+		//calculate player's property worth
 		int		cntProperty();
-
+      
+      //set the human player type strategy
 		void	setStrategy(const int type);
 		Strategy*	getStrategy();
-
+      
+      //how many more times can a player roll
 		int		getLeftRoll();
 		void	setLeftRoll(const int r);
 

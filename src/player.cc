@@ -29,6 +29,7 @@ void Player::removeProperty(Cell *c) {
 		}
 }
 Cell*	Player::findProperty(const string &s) {
+   //find if the player owns a certain property, yes than return a pointer to that cell, otherwise return NULL
 	for(vector <Cell*>::iterator i = property.begin(); i != property.end(); i ++)
 		if((*i)->getName() == s) return *i;
 	return NULL;
