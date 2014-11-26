@@ -18,11 +18,11 @@ class Group {
 		//get the name of the group
 		std::string getName();
 		//get ID of the group
-		int getID();
+		int		getID();
 		//check if the group is monopolized
-		bool isMonopoly();
+		bool	isMonopoly();
 		//add a property to the group
-		void addProperty(Property *p);
+		void	addProperty(Property *p);
 		bool	noImprovement();
 };
 

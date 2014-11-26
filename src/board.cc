@@ -104,7 +104,6 @@ void Board::loadMap(const string &mapfile) { //{{{
 			p->setCostImprove(cost);
 			while(n --) {
 				stream >> rent;
-				cout << n << " " << rent << endl;
 				p->addRent(rent);
 			}
 		}
@@ -119,18 +118,17 @@ void Board::loadMap(const string &mapfile) { //{{{
 				int fee;
 				string itemname;
 				stream >> fee >> itemname;
-				cout << p->getID() << endl;
 				p = new TimLine(*p, fee, itemname);
 			}
 			else if(eventname == "SendToBlock") {
 				int id;
 				stream >> id;
-				p = new SendToTimLine(*p, cells[id]);
+				p = new SendToTimLine(*p, id);
 			}
 			else if(eventname == "SLC") {
 				int id;
 				stream >> id;
-				p = new SLC(*p, cells[id]);
+				p = new SLC(*p, id);
 			}
 			else if(eventname == "NH") {
 				p = new NH(*p);

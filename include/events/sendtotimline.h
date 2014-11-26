@@ -7,9 +7,9 @@ class Cell;
 
 class SendToTimLine : public Event{
 	private:
-		Cell *block;
+		int idBlock;
 	public:
-		SendToTimLine(Cell &c, Cell *b);
+		SendToTimLine(Cell &c, const int i);
 		~SendToTimLine();
 
 		void event(Player *p);

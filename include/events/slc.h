@@ -6,9 +6,9 @@
 class Cell;
 class SLC : public Event {
 	private:
-		Cell *block;
+		int idBlock;
 	public:
-		SLC(Cell &c, Cell *b);
+		SLC(Cell &c, const int i);
 		~SLC();
 		void event(Player *p);
 };

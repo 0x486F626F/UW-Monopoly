@@ -18,7 +18,7 @@ void TimLine::event(Player *p) {
 	if(bh->getBlock(p) > 0) {
 		cout << "You are block in " << getName() << endl;
 		while(1) {
-			cout << "Do you want to roll dice / pay $" << fee << " use " << itemname << "? (r/p/i)" << endl;
+			cout << "Do you want to roll dice / pay $" << fee << " /use " << itemname << "? (r/p/i)" << endl;
 			int itemID = bh->getItemID(itemname);
 			int decision = bh->strategyUnblock(p, fee, itemID);
 			if(decision == 0) {
@@ -33,11 +33,11 @@ void TimLine::event(Player *p) {
 				else bh->addBlock(p);
 				//if a player got trapped for the third rounds, must pay to leave
 				if(p->getBlock() > 3) {
-					cout << "Pay $" << fee << endl << "Unblock!" << endl;
 					while(!bh->affordable(p, fee)) {
 						//no money
 						break;
 					}
+					cout << "Pay $" << fee << endl << "Unblock!" << endl;
 					bh->modifyMoney(p, -fee);
 					bh->unblock(p);
 					int sum = 0;

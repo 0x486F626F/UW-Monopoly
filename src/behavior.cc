@@ -37,8 +37,8 @@ vector <int>	Behavior::roll(const bool testing) {
 	return res;
 }
 
-void	Behavior::movePlayerTo(Player *p, Cell *c, const bool callEvent) {
-	Board::getInstance()->movePlayerTo(p->getID(), c->getID(), callEvent);
+void	Behavior::movePlayerTo(Player *p, const int idCell, const bool callEvent) {
+	Board::getInstance()->movePlayerTo(p->getID(), idCell, callEvent);
 }
 void	Behavior::movePlayerForward(Player *p, const int step) {
 	Board::getInstance()->movePlayerForward(p->getID(), step);
