@@ -6,10 +6,11 @@
 
 class Human : public Strategy {
 	private:
-		std::string ropertyName;
+		std::string propertyName;
 	public:
 		Human();
 		~Human();
+
 		std::string	getPropertyName();
 
 		int		command(Player *p);

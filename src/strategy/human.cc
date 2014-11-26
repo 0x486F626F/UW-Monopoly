@@ -7,7 +7,7 @@ using namespace std;
 Human::Human() {}
 Human::~Human() {}
 
-string	getPropertyName() {return propertyName;}
+string	Human::getPropertyName() {return propertyName;}
 
 int		Human::command(Player *p) {
 	while(1) {

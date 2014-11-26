@@ -3,6 +3,8 @@
 #include <iostream>
 using namespace std;
 
+const string lvName[10] = {"0", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX"};
+
 Property::Property() {}
 
 Property::Property(const int i, const std::string &s) : Cell(i, s) {
@@ -12,8 +14,7 @@ Property::Property(const int i, const std::string &s) : Cell(i, s) {
 
 void Property::generateTextImage() {
 	textImage.clear();
-	string tmp;
-	tmp = string("LV") + char('0' + getLevel());
+	string tmp = lvName[getLevel()];
 	if(sold) tmp = tmp + " " + owner->getInit();
 	tmp.resize(CELLWIDTH, ' ');
 	textImage.push_back(tmp);
