@@ -223,10 +223,10 @@ void Board::startGame() {
 					else cout << "You have rolled" << endl;
 				}
 				else if(decision == 2) {
-					string pName, op;
-					cin >> pName >> op;
-					if(op == "buy") bh->buyImprove(players[i], pName);
-					else if(op == "sell") bh->sellImprove(players[i], pName);
+					bh->buyImprove(players[i], players[i]->getStrategy()->getPropertyName());
+				}
+				else if(decision == 3) {
+					bh->sellImprove(players[i], players[i]->getStrategy()->getPropertyName());
 				}
 				printBoard();
 			}

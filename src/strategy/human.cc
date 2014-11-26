@@ -7,13 +7,20 @@ using namespace std;
 Human::Human() {}
 Human::~Human() {}
 
+string	getPropertyName() {return propertyName;}
+
 int		Human::command(Player *p) {
 	while(1) {
 		string cmd;
 		cin >> cmd;
 		if(cmd == "roll") return 1;
 		if(cmd == "next") return 0;
-		if(cmd == "improve") return 2;
+		if(cmd == "improve") {
+			cin >> propertyName;
+			cin >> cmd;
+			if(cmd == "buy") return 2;
+			if(cmd == "sell") return 3;
+		}
 	}
 	return -1;
 }
