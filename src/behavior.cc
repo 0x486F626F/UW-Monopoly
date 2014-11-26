@@ -28,7 +28,6 @@ vector <int>	Behavior::roll(const bool testing) {
 	int n = Dice::getInstance()->getNumDice();
 	if(testing) {
 		for(int i = 0; i < n; i ++) {
-		   //choose the number t that is rolled out
 			int t;
 			cin >> t;
 			res.push_back(t);
@@ -73,12 +72,10 @@ void	Behavior::buyProperty(Player *p, Cell *c) {
 void	Behavior::buyImprove(Player *p, const string &s) {
 	Cell *c = p->findProperty(s);
 	if(c == NULL) {
-	   //property does not have improvements, like SLC
 		cout << p->getName() << " does not have " << s << endl;
 		return;
 	}
 	else {
-	   //property cant be improved because max level reached or not yet monopolized.
 		if(c->getLevel() >= c->getMaxLevel() || !c->getGroup()->isMonopoly()) {
 			cout << c->getLevel() << c->getMaxLevel() << (!c->getGroup()->isMonopoly()) << endl;
 			cout << "This Property cannot be improved" << endl;

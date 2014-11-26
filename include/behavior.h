@@ -47,16 +47,16 @@ class Behavior {
 		//void	bankrupt(Player *p);
 		//void	giveItem(Player *p, Item *it);
 		//void	useItem(Player *p, Item *it);
-      
-      //player's decision to purchase a certain property
+
+		//player's decision to purchase a certain property
 		bool	strategyBuyProperty(Player *p, Cell *c);
 		//player's decision to free from Tim Line
 		int		strategyUnblock(Player *p, const int fee, const int itemID);
 		//collecting tuition amount
 		int		strategyTuition(const int fee, const int rate, Player *p);
-      
-      
-      //purchase property and (sell) improvement
+
+
+		//purchase property and (sell) improvement
 		void	buyProperty(Player *p, Cell *c);
 		void	buyImprove(Player *p, const std::string &s);
 		void	sellImprove(Player *p, const std::string &s);
@@ -65,8 +65,8 @@ class Behavior {
 		void	printAssets(Player *p);
 
 		void	printMsg(const std::string &s);
-      
-      //check if the block is monopolized
+
+		//check if the block is monopolized
 		bool	isMonopoly(Group *g);
 
 		int		numDice();
