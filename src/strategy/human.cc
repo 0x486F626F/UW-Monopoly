@@ -28,6 +28,25 @@ int		Human::command(Player *p) {
 	return -1;
 }
 
+int		Human::lackMoney(Player *p, const int m) {
+	while(1) {
+		string cmd;
+		cin >> cmd;
+		if(cmd == "bankrupt") return 0;
+		if(cmd == "improve") {
+			cin >> propertyName;
+			cin >> cmd;
+			if(cmd == "sell") return 1;
+		}
+		if(cmd == "mortgage") return 2;
+		if(cmd == "assets") return 3;
+		if(cmd == "trade") {
+			return 4;
+		}
+	}
+	return -1;
+}
+
 bool	Human::buyProperty(Cell *b, Player *p) {
 	while(1) {
 		string cmd;

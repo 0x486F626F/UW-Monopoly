@@ -19,19 +19,6 @@ void CollectRent::event(Player *p) {
 			rent *= 2;
 		}
 		cout << "Pay rent " << rent << endl;
-		while(1) {
-			// player has enought money to pay rent
-			if(bh->affordable(p, rent)) {
-				bh->modifyMoney(p, -rent);
-				bh->modifyMoney(getOwner(), rent);
-				break;
-			}
-			//insufficient fund, need to sell off or trade or declare bankruptcy
-			else {
-				cout << "Not Enough" << endl;
-				//update
-				break;
-			}
-		}
+		bh->modifyMoney(p, -rent);
 	}
 }

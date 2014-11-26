@@ -58,6 +58,7 @@ class Behavior {
 		//collecting tuition amount
 		int		strategyTuition(const int fee, const int rate, Player *p);
 		int		strategyCommand(Player *p);
+		int		strategyLackMoney(Player *p, const int m);
 		std::string strategyGetPropertyName(Player *p);
 
 

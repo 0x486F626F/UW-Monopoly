@@ -12,8 +12,8 @@ class Human : public Strategy {
 		~Human();
 
 		std::string	getPropertyName();
-      
-      //what is the command output
+
+		//what is the command output
 		int		command(Player *p);
 		//decision to purchase property
 		bool	buyProperty(Cell *b, Player *p);
@@ -21,6 +21,7 @@ class Human : public Strategy {
 		int		unblock(Player *p, const int fee, const int itemID);
 		//decision on how to pay tuition
 		int		tuition(const int fee, const int rate, Player *p);
+		int		lackMoney(Player *p, const int m);
 };
 
 #endif

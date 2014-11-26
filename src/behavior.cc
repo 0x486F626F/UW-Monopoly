@@ -48,7 +48,7 @@ void	Behavior::movePlayerForward(Player *p, const int step) {
 void	Behavior::modifyMoney(Player *p, const int m) {
 	if(p->getMoney() + m < 0) {
 		cout << "Money is not enough!" << endl;
-		//strategy;
+		lackMoney(p, m);
 	} 
 	else p->addMoney(m);
 }
@@ -159,6 +159,8 @@ int		Behavior::strategyUnblock(Player *p, const int fee, const int itemID) {retu
 
 int		Behavior::strategyCommand(Player *p) { return p->getStrategy()->command(p); }
 
+int		Behavior::strategyLackMoney(Player *p, const int m) {return p->getStrategy()->lackMoney(p, m);}
+
 string	Behavior::strategyGetPropertyName(Player *p) {return p->getStrategy()->getPropertyName();}
 
 int		Behavior::getItemID(const string &s) {
@@ -218,5 +220,23 @@ void	Behavior::lackMoney(Player *p, const int m) {
 	while(p->getMoney() < m) {
 		cout << "Do not have enough money to pay $" << m << endl;
 		cout << "Trade/Sell improvement/Mortgage/Bankrupt?" << endl;
+		int decision = strategyLackMoney(p, m);
+		if(decision == 1) {
+			sellImprove(p, strategyGetPropertyName(p));
+		}
+		else if(decision == 2) {
+			string name;
+			cin >> name;
+			mortgage(p, name);
+		}
+		else if(decision == 3) {
+			printAssets(p);
+		}
+		else if(decision == 4) {
+			cout << "Trade: not completed" << endl;
+		}
+		else if(decision == 0) {
+			cout << "bankrupt: not completed" << endl;
+		}
 	}
 }
