@@ -41,8 +41,6 @@ class Board {
 		//initialize a game of 6 players
 		void initGame();
 		void loadGame();
-		//print the current state of the board
-		void printBoard();
 
 		// terminate a game and return false
 		bool gameEnd();
@@ -52,6 +50,8 @@ class Board {
 
 		void movePlayerTo(const int idPlayer, const int idCell, const bool callEvent = 1);
 		void movePlayerForward(const int idPlayer, const int step);
+		//print the current state of the board
+		void printBoard();
 
 		void startGame();
 };

@@ -1,0 +1,9 @@
+git add include/*.h
+git add include/events/*.h
+git add include/strategy/*.h
+git add include/display/*.h
+git add src/*.cc
+git add src/events/*.cc
+git add src/strategy/*.cc
+git add src/display/*.cc
+git add uw.map Makefile

@@ -14,6 +14,8 @@ class Behavior {
 	   //Behavior is implemented as a singleton, there are at all time one behavior that can be called
 		static Behavior*	instance;
 		static void			cleanInstance();
+
+		bool	testing;
       
       //constructor and destructor
 		Behavior();
@@ -30,6 +32,7 @@ class Behavior {
 		void	movePlayerForward(Player *p, const int step);
       
       
+		void	setTesting(const bool t);
       //access to the money balance of a player
 		void	modifyMoney(Player *p, const int m);
 		void	setMoney(Player *P, const int m);
@@ -54,6 +57,8 @@ class Behavior {
 		int		strategyUnblock(Player *p, const int fee, const int itemID);
 		//collecting tuition amount
 		int		strategyTuition(const int fee, const int rate, Player *p);
+		int		strategyCommand(Player *p);
+		std::string strategyGetPropertyName(Player *p);
 
 
 		//purchase property and (sell) improvement
@@ -68,6 +73,10 @@ class Behavior {
 
 		//check if the block is monopolized
 		bool	isMonopoly(Group *g);
+
+		void	printBoard();
+		void	playRound(Player *p);
+		void	lackMoney(Player *p, const int m);
 
 		int		numDice();
 

@@ -37,6 +37,7 @@ vector <int>	Behavior::roll(const bool testing) {
 	return res;
 }
 
+void	Behavior::setTesting(const bool t) {testing = t;}
 void	Behavior::movePlayerTo(Player *p, const int idCell, const bool callEvent) {
 	Board::getInstance()->movePlayerTo(p->getID(), idCell, callEvent);
 }
@@ -156,9 +157,66 @@ int		Behavior::strategyTuition(const int fee, const int rate, Player *p) {return
 
 int		Behavior::strategyUnblock(Player *p, const int fee, const int itemID) {return p->getStrategy()->unblock(p, fee, itemID); }
 
+int		Behavior::strategyCommand(Player *p) { return p->getStrategy()->command(p); }
+
+string	Behavior::strategyGetPropertyName(Player *p) {return p->getStrategy()->getPropertyName();}
+
 int		Behavior::getItemID(const string &s) {
 	//search ID
 	return 0;
 }
 
 void	Behavior::printAssets(Player *p) {p->printAssets();}
+
+void	Behavior::printBoard() {Board::getInstance()->printBoard();}
+
+void	Behavior::playRound(Player *p) {
+	if(!p->getRest() && !p->getBlock()) {
+		int decision;
+		while(decision = strategyCommand(p)) {
+			if(decision == 1) {
+				if(p->getLeftRoll() > 0) {
+					p->setLeftRoll(p->getLeftRoll() - 1);
+					vector <int> d = roll(testing);
+					int step = 0;
+					for(int i = 0; i < d.size(); i ++)
+						step += d[i];
+					movePlayerForward(p, step);
+				}
+				else cout << "You have rolled" << endl;
+			}
+			else if(decision == 2) {
+				buyImprove(p, strategyGetPropertyName(p));
+			}
+			else if(decision == 3) {
+				sellImprove(p, strategyGetPropertyName(p));
+			}
+			else if(decision == 4) {
+				string name;
+				cin >> name;
+				mortgage(p, name);
+			}
+			else if(decision == 5) {
+				string name;
+				cin >> name;
+				unmortgage(p, name);
+			}
+			else if(decision == 6) {
+				printAssets(p);
+			}
+			printBoard();
+		}
+	}
+	else {
+		movePlayerForward(p, 0);
+		printBoard();
+	}
+	p->setLeftRoll(1);
+}
+
+void	Behavior::lackMoney(Player *p, const int m) {
+	while(p->getMoney() < m) {
+		cout << "Do not have enough money to pay $" << m << endl;
+		cout << "Trade/Sell improvement/Mortgage/Bankrupt?" << endl;
+	}
+}

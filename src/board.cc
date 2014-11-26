@@ -203,51 +203,12 @@ void Board::movePlayerForward(const int idPlayer, const int step) {
 void Board::startGame() {
 	if(savefile.length() > 0) loadGame();
 	else initGame();
+	bh->setTesting(testing);
 
 	printBoard();
 	for(int i = 0; !gameEnd(); i = (i + 1) % numPlayer) {
 		cout << players[i]->getName() << "'s turn" << endl;
-		if(!players[i]->getRest() && !players[i]->getBlock()) {
-			int decision;
-			while(decision = players[i]->getStrategy()->command(players[i])) {
-				if(decision == 1) {
-					if(players[i]->getLeftRoll() > 0) {
-						players[i]->setLeftRoll(players[i]->getLeftRoll() - 1);
-						vector <int> d = Behavior::getInstance()->roll(testing);
-						int step = 0;
-						for(int i = 0; i < numDice; i ++)
-							step += d[i];
-						movePlayerForward(i, step);
-					}
-					else cout << "You have rolled" << endl;
-				}
-				else if(decision == 2) {
-					bh->buyImprove(players[i], players[i]->getStrategy()->getPropertyName());
-				}
-				else if(decision == 3) {
-					bh->sellImprove(players[i], players[i]->getStrategy()->getPropertyName());
-				}
-				else if(decision == 4) {
-					string name;
-					cin >> name;
-					bh->mortgage(players[i], name);
-				}
-				else if(decision == 5) {
-					string name;
-					cin >> name;
-					bh->unmortgage(players[i], name);
-				}
-				else if(decision == 6) {
-					bh->printAssets(players[i]);
-				}
-				printBoard();
-			}
-		}
-		else {
-			cells[players[i]->getCurrentCell()->getID()]->event(players[i]);
-			printBoard();
-		}
-		players[i]->setLeftRoll(1);
+		bh->playRound(players[i]);
 	}
 
 }
