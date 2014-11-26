@@ -5,9 +5,14 @@
 #include "player.h"
 
 class Human : public Strategy {
+	private:
+		std::string propertyName;
 	public:
 		Human();
 		~Human();
+
+		std::string	getPropertyName();
+
 		int		command(Player *p);
 		bool	buyProperty(Cell *b, Player *p);
 		int		unblock(Player *p, const int fee, const int itemID);

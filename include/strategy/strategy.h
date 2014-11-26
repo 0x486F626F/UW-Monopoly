@@ -10,6 +10,8 @@ class Strategy {
 		Strategy();
 		virtual ~Strategy() = 0;
 
+		virtual std::string	getPropertyName() = 0;
+
 		virtual int		command(Player *p) = 0;
 		virtual bool	buyProperty(Cell *b, Player *p) = 0;
 		virtual int		unblock(Player *p, const int fee, const int itemID) = 0;
