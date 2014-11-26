@@ -46,8 +46,9 @@ class Behavior {
 		void	buyProperty(Player *p, Cell *c);
 		void	buyImprove(Player *p, const std::string &s);
 		void	sellImprove(Player *p, const std::string &s);
-		void	mortgage(Cell *c);
-		void	unmortgage(Cell *c);
+		void	mortgage(Player *p, const std::string &s);
+		void	unmortgage(Player *p, const std::string &s);
+		void	printAssets(Player *p);
 
 		void	printMsg(const std::string &s);
 

@@ -107,19 +107,38 @@ void	Behavior::sellImprove(Player *p, const string &s) {
 	}
 }
 
-void	Behavior::mortgage(Cell *c) {
-	c->mortgage();
-	c->getOwner()->addMoney(c->getCost() / 2);
-}
-
-void	Behavior::unmortgage(Cell *c) {
-	int cost = c->getCost() * 6 / 10;
-	if(!affordable(c->getOwner(), cost)) {
-		cout << "Money is not enough!" << endl;
+void	Behavior::mortgage(Player *p, const string &s) {
+	Cell *c = p->findProperty(s);
+	if(c == NULL) {
+		cout << p->getName() << " does not have " << s << endl;
+		return;
 	}
 	else {
-		c->unmortgage();
-		c->getOwner()->addMoney(-cost);
+		if(c->isMortgaged()) {
+			cout << s << " is already mortgaged!" << endl;
+		}
+		else {
+			c->mortgage();
+			c->getOwner()->addMoney(c->getCost() / 2);
+		}
+	}
+}
+
+void	Behavior::unmortgage(Player *p, const string &s) {
+	Cell *c = p->findProperty(s);
+	if(c == NULL) {
+		cout << p->getName() << " does not have " << s << endl;
+		return;
+	}
+	else {
+		int cost = c->getCost() * 6 / 10;
+		if(!affordable(c->getOwner(), cost)) {
+			cout << "Money is not enough!" << endl;
+		}
+		else {
+			c->unmortgage();
+			c->getOwner()->addMoney(-cost);
+		}
 	}
 }
 
@@ -141,3 +160,5 @@ int		Behavior::getItemID(const string &s) {
 	//search ID
 	return 0;
 }
+
+void	Behavior::printAssets(Player *p) {p->printAssets();}

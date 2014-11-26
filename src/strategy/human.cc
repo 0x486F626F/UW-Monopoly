@@ -13,14 +13,17 @@ int		Human::command(Player *p) {
 	while(1) {
 		string cmd;
 		cin >> cmd;
-		if(cmd == "roll") return 1;
 		if(cmd == "next") return 0;
+		if(cmd == "roll") return 1;
 		if(cmd == "improve") {
 			cin >> propertyName;
 			cin >> cmd;
 			if(cmd == "buy") return 2;
 			if(cmd == "sell") return 3;
 		}
+		if(cmd == "mortgage") return 4;
+		if(cmd == "unmortgage") return 5;
+		if(cmd == "assets") return 6;
 	}
 	return -1;
 }

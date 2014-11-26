@@ -205,7 +205,6 @@ void Board::startGame() {
 	else initGame();
 
 	printBoard();
-	printPlayerInfo();
 	for(int i = 0; !gameEnd(); i = (i + 1) % numPlayer) {
 		cout << players[i]->getName() << "'s turn" << endl;
 		if(!players[i]->getRest() && !players[i]->getBlock()) {
@@ -228,6 +227,19 @@ void Board::startGame() {
 				else if(decision == 3) {
 					bh->sellImprove(players[i], players[i]->getStrategy()->getPropertyName());
 				}
+				else if(decision == 4) {
+					string name;
+					cin >> name;
+					bh->mortgage(players[i], name);
+				}
+				else if(decision == 5) {
+					string name;
+					cin >> name;
+					bh->unmortgage(players[i], name);
+				}
+				else if(decision == 6) {
+					bh->printAssets(players[i]);
+				}
 				printBoard();
 			}
 		}
@@ -235,14 +247,7 @@ void Board::startGame() {
 			cells[players[i]->getCurrentCell()->getID()]->event(players[i]);
 			printBoard();
 		}
-		printPlayerInfo();
 		players[i]->setLeftRoll(1);
 	}
 
-}
-
-void Board::printPlayerInfo() {
-	for(int i = 0; i < numPlayer; i ++) {
-		players[i]->printInfo();	
-	}
 }

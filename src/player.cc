@@ -57,11 +57,11 @@ void	Player::setRest(const int r) { rest = r; }
 int		Player::getBlock() { return block; }
 void	Player::setBlock(const int b) { block = b; }
 
-void Player::printInfo() {
-	cout << name << " " << money << endl;
-	cout << "Total PPT:	" << cntProperty() << endl;
-	cout << getRest() << " " << getBlock() << endl;
-	cout << property.size() << endl;
+void Player::printAssets() {
+	cout << "Name:		" << name << endl;
+	cout << "Money:		" << money << endl;
+	cout << "Total Assets:	" << cntProperty() << endl;
+	cout << "Properties:	" << property.size() << endl;
 	for(int i = 0; i < property.size(); i ++)
 		cout << property[i]->getID() << " " << property[i]->getName() << endl;
 }

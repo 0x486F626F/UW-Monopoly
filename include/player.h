@@ -64,7 +64,7 @@ class Player {
 		int		getBlock();
 		void	setBlock(const int b);
 
-		void	printInfo();
+		void	printAssets();
 };	
 
 #endif
