@@ -258,6 +258,7 @@ void	Behavior::lackMoney(const int m, Player *p, Player *p2) {
 		}
 		else if(decision == 0) {
 			bankrupt(p, p2);
+			break;
 		}
 	}
 }
@@ -267,6 +268,7 @@ void	Behavior::bankrupt(Player *p, Player *p2) {
 	Cell *c;
 	if(p2) {
 		transferMoney(p, p2, p->getMoney());
+		cout << "Money Transfered!" << endl;
 		while(c = p->getFirstProperty()) {
 			transferOwnership(c, p2);
 			cout << p2->getName() << ": Do you want to pay 10\% now? (y/n)" << endl;
@@ -287,6 +289,7 @@ void	Behavior::bankrupt(Player *p, Player *p2) {
 	}
 	else {
 		p->setMoney(0);
+		cout << "Bank" << endl;
 		while(c = p->getFirstProperty()) {
 			c->reset();
 			p->removeProperty(c);
