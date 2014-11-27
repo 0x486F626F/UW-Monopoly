@@ -48,9 +48,19 @@ void	Behavior::movePlayerForward(Player *p, const int step) {
 void	Behavior::modifyMoney(Player *p, const int m) {
 	if(p->getMoney() + m < 0) {
 		cout << "Money is not enough!" << endl;
-		lackMoney(p, m);
+		lackMoney(m, p);
 	} 
 	else p->addMoney(m);
+}
+void	Behavior::transferMoney(Player *p1, Player *p2, const int m) {
+	if(p1->getMoney() - m < 0) {
+		cout << "Money is not enough!" << endl;
+		lackMoney(m, p1, p2);
+	}
+	else {
+		p1->addMoney(-m);
+		p2->addMoney(m);
+	}
 }
 void	Behavior::setMoney(Player *p, const int m) {p->setMoney(m);}
 int		Behavior::cntProperty(Player *p) {return p->cntProperty();}
@@ -108,6 +118,12 @@ void	Behavior::sellImprove(Player *p, const string &s) {
 	}
 }
 
+void	Behavior::transferOwnership(Cell *c, Player *p) {
+	c->getOwner()->removeProperty(c);
+	c->setOwner(p);
+	p->addProperty(c);
+}
+
 void	Behavior::mortgage(Player *p, const string &s) {
 	Cell *c = p->findProperty(s);
 	if(c == NULL) {
@@ -117,6 +133,9 @@ void	Behavior::mortgage(Player *p, const string &s) {
 	else {
 		if(c->isMortgaged()) {
 			cout << s << " is already mortgaged!" << endl;
+		}
+		else if(c->getLevel() > 0) {
+			cout << "Have improvements on the property! Cannot be mortgaged!" << endl;
 		}
 		else {
 			c->mortgage();
@@ -216,7 +235,7 @@ void	Behavior::playRound(Player *p) {
 	p->setLeftRoll(1);
 }
 
-void	Behavior::lackMoney(Player *p, const int m) {
+void	Behavior::lackMoney(const int m, Player *p, Player *p2) {
 	while(p->getMoney() < m) {
 		cout << "Do not have enough money to pay $" << m << endl;
 		cout << "Trade/Sell improvement/Mortgage/Bankrupt?" << endl;
@@ -236,7 +255,7 @@ void	Behavior::lackMoney(Player *p, const int m) {
 			cout << "Trade: not completed" << endl;
 		}
 		else if(decision == 0) {
-			cout << "bankrupt: not completed" << endl;
+			//backrupt(p);
 		}
 	}
 }

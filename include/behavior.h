@@ -17,24 +17,25 @@ class Behavior {
 
 		bool	testing;
       
-      //constructor and destructor
+		//constructor and destructor
 		Behavior();
 		~Behavior();
 
 	public:
 		static Behavior*	getInstance();
-      
-      //testing roll, which we will choose the number that is rolled out
+
+		//testing roll, which we will choose the number that is rolled out
 		std::vector <int>	roll(const bool testing = 0);
-      //move player to a particular cell
+		//move player to a particular cell
 		void	movePlayerTo(Player *p, const int idCell, const bool callEvent = 1);
 		//check if the player's next move will pass the OSAP cell (like a move scanner)
 		void	movePlayerForward(Player *p, const int step);
-      
-      
+
+
 		void	setTesting(const bool t);
-      //access to the money balance of a player
+		//access to the money balance of a player
 		void	modifyMoney(Player *p, const int m);
+		void	transferMoney(Player *p1, Player *p2, const int m);
 		void	setMoney(Player *P, const int m);
 		//calculate the net-worth of a player
 		int		cntProperty(Player *p);
@@ -43,8 +44,7 @@ class Behavior {
 		void	addBlock(Player *p);
 		void	unblock(Player *p);
 		int		getBlock(Player *p);
-		//check if the player can afford
-		bool	affordable(Player *p, const int m);
+		bool	affordable(Player *p, const int m); //check if the player can afford
 		void	getOSAP(Player *p);
 		bool	same(Player *p1, Player *p2);
 		//void	bankrupt(Player *p);
@@ -66,6 +66,7 @@ class Behavior {
 		void	buyProperty(Player *p, Cell *c);
 		void	buyImprove(Player *p, const std::string &s);
 		void	sellImprove(Player *p, const std::string &s);
+		void	transferOwnership(Cell *c, Player *p);
 		void	mortgage(Player *p, const std::string &s);
 		void	unmortgage(Player *p, const std::string &s);
 		void	printAssets(Player *p);
@@ -77,7 +78,7 @@ class Behavior {
 
 		void	printBoard();
 		void	playRound(Player *p);
-		void	lackMoney(Player *p, const int m);
+		void	lackMoney(const int m, Player *p, Player *p2 = NULL);
 
 		int		numDice();
 
