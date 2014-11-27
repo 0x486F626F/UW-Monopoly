@@ -172,13 +172,18 @@ void Board::initGame() { //{{{
 	for(int i = 0; i < numPlayer; i ++) {
 		players.push_back(new Player(i, string("") + char('A' + i)));
 		cells[0]->addPlayer(players[i]);
-		players[i]->setMoney(1500);
+		players[i]->setMoney(15);
 		players[i]->setStrategy(0);
 		players[i]->setLeftRoll(1);
 	}
 } //}}}
 
-bool Board::gameEnd() { return false; }
+bool Board::gameEnd() {
+	int cnt = 0;
+	for(int i = 0; i < numPlayer; i ++)
+		cnt += !players[i]->isBankrupted();
+	return cnt == 1;
+}
 
 /*****printBoard*****/
 void Board::printBoard() {
@@ -206,9 +211,10 @@ void Board::startGame() {
 	bh->setTesting(testing);
 
 	printBoard();
-	for(int i = 0; !gameEnd(); i = (i + 1) % numPlayer) {
-		cout << players[i]->getName() << "'s turn" << endl;
-		bh->playRound(players[i]);
-	}
-
+	for(int i = 0; !gameEnd(); i = (i + 1) % numPlayer) 
+		if(!players[i]->isBankrupted()) {
+			cout << players[i]->getName() << "'s turn" << endl;
+			bh->playRound(players[i]);
+		}
+	cout << "Game Over" << endl;
 }

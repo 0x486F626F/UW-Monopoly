@@ -48,10 +48,11 @@ void	Behavior::movePlayerForward(Player *p, const int step) {
 void	Behavior::modifyMoney(Player *p, const int m) {
 	if(p->getMoney() + m < 0) {
 		cout << "Money is not enough!" << endl;
-		lackMoney(m, p);
+		lackMoney(-m, p, NULL);
 	} 
 	else p->addMoney(m);
 }
+
 void	Behavior::transferMoney(Player *p1, Player *p2, const int m) {
 	if(p1->getMoney() - m < 0) {
 		cout << "Money is not enough!" << endl;
@@ -158,6 +159,7 @@ void	Behavior::unmortgage(Player *p, const string &s) {
 		else {
 			c->unmortgage();
 			c->getOwner()->addMoney(-cost);
+			c->setPrepaid(0);
 		}
 	}
 }
@@ -271,25 +273,25 @@ void	Behavior::bankrupt(Player *p, Player *p2) {
 		cout << "Money Transfered!" << endl;
 		while(c = p->getFirstProperty()) {
 			transferOwnership(c, p2);
-			cout << p2->getName() << ": Do you want to pay 10\% now? (y/n)" << endl;
-			int decision = strategyPrepaid(p2, c);
-			int cost = c->getCost() / 10;
-			if(decision) {
-				if(p2->getMoney() < cost) {
-					cout << "Money is not enough!" << endl;
-					c->setPrepaid(-cost);
-				}
-				else {
-					p2->addMoney(-cost);
-					c->setPrepaid(cost);
+			if(c->isMortgaged()) {
+				cout << p2->getName() << ": Do you want to pay 10\% now? (y/n)" << endl;
+				int decision = strategyPrepaid(p2, c);
+				int cost = c->getCost() / 10;
+				c->setPrepaid(-cost);
+				if(decision == 1) {
+					if(p2->getMoney() < cost) {
+						cout << "Money is not enough!" << endl;
+					}
+					else {
+						p2->addMoney(-cost);
+						c->setPrepaid(cost);
+					}
 				}
 			}
-			else c->setPrepaid(-cost);
 		}
 	}
 	else {
 		p->setMoney(0);
-		cout << "Bank" << endl;
 		while(c = p->getFirstProperty()) {
 			c->reset();
 			p->removeProperty(c);

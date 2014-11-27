@@ -16,6 +16,7 @@ void Property::generateTextImage() {
 	textImage.clear();
 	string tmp = lvName[getLevel()];
 	if(sold) tmp = tmp + " " + owner->getInit();
+	if(mortgaged) tmp += " M";
 	tmp.resize(CELLWIDTH, ' ');
 	textImage.push_back(tmp);
 	tmp = "";
@@ -33,7 +34,8 @@ void Property::generateTextImage() {
 
 	tmp = "";
 	for(int i = 0; i < currentPlayer.size(); i ++)
-		tmp += currentPlayer[i]->getInit();
+		if(!currentPlayer[i]->isBankrupted())
+			tmp += currentPlayer[i]->getInit();
 	tmp.resize(CELLWIDTH, ' ' );
 	textImage.push_back(tmp);
 }
