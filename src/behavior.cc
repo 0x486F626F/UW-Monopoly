@@ -153,7 +153,10 @@ void	Behavior::unmortgage(Player *p, const string &s) {
 	}
 	else {
 		int cost = c->getCost() * 6 / 10 - c->getPrepaid();
-		if(!affordable(c->getOwner(), cost)) {
+		if(!c->isMortgaged()) {
+			cout << s << " is not mortgaged!" << endl;
+		}
+		else if(!affordable(c->getOwner(), cost)) {
 			cout << "Money is not enough!" << endl;
 		}
 		else {
