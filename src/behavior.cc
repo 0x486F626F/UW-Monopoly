@@ -49,8 +49,9 @@ void	Behavior::modifyMoney(Player *p, const int m) {
 	if(p->getMoney() + m < 0) {
 		cout << "Money is not enough!" << endl;
 		lackMoney(-m, p, NULL);
-	} 
-	else p->addMoney(m);
+	}
+	if(p->isBankrupted()) return;
+	p->addMoney(m);
 }
 
 void	Behavior::transferMoney(Player *p1, Player *p2, const int m) {
@@ -58,10 +59,9 @@ void	Behavior::transferMoney(Player *p1, Player *p2, const int m) {
 		cout << "Money is not enough!" << endl;
 		lackMoney(m, p1, p2);
 	}
-	else {
-		p1->addMoney(-m);
-		p2->addMoney(m);
-	}
+	if(p1->isBankrupted()) return;
+	p1->addMoney(-m);
+	p2->addMoney(m);
 }
 void	Behavior::setMoney(Player *p, const int m) {p->setMoney(m);}
 int		Behavior::cntProperty(Player *p) {return p->cntProperty();}
