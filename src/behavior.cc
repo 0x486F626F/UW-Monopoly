@@ -153,7 +153,6 @@ void	Behavior::unmortgage(Player *p, const string &s) {
 	}
 	else {
 		int cost = c->getCost() * 6 / 10 - c->getPrepaid();
-		cout << "Prepaid	" << c->getPrepaid();
 		if(!affordable(c->getOwner(), cost)) {
 			cout << "Money is not enough!" << endl;
 		}
@@ -267,12 +266,10 @@ void	Behavior::lackMoney(const int m, Player *p, Player *p2) {
 }
 
 void	Behavior::bankrupt(Player *p, Player *p2) {
-	p->setBankrupted(true);
 	Cell *c;
 	if(p2) {
 		transferMoney(p, p2, p->getMoney());
 		cout << "Money Transfered!" << endl;
-		cout << "Money left " << p->getMoney() << endl;
 		while(c = p->getFirstProperty()) {
 			transferOwnership(c, p2);
 			if(c->isMortgaged()) {
@@ -299,4 +296,5 @@ void	Behavior::bankrupt(Player *p, Player *p2) {
 			p->removeProperty(c);
 		}
 	}
+	p->setBankrupted(true);
 }
