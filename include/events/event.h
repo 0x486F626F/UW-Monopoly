@@ -45,6 +45,9 @@ class Event : public Cell {
 		void unmortgage();
 		bool canBuy();
 		bool canImprove();
+		int		getPrepaid();
+		void	setPrepaid(const int p);
+		void	reset();
 };
 
 #endif

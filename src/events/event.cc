@@ -36,3 +36,6 @@ void	Event::mortgage() { theCell.mortgage(); }
 void	Event::unmortgage() { theCell.unmortgage(); }
 bool	Event::canBuy() { return theCell.canBuy(); }
 bool	Event::canImprove() { return theCell.canImprove(); }
+int		Event::getPrepaid() { return theCell.getPrepaid(); }
+void	Event::setPrepaid(const int p) { return theCell.setPrepaid(p); }
+void	Event::reset() { theCell.reset(); }

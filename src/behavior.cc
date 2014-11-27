@@ -272,6 +272,7 @@ void	Behavior::bankrupt(Player *p, Player *p2) {
 	if(p2) {
 		transferMoney(p, p2, p->getMoney());
 		cout << "Money Transfered!" << endl;
+		cout << "Money left " << p->getMoney() << endl;
 		while(c = p->getFirstProperty()) {
 			transferOwnership(c, p2);
 			if(c->isMortgaged()) {
