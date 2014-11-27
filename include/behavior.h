@@ -47,7 +47,7 @@ class Behavior {
 		bool	affordable(Player *p, const int m); //check if the player can afford
 		void	getOSAP(Player *p);
 		bool	same(Player *p1, Player *p2);
-		//void	bankrupt(Player *p);
+		void	bankrupt(Player *p, Player *p2);
 		//void	giveItem(Player *p, Item *it);
 		//void	useItem(Player *p, Item *it);
 
@@ -60,6 +60,7 @@ class Behavior {
 		int		strategyCommand(Player *p);
 		int		strategyLackMoney(Player *p, const int m);
 		std::string strategyGetPropertyName(Player *p);
+		int		strategyPrepaid(Player *p, Cell *c);
 
 
 		//purchase property and (sell) improvement

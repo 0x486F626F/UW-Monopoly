@@ -76,3 +76,12 @@ int		Human::tuition(const int fee, const int rate, Player *p) {
 		if(cmd == "b") return 1;
 	}
 }
+
+int		Human::prepaid(Player *p, Cell *c) {
+	while(1) {
+		string cmd;
+		cin >> cmd;
+		if(cmd == "y") return 1;
+		if(cmd == "n") return 0;
+	}
+}

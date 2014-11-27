@@ -66,3 +66,12 @@ void Property::unmortgage() {
 }
 bool Property::canBuy() { return !sold; }
 bool Property::canImprove() { return rents.size() > 1; }
+int  Property::getPrepaid() { return prepaid; }
+void Property::setPrepaid(const int p) { prepaid = p; }
+void Property::reset() {
+	sold = false;
+	mortgaged = false;
+	level = 0;
+	owner = NULL;
+	prepaid = 0;
+}

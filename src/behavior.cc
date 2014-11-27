@@ -151,7 +151,7 @@ void	Behavior::unmortgage(Player *p, const string &s) {
 		return;
 	}
 	else {
-		int cost = c->getCost() * 6 / 10;
+		int cost = c->getCost() * 6 / 10 - c->getPrepaid();
 		if(!affordable(c->getOwner(), cost)) {
 			cout << "Money is not enough!" << endl;
 		}
@@ -181,6 +181,8 @@ int		Behavior::strategyCommand(Player *p) { return p->getStrategy()->command(p);
 int		Behavior::strategyLackMoney(Player *p, const int m) {return p->getStrategy()->lackMoney(p, m);}
 
 string	Behavior::strategyGetPropertyName(Player *p) {return p->getStrategy()->getPropertyName();}
+
+int		Behavior::strategyPrepaid(Player *p, Cell *c) {return p->getStrategy()->prepaid(p, c); }
 
 int		Behavior::getItemID(const string &s) {
 	//search ID
@@ -255,7 +257,39 @@ void	Behavior::lackMoney(const int m, Player *p, Player *p2) {
 			cout << "Trade: not completed" << endl;
 		}
 		else if(decision == 0) {
-			//backrupt(p);
+			bankrupt(p, p2);
+		}
+	}
+}
+
+void	Behavior::bankrupt(Player *p, Player *p2) {
+	p->setBankrupted(true);
+	Cell *c;
+	if(p2) {
+		transferMoney(p, p2, p->getMoney());
+		while(c = p->getFirstProperty()) {
+			transferOwnership(c, p2);
+			cout << p2->getName() << ": Do you want to pay 10\% now? (y/n)" << endl;
+			int decision = strategyPrepaid(p2, c);
+			int cost = c->getCost() / 10;
+			if(decision) {
+				if(p2->getMoney() < cost) {
+					cout << "Money is not enough!" << endl;
+					c->setPrepaid(-cost);
+				}
+				else {
+					p2->addMoney(-cost);
+					c->setPrepaid(cost);
+				}
+			}
+			else c->setPrepaid(-cost);
+		}
+	}
+	else {
+		p->setMoney(0);
+		while(c = p->getFirstProperty()) {
+			c->reset();
+			p->removeProperty(c);
 		}
 	}
 }

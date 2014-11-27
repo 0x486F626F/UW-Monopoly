@@ -17,6 +17,7 @@ class Strategy {
 		virtual bool	buyProperty(Cell *b, Player *p) = 0;
 		virtual int		unblock(Player *p, const int fee, const int itemID) = 0;
 		virtual int		tuition(const int fee, const int rate, Player *p) = 0;
+		virtual int		prepaid(Player *p, Cell *c) = 0;
 };
 
 #endif

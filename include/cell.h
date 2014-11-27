@@ -65,6 +65,9 @@ class Cell {
 		virtual void unmortgage();
 		virtual bool canBuy();
 		virtual bool canImprove();
+		virtual int getPrepaid();
+		virtual void setPrepaid(const int p);
+		virtual void reset();
 };
 
 #endif

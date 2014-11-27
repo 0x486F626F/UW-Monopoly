@@ -28,6 +28,7 @@ void Player::removeProperty(Cell *c) {
 			break;
 		}
 }
+Cell*	Player::getFirstProperty() {return property.size() == 0 ? NULL : property[0]; }
 Cell*	Player::findProperty(const string &s) {
    //find if the player owns a certain property, yes than return a pointer to that cell, otherwise return NULL
 	for(vector <Cell*>::iterator i = property.begin(); i != property.end(); i ++)
@@ -57,6 +58,8 @@ int		Player::getRest() { return rest; }
 void	Player::setRest(const int r) { rest = r; }
 int		Player::getBlock() { return block; }
 void	Player::setBlock(const int b) { block = b; }
+bool	Player::isBankrupted() { return bankrupted; }
+void	Player::setBankrupted(const bool b) { bankrupted = b; }
 
 void Player::printAssets() {
 	cout << "Name:		" << name << endl;

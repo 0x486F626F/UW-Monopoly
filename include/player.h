@@ -45,6 +45,7 @@ class Player {
 		void	addProperty(Cell *c);
 		//remoce a property from a player
 		void	removeProperty(Cell *c);
+		Cell*	getFirstProperty();
 		Cell*	findProperty(const std::string &s);
       
       
@@ -68,6 +69,9 @@ class Player {
 
 		int		getBlock();
 		void	setBlock(const int b);
+
+		bool	isBankrupted();		
+		void	setBankrupted(const bool b);
 
 		void	printAssets();
 };	

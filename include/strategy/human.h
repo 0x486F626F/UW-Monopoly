@@ -22,6 +22,7 @@ class Human : public Strategy {
 		//decision on how to pay tuition
 		int		tuition(const int fee, const int rate, Player *p);
 		int		lackMoney(Player *p, const int m);
+		int		prepaid(Player *p, Cell *c);
 };
 
 #endif

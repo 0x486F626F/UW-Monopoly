@@ -61,3 +61,6 @@ void	Cell::mortgage() {}
 void	Cell::unmortgage() {}
 bool	Cell::canBuy() {return false;}
 bool	Cell::canImprove() {return false;}
+int		Cell::getPrepaid() { return 0; }
+void	Cell::setPrepaid(const int p) {}
+void	Cell::reset() {}
