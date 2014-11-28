@@ -13,6 +13,7 @@ Player::~Player() {
 }
 Player::Player(const int i, const std::string &s) : ID(i), name(s), numDice(2) {
 	block = rest = 0;
+	bankrupted = false;
 }
 
 int Player::getID() { return ID; }

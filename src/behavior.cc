@@ -253,9 +253,14 @@ void	Behavior::playRound(Player *p) { //{{{
 			else if(decision == 7) {
 				string name, c1, c2;
 				cin >> name >> c1 >> c2;
-				Player *p2 = Board::getInstance()->getPlayer(name);
-				if(p2) trade(p, p2, c1, c2);
-				else cout << name + " does not exist!" << endl;
+				if(name == p->getName()) {
+					cout << "You cannot trade with yourself!" << endl;
+				}
+				else {
+					Player *p2 = Board::getInstance()->getPlayer(name);
+					if(p2) trade(p, p2, c1, c2);
+					else cout << name + " does not exist!" << endl;
+				}
 			}
 			printBoard();
 		}
@@ -336,12 +341,11 @@ int		Behavior::getNumRimCup() { return numRimCup; }
 void	Behavior::setNumRimCup(const int num) {numRimCup = num;}
 
 void	Behavior::trade(Player* p1, Player* p2, const string condition1, const string condition2) { //{{{
-	int money1 = -1;
-	int money2 = -1;
+	int money1, money2;
 	istringstream s1(condition1);
 	istringstream s2(condition2);
-	s1 >> money1;
-	s2 >> money2;
+	if(!(s1 >> money1)) money1 = -1;
+	if(!(s2 >> money2)) money2 = -1;
 	Cell* c1 = p1->findProperty(condition1);
 	Cell* c2 = p2->findProperty(condition2);
 
@@ -370,7 +374,7 @@ void	Behavior::trade(Player* p1, Player* p2, const string condition1, const stri
 	else if(money1 < 0 && money2 >= 0) decision = p2->getStrategy()->tradePM(p1, p2, c1, money2);
 	else if(money1 >= 0 && money2 < 0) decision = p2->getStrategy()->tradePP(p1, p2, c1, c2);
 
-	
+
 	if(decision) {
 		cout << p2->getName() << " accepted!" << endl;
 		if(money1 >= 0) transferMoney(p1, p2, money1);
