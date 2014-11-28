@@ -168,7 +168,7 @@ void Board::loadGame() {
 }
 
 void Board::initGame() { //{{{
-	string mapfile = "uw.map";
+	string mapfile = "maps/uw.map";
 	numPlayer = 3;
 	Dice::getInstance(numDice = 2);
 

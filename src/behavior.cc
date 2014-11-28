@@ -365,6 +365,14 @@ void	Behavior::trade(Player* p1, Player* p2, const string condition1, const stri
 		cout << p2->getName() << " does not have property " << condition2 << endl;
 		return;
 	}
+	if(c1->isMortgaged() || !c1->getGroup()->noImprovement()) {
+		cout << condition1 << " cannot be traded!" << endl;
+		return;
+	}
+	if(c2->isMortgaged() || !c2->getGroup()->noImprovement()) {
+		cout << condition2 << " cannot be traded!" << endl;
+		return;
+	}
 
 	cout << p2->getName() << ": Do you accept?(y/n)" << endl;
 
@@ -372,7 +380,7 @@ void	Behavior::trade(Player* p1, Player* p2, const string condition1, const stri
 	if(money1 >= 0 && money2 >= 0) decision = p2->getStrategy()->tradeMM(p1, p2, money1, money2);
 	else if(money1 >= 0 && money2 < 0) decision = p2->getStrategy()->tradeMP(p1, p2, money1, c2);
 	else if(money1 < 0 && money2 >= 0) decision = p2->getStrategy()->tradePM(p1, p2, c1, money2);
-	else if(money1 >= 0 && money2 < 0) decision = p2->getStrategy()->tradePP(p1, p2, c1, c2);
+	else if(money1 < 0 && money2 < 0) decision = p2->getStrategy()->tradePP(p1, p2, c1, c2);
 
 
 	if(decision) {
