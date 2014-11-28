@@ -15,7 +15,8 @@ void RollRimCup::event(Player* p) {
 			cout << "Cong! Win RimCup!" << endl;
 			bh->setNumRimCup(bh->getNumRimCup() + 1);
 			bh->addItem(p, "RimCup");
+			return;
 		}
-		else theCell.event(p);
 	}
+	theCell.event(p);
 }
