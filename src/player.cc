@@ -17,7 +17,8 @@ Player::Player(const int i, const std::string &s) : ID(i), name(s), numDice(2) {
 }
 
 int Player::getID() { return ID; }
-char Player::getInit() { return name[0]; }
+char Player::getInit() { return nameInit; }
+void Player::setInit(const char c) {nameInit = c;}
 string Player::getName() { return name; }
 void Player::setCurrentCell(Cell *c) { currentCell = c; }
 Cell *Player::getCurrentCell() { return currentCell; }

@@ -174,7 +174,8 @@ void Board::initGame() { //{{{
 
 	loadMap(mapfile);	
 	for(int i = 0; i < numPlayer; i ++) {
-		players.push_back(new Player(i, string("") + char('A' + i)));
+		players.push_back(new Player(i, string("") + char('A' + i) + char('A' + i)));
+		players[i]->setInit(char('A' + i));
 		cells[0]->addPlayer(players[i]);
 		players[i]->setMoney(1500);
 		players[i]->setStrategy(0);
@@ -225,6 +226,6 @@ void Board::startGame() {
 
 Player* Board::getPlayer(const std::string &name) {
 	for(int i = 0; i < numPlayer; i ++)
-		if(players[i]->getName() == name) return players[i];
+		if(players[i]->getInit() == name[0]) return players[i];
 	return NULL;
 }

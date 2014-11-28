@@ -253,7 +253,7 @@ void	Behavior::playRound(Player *p) { //{{{
 			else if(decision == 7) {
 				string name, c1, c2;
 				cin >> name >> c1 >> c2;
-				if(name == p->getName()) {
+				if(name[0] == p->getInit()) {
 					cout << "You cannot trade with yourself!" << endl;
 				}
 				else {

@@ -13,6 +13,7 @@ class Player {
 		int ID;
 		//name of player
 		std::string name;
+		char nameInit;
 		//number of dice the palyer roll each round
 		int numDice;
 		//pointer to the current position
@@ -31,11 +32,12 @@ class Player {
 	public:
 		~Player();
 		Player(const int ID, const std::string &s);
-		
+
 		//get ID of the player
 		int		getID();
 		//get name initial of the player
 		char	getInit();
+		void	setInit(const char c);
 		//get name of player
 		std::string	getName();
 		//place player to the destinated cell
@@ -48,20 +50,20 @@ class Player {
 		void	removeProperty(Cell *c);
 		Cell*	getFirstProperty();
 		Cell*	findProperty(const std::string &s);
-      
-      
-      //access player's money balance
+
+
+		//access player's money balance
 		int		getMoney();
 		void	setMoney(const int m);
 		void	addMoney(const int m);
 		//calculate player's property worth
 		int		cntProperty();
-      
-      //set the human player type strategy
+
+		//set the human player type strategy
 		void	setStrategy(const int type);
 		Strategy*	getStrategy();
-      
-      //how many more times can a player roll
+
+		//how many more times can a player roll
 		int		getLeftRoll();
 		void	setLeftRoll(const int r);
 
