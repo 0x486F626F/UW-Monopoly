@@ -30,6 +30,10 @@
 #include <cstdlib>
 using namespace std;
 
+const string names[] = {"Goose", "GRT Bus", "Tim Hortons Doughut", "Professor", "Student", "Money", "Laptop", "Pink tie"};
+const string tabs[] = {"			", "			", "	", "		", "			", "			", "			", "		"};
+const char inits[] = {'G', 'B', 'D', 'P', 'S', '$', 'L', 'T'};
+
 /*****Instance*****/
 void Board::cleanInstance() { delete instance; }
 Board *Board::getInstance(const string save, const bool testing) { //{{{
@@ -169,17 +173,28 @@ void Board::loadGame() {
 
 void Board::initGame() { //{{{
 	string mapfile = "maps/uw.map";
-	numPlayer = 3;
 	Dice::getInstance(numDice = 2);
-
 	loadMap(mapfile);	
+
+	while(1) {
+		cout << "Input number of players (2~6)" << endl;
+		cin >> numPlayer;
+		if(numPlayer >= 2 && numPlayer <= 6) break;
+	}
+
 	for(int i = 0; i < numPlayer; i ++) {
-		players.push_back(new Player(i, string("") + char('A' + i) + char('A' + i)));
-		players[i]->setInit(char('A' + i));
-		cells[0]->addPlayer(players[i]);
-		players[i]->setMoney(1500);
+		players.push_back(new Player(i, ""));
 		players[i]->setStrategy(0);
+		cout << names[0] << "			" << "Char" << endl;
+		for(int j = 0; j < 8; j ++)
+			cout << names[j] << tabs[j] << inits[j] << endl;
+		cout << "Please input a char" << endl;
+		int decision = bh->strategyGetChar(players[i]);
+		players[i]->setName(names[decision]);
+		players[i]->setInit(inits[decision]);
+		players[i]->setMoney(1500);
 		players[i]->setLeftRoll(1);
+		cells[0]->addPlayer(players[i]);
 	}
 } //}}}
 

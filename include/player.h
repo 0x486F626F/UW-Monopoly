@@ -40,6 +40,7 @@ class Player {
 		void	setInit(const char c);
 		//get name of player
 		std::string	getName();
+		void	setName(const std::string &s);
 		//place player to the destinated cell
 		void setCurrentCell(Cell *c);
 		//get current position
