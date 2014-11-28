@@ -7,10 +7,10 @@
 
 using namespace std;
 
-//constructor and destructor
 Player::~Player() {
 	delete stg;
 }
+
 Player::Player(const int i, const std::string &s) : ID(i), name(s), numDice(2) {
 	block = rest = 0;
 	bankrupted = false;
@@ -20,6 +20,7 @@ int Player::getID() { return ID; }
 char Player::getInit() { return nameInit; }
 void Player::setInit(const char c) {nameInit = c;}
 string Player::getName() { return name; }
+void	Player::setName(const string &s) {name = s;}
 void Player::setCurrentCell(Cell *c) { currentCell = c; }
 Cell *Player::getCurrentCell() { return currentCell; }
 void Player::addProperty(Cell *c) { property.push_back(c); }

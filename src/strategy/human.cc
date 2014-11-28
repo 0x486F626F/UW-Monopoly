@@ -126,3 +126,14 @@ bool	Human::tradePP(Player* p1, Player* p2, Cell* c1, Cell* c2) {
 	}
 	return -1;
 }
+
+int		Human::getChar() {
+	char inits[] = {'G', 'B', 'D', 'P', 'S', '$', 'L', 'T'};
+	while(1) {
+		string cmd;
+		cin >> cmd;
+		for(int i = 0; i < 8; i ++)
+			if(inits[i] == cmd[0]) return i;
+	}
+	return 10;
+}
