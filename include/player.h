@@ -20,6 +20,7 @@ class Player {
 		int money;
 		//what the player owns
 		std::vector <Cell*> property;
+		std::vector <int> item;
 
 		Strategy *stg;
 		int		leftRoll;
@@ -72,6 +73,9 @@ class Player {
 
 		bool	isBankrupted();		
 		void	setBankrupted(const bool b);
+
+		void	addItem(const int idItem);
+		bool	removeItem(const int idItem);
 
 		void	printAssets();
 };	

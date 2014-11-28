@@ -20,6 +20,7 @@
 #include "nh.h"
 #include "modifymoney.h"
 #include "rollrent.h"
+#include "rollrimcup.h"
 #include "showmsg.h"
 #include "tuition.h"
 
@@ -149,6 +150,9 @@ void Board::loadMap(const string &mapfile) { //{{{
 			}
 			else if(eventname == "Tuition") {
 				p = new Tuition(*p);
+			}
+			else if(eventname == "RollRimCup") {
+				p = new RollRimCup(*p);
 			}
 		}
 

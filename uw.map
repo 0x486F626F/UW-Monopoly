@@ -15,8 +15,9 @@ SLC
 NONE
 0
 0
-1
+2
 SLC 10
+RollRimCup
 
 ML
 Arts1
@@ -47,8 +48,9 @@ NEEDLES HALL
 NONE
 0
 0
-1
+2
 NH
+RollRimCup
 
 PAS
 Arts2
@@ -110,8 +112,9 @@ SLC
 NONE
 0
 0
-1
+2
 SLC 10
+RollRimCup
 
 BMH
 Health
@@ -143,8 +146,9 @@ NEEDLES HALL
 NONE
 0
 0
-1
+2
 NH
+RollRimCup
 
 EV2
 Env
@@ -212,8 +216,9 @@ SLC
 NONE
 0
 0
-1
+2
 SLC 10
+RollRimCup
 
 C2
 Sci2
@@ -231,8 +236,9 @@ NEEDLES HALL
 NONE
 0
 0
-1
+2
 NH
+RollRimCup
 
 MC
 Math

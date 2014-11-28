@@ -33,9 +33,9 @@ void TimLine::event(Player *p) {
 				else bh->addBlock(p);
 				//if a player got trapped for the third rounds, must pay to leave
 				if(p->getBlock() > 3) {
-					while(!bh->affordable(p, fee)) {
-						//no money
-						break;
+					if(!bh->affordable(p, fee)) {
+						cout << "Money is not enough!" << endl;
+						bh->lackMoney(fee, p);
 					}
 					cout << "Pay $" << fee << endl << "Unblock!" << endl;
 					bh->modifyMoney(p, -fee);
@@ -58,8 +58,12 @@ void TimLine::event(Player *p) {
 			}
 			else if(decision == 2) {
 				cout << "Use " << itemname << endl << "Unblock!" << endl;
-				bh->unblock(p);
-				break;
+				if(bh->removeItem(p, "RimCup")) {
+					bh->setNumRimCup(bh->getNumRimCup() - 1);
+					bh->unblock(p);
+					break;
+				}
+				else cout << "You do not have RimCup!" << endl;
 				//update use item
 			}
 		}

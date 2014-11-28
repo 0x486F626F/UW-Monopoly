@@ -11,19 +11,22 @@
 
 using namespace std;
 
-Behavior::Behavior() {}
+const int numItem = 1;
+const string itemList[] = {"RimCup"};
+
+Behavior::Behavior() {numRimCup = 0;}
 Behavior::~Behavior() {}
 void	Behavior::cleanInstance() { delete instance; }
-Behavior*	Behavior::getInstance() {
+Behavior*	Behavior::getInstance() { //{{{
 	if(!instance) {
 		instance = new Behavior;
 		atexit(cleanInstance);
 	}
 	return instance;
-}
+} //}}}
 Behavior*	Behavior::instance = NULL;
 
-vector <int>	Behavior::roll(const bool testing) {
+vector <int>	Behavior::roll(const bool testing) { //{{{
 	vector <int> res;
 	int n = Dice::getInstance()->getNumDice();
 	if(testing) {
@@ -35,26 +38,28 @@ vector <int>	Behavior::roll(const bool testing) {
 	}
 	else res = Dice::getInstance()->roll();
 	return res;
-}
+} //}}}
 
 void	Behavior::setTesting(const bool t) {testing = t;}
-void	Behavior::movePlayerTo(Player *p, const int idCell, const bool callEvent) {
-	Board::getInstance()->movePlayerTo(p->getID(), idCell, callEvent);
-}
-void	Behavior::movePlayerForward(Player *p, const int step) {
-	Board::getInstance()->movePlayerForward(p->getID(), step);
-}
 
-void	Behavior::modifyMoney(Player *p, const int m) {
+void	Behavior::movePlayerTo(Player *p, const int idCell, const bool callEvent) { //{{{
+	Board::getInstance()->movePlayerTo(p->getID(), idCell, callEvent);
+} //}}}
+
+void	Behavior::movePlayerForward(Player *p, const int step) { //{{{
+	Board::getInstance()->movePlayerForward(p->getID(), step);
+} //}}}
+
+void	Behavior::modifyMoney(Player *p, const int m) { //{{{
 	if(p->getMoney() + m < 0) {
 		cout << "Money is not enough!" << endl;
 		lackMoney(-m, p, NULL);
 	}
 	if(p->isBankrupted()) return;
 	p->addMoney(m);
-}
+} //}}}
 
-void	Behavior::transferMoney(Player *p1, Player *p2, const int m) {
+void	Behavior::transferMoney(Player *p1, Player *p2, const int m) { //{{{
 	if(p1->getMoney() - m < 0) {
 		cout << "Money is not enough!" << endl;
 		lackMoney(m, p1, p2);
@@ -62,26 +67,33 @@ void	Behavior::transferMoney(Player *p1, Player *p2, const int m) {
 	if(p1->isBankrupted()) return;
 	p1->addMoney(-m);
 	p2->addMoney(m);
-}
+} //}}}
+
 void	Behavior::setMoney(Player *p, const int m) {p->setMoney(m);}
+
 int		Behavior::cntProperty(Player *p) {return p->cntProperty();}
-void	Behavior::getOSAP(Player *p) {
+
+void	Behavior::getOSAP(Player *p) { //{{{
 	cout << "Get OSAP of $200" <<endl;
 	modifyMoney(p, 200);
-}
-void	Behavior::block(Player *p) {p->setBlock(1);}
-void	Behavior::addBlock(Player *p) {p->setBlock(p->getBlock() + 1);}
-void	Behavior::unblock(Player *p) {p->setBlock(0);}
-int		Behavior::getBlock(Player *p) {return p->getBlock();}
-bool	Behavior::affordable(Player *p, const int m) {return p->getMoney() >= m; }
-//void	Behavior::bankrupt(Player *p) {p->backrupt();}
+} //}}}
 
-void	Behavior::buyProperty(Player *p, Cell *c) {
+void	Behavior::block(Player *p) {p->setBlock(1);}
+
+void	Behavior::addBlock(Player *p) {p->setBlock(p->getBlock() + 1);}
+
+void	Behavior::unblock(Player *p) {p->setBlock(0);}
+
+int		Behavior::getBlock(Player *p) {return p->getBlock();}
+
+bool	Behavior::affordable(Player *p, const int m) {return p->getMoney() >= m; }
+
+void	Behavior::buyProperty(Player *p, Cell *c) { //{{{
 	c->setOwner(p);
 	p->addProperty(c);
-}
+} //}}}
 
-void	Behavior::buyImprove(Player *p, const string &s) {
+void	Behavior::buyImprove(Player *p, const string &s) { //{{{
 	Cell *c = p->findProperty(s);
 	if(c == NULL) {
 		cout << p->getName() << " does not have " << s << endl;
@@ -100,9 +112,9 @@ void	Behavior::buyImprove(Player *p, const string &s) {
 			c->setLevel(c->getLevel() + 1);
 		}
 	}
-}
+} //}}}
 
-void	Behavior::sellImprove(Player *p, const string &s) {
+void	Behavior::sellImprove(Player *p, const string &s) { //{{{
 	Cell *c = p->findProperty(s);
 	if(c == NULL) {
 		cout << p->getName() << " does not have " << s << endl;
@@ -117,15 +129,15 @@ void	Behavior::sellImprove(Player *p, const string &s) {
 			c->getOwner()->addMoney(c->getCostImprove() / 2);
 		}
 	}
-}
+} //}}}
 
-void	Behavior::transferOwnership(Cell *c, Player *p) {
+void	Behavior::transferOwnership(Cell *c, Player *p) { //{{{
 	c->getOwner()->removeProperty(c);
 	c->setOwner(p);
 	p->addProperty(c);
-}
+} //}}}
 
-void	Behavior::mortgage(Player *p, const string &s) {
+void	Behavior::mortgage(Player *p, const string &s) { //{{{
 	Cell *c = p->findProperty(s);
 	if(c == NULL) {
 		cout << p->getName() << " does not have " << s << endl;
@@ -143,9 +155,9 @@ void	Behavior::mortgage(Player *p, const string &s) {
 			c->getOwner()->addMoney(c->getCost() / 2);
 		}
 	}
-}
+} //}}}
 
-void	Behavior::unmortgage(Player *p, const string &s) {
+void	Behavior::unmortgage(Player *p, const string &s) { //{{{
 	Cell *c = p->findProperty(s);
 	if(c == NULL) {
 		cout << p->getName() << " does not have " << s << endl;
@@ -165,7 +177,7 @@ void	Behavior::unmortgage(Player *p, const string &s) {
 			c->setPrepaid(0);
 		}
 	}
-}
+} //}}}
 
 void	Behavior::printMsg(const string &s) {cout << s << endl;}
 
@@ -189,16 +201,17 @@ string	Behavior::strategyGetPropertyName(Player *p) {return p->getStrategy()->ge
 
 int		Behavior::strategyPrepaid(Player *p, Cell *c) {return p->getStrategy()->prepaid(p, c); }
 
-int		Behavior::getItemID(const string &s) {
-	//search ID
-	return 0;
-}
+int		Behavior::getItemID(const string &s) { //{{{
+	for(int i = 0; i < numItem; i ++)
+		if(itemList[i] == s) return i;
+	return -1;
+} //}}}
 
 void	Behavior::printAssets(Player *p) {p->printAssets();}
 
 void	Behavior::printBoard() {Board::getInstance()->printBoard();}
 
-void	Behavior::playRound(Player *p) {
+void	Behavior::playRound(Player *p) { //{{{
 	if(!p->getRest() && !p->getBlock()) {
 		int decision;
 		while(decision = strategyCommand(p)) {
@@ -240,9 +253,9 @@ void	Behavior::playRound(Player *p) {
 		printBoard();
 	}
 	p->setLeftRoll(1);
-}
+} //}}}
 
-void	Behavior::lackMoney(const int m, Player *p, Player *p2) {
+void	Behavior::lackMoney(const int m, Player *p, Player *p2) { //{{{
 	while(p->getMoney() < m) {
 		cout << "Do not have enough money to pay $" << m << endl;
 		cout << "Trade/Sell improvement/Mortgage/Bankrupt?" << endl;
@@ -266,9 +279,9 @@ void	Behavior::lackMoney(const int m, Player *p, Player *p2) {
 			break;
 		}
 	}
-}
+} //}}}
 
-void	Behavior::bankrupt(Player *p, Player *p2) {
+void	Behavior::bankrupt(Player *p, Player *p2) { //{{{
 	Cell *c;
 	if(p2) {
 		transferMoney(p, p2, p->getMoney());
@@ -300,4 +313,12 @@ void	Behavior::bankrupt(Player *p, Player *p2) {
 		}
 	}
 	p->setBankrupted(true);
-}
+} //}}}
+
+void	Behavior::addItem(Player* p, const string &itemName) {p->addItem(getItemID(itemName));}
+
+bool	Behavior::removeItem(Player* p, const string &itemName) {return p->removeItem(getItemID(itemName));}
+
+int		Behavior::getNumRimCup() { return numRimCup; }
+
+void	Behavior::setNumRimCup(const int num) {numRimCup = num;}

@@ -6,7 +6,6 @@
 
 class Player;
 class Cell;
-class Item;
 class Group;
 
 class Behavior {
@@ -16,6 +15,7 @@ class Behavior {
 		static void			cleanInstance();
 
 		bool	testing;
+		int		numRimCup;
       
 		//constructor and destructor
 		Behavior();
@@ -48,8 +48,9 @@ class Behavior {
 		void	getOSAP(Player *p);
 		bool	same(Player *p1, Player *p2);
 		void	bankrupt(Player *p, Player *p2);
-		//void	giveItem(Player *p, Item *it);
-		//void	useItem(Player *p, Item *it);
+		int		getItemID(const std::string &itemName);
+		void	addItem(Player *p, const std::string &itemName);
+		bool	removeItem(Player *p, const std::string &itemName);
 
 		//player's decision to purchase a certain property
 		bool	strategyBuyProperty(Player *p, Cell *c);
@@ -82,8 +83,8 @@ class Behavior {
 		void	lackMoney(const int m, Player *p, Player *p2 = NULL);
 
 		int		numDice();
-
-		int		getItemID(const std::string &s);
+		int		getNumRimCup();
+		void	setNumRimCup(const int num);
 };
 
 #endif

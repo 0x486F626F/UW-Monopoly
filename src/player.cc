@@ -60,6 +60,15 @@ int		Player::getBlock() { return block; }
 void	Player::setBlock(const int b) { block = b; }
 bool	Player::isBankrupted() { return bankrupted; }
 void	Player::setBankrupted(const bool b) { bankrupted = b; }
+void	Player::addItem(const int idItem) {item.push_back(idItem);}
+bool	Player::removeItem(const int idItem) {
+	for(std::vector<int>::iterator i = item.begin(); i != item.end(); i ++)
+		if((*i) == idItem) {
+			item.erase(i);
+			return true;
+		}
+	return false;
+}
 
 void Player::printAssets() {
 	cout << "Name:		" << name << endl;
