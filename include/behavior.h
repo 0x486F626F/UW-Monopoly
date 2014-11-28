@@ -85,6 +85,8 @@ class Behavior {
 		int		numDice();
 		int		getNumRimCup();
 		void	setNumRimCup(const int num);
+
+		void	trade(Player* p1, Player* p2, const std::string condition1, const std::string condition2);
 };
 
 #endif

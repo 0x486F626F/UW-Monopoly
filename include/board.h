@@ -50,6 +50,7 @@ class Board {
 
 		void movePlayerTo(const int idPlayer, const int idCell, const bool callEvent = 1);
 		void movePlayerForward(const int idPlayer, const int step);
+		Player*	getPlayer(const std::string &name);
 		//print the current state of the board
 		void printBoard();
 

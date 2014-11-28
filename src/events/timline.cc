@@ -64,7 +64,6 @@ void TimLine::event(Player *p) {
 					break;
 				}
 				else cout << "You do not have RimCup!" << endl;
-				//update use item
 			}
 		}
 	}

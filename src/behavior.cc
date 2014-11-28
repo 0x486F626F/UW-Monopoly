@@ -7,6 +7,7 @@
 #include "cell.h"
 
 #include <iostream>
+#include <sstream>
 #include <cstdlib>
 
 using namespace std;
@@ -15,8 +16,11 @@ const int numItem = 1;
 const string itemList[] = {"RimCup"};
 
 Behavior::Behavior() {numRimCup = 0;}
+
 Behavior::~Behavior() {}
+
 void	Behavior::cleanInstance() { delete instance; }
+
 Behavior*	Behavior::getInstance() { //{{{
 	if(!instance) {
 		instance = new Behavior;
@@ -24,6 +28,7 @@ Behavior*	Behavior::getInstance() { //{{{
 	}
 	return instance;
 } //}}}
+
 Behavior*	Behavior::instance = NULL;
 
 vector <int>	Behavior::roll(const bool testing) { //{{{
@@ -245,6 +250,13 @@ void	Behavior::playRound(Player *p) { //{{{
 			else if(decision == 6) {
 				printAssets(p);
 			}
+			else if(decision == 7) {
+				string name, c1, c2;
+				cin >> name >> c1 >> c2;
+				Player *p2 = Board::getInstance()->getPlayer(name);
+				if(p2) trade(p, p2, c1, c2);
+				else cout << name + " does not exist!" << endl;
+			}
 			printBoard();
 		}
 	}
@@ -322,3 +334,49 @@ bool	Behavior::removeItem(Player* p, const string &itemName) {return p->removeIt
 int		Behavior::getNumRimCup() { return numRimCup; }
 
 void	Behavior::setNumRimCup(const int num) {numRimCup = num;}
+
+void	Behavior::trade(Player* p1, Player* p2, const string condition1, const string condition2) { //{{{
+	int money1 = -1;
+	int money2 = -1;
+	istringstream s1(condition1);
+	istringstream s2(condition2);
+	s1 >> money1;
+	s2 >> money2;
+	Cell* c1 = p1->findProperty(condition1);
+	Cell* c2 = p2->findProperty(condition2);
+
+	if(money1 >= 0 && !affordable(p1, money1)) {
+		cout << p1->getName() << " does not have enough money!" << endl;
+		return;
+	}
+	if(money2 >= 0 && !affordable(p2, money2)) {
+		cout << p2->getName() << " does not have enough money!" << endl;
+		return;
+	}
+	if(money1 < 0 && !c1) {
+		cout << p1->getName() << " does not have property " << condition1 << endl;
+		return;
+	}
+	if(money2 < 0 && !c2) {
+		cout << p2->getName() << " does not have property " << condition2 << endl;
+		return;
+	}
+
+	cout << p2->getName() << ": Do you accept?(y/n)" << endl;
+
+	int decision;
+	if(money1 >= 0 && money2 >= 0) decision = p2->getStrategy()->tradeMM(p1, p2, money1, money2);
+	else if(money1 >= 0 && money2 < 0) decision = p2->getStrategy()->tradeMP(p1, p2, money1, c2);
+	else if(money1 < 0 && money2 >= 0) decision = p2->getStrategy()->tradePM(p1, p2, c1, money2);
+	else if(money1 >= 0 && money2 < 0) decision = p2->getStrategy()->tradePP(p1, p2, c1, c2);
+
+	
+	if(decision) {
+		cout << p2->getName() << " accepted!" << endl;
+		if(money1 >= 0) transferMoney(p1, p2, money1);
+		else transferOwnership(c1, p2);
+		if(money2 >= 0) transferMoney(p2, p1, money2);
+		else transferOwnership(c2, p1);
+	} 
+	else cout << p2->getName() << " declined!" << endl;
+} //}}}

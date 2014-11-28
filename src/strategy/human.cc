@@ -24,6 +24,7 @@ int		Human::command(Player *p) {
 		if(cmd == "mortgage") return 4;
 		if(cmd == "unmortgage") return 5;
 		if(cmd == "assets") return 6;
+		if(cmd == "trade") return 7;
 	}
 	return -1;
 }
@@ -84,4 +85,44 @@ int		Human::prepaid(Player *p, Cell *c) {
 		if(cmd == "y") return 1;
 		if(cmd == "n") return 0;
 	}
+}
+
+bool	Human::tradeMM(Player* p1, Player* p2, const int m1, const int m2) {
+	while(1) {
+		string cmd;
+		cin >> cmd;
+		if(cmd == "y") return true;
+		if(cmd == "n") return false;
+	}
+	return -1;
+}
+
+bool	Human::tradeMP(Player* p1, Player* p2, const int m1, Cell* c2) {
+	while(1) {
+		string cmd;
+		cin >> cmd;
+		if(cmd == "y") return true;
+		if(cmd == "n") return false;
+	}
+	return -1;
+}
+
+bool	Human::tradePM(Player* p1, Player* p2, Cell* c1, const int m2) {
+	while(1) {
+		string cmd;
+		cin >> cmd;
+		if(cmd == "y") return true;
+		if(cmd == "n") return false;
+	}
+	return -1;
+}
+
+bool	Human::tradePP(Player* p1, Player* p2, Cell* c1, Cell* c2) {
+	while(1) {
+		string cmd;
+		cin >> cmd;
+		if(cmd == "y") return true;
+		if(cmd == "n") return false;
+	}
+	return -1;
 }

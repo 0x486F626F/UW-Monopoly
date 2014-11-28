@@ -23,6 +23,10 @@ class Human : public Strategy {
 		int		tuition(const int fee, const int rate, Player *p);
 		int		lackMoney(Player *p, const int m);
 		int		prepaid(Player *p, Cell *c);
+		bool	tradeMM(Player* p1, Player* p2, const int m1, const int m2);
+		bool	tradeMP(Player* p1, Player* p2, const int m1, Cell* c2);
+		bool	tradePM(Player* p1, Player* p2, Cell* c1, const int m2);
+		bool	tradePP(Player* p1, Player* p2, Cell* c1, Cell* c2);
 };
 
 #endif

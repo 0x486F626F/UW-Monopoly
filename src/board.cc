@@ -222,3 +222,9 @@ void Board::startGame() {
 		}
 	cout << "Game Over" << endl;
 }
+
+Player* Board::getPlayer(const std::string &name) {
+	for(int i = 0; i < numPlayer; i ++)
+		if(players[i]->getName() == name) return players[i];
+	return NULL;
+}
