@@ -11,12 +11,15 @@ void RollRent::event(Player *p) {
 	theCell.event(p);
 	if(isSold() && !bh->same(getOwner(), p) && !isMortgaged()) {
 		int multi = 4;
-		if(bh->isMonopoly(getGroup())) multi = 10;
+		if(bh->isMonopoly(getGroup())) {
+		   multi = 10;
+		   cout << "Tough Luck. ";
+		}
 		cout << "Rent is " << multi << "*sum of dice" << endl;
 		vector <int> d = bh->roll();
+		cout << "You rolled " << d[0] << " " << d[1] << endl;
 		int tot = 0;
-		for(int i = 0; i < bh->numDice(); i ++)
-			tot += d[i];
+		for(int i = 0; i < bh->numDice(); i ++)  tot += d[i];
 		cout << "Pay rent $" << tot * multi << endl;
 		bh->transferMoney(p, getOwner(), multi * tot);
 	}

@@ -9,7 +9,7 @@ SendToTimLine::~SendToTimLine() {}
 
 void SendToTimLine::event(Player *p) {
 	theCell.event(p);
-	cout << "You are sent to " << getName() << endl;
+	cout << "Oooooops, you are sent to the DC Tims Line" << endl;
 	bh->block(p);
 	bh->movePlayerTo(p, idBlock, 0);
 }

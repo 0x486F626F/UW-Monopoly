@@ -15,6 +15,11 @@ void BuyProperty::event(Player *p) {
 		if(bh->strategyBuyProperty(p, this)) {
 			bh->buyProperty(p, this);	
 			bh->modifyMoney(p, -getCost());
+			cout << "Nice work! You acquired " << getName() << endl;
+		}
+		else {
+		   cout << "Maybe Next time :) " << endl;
+		   cout << getName() << " is still offered in the open market" << endl;
 		}
 	}
 }

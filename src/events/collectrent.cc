@@ -1,5 +1,6 @@
 #include "collectrent.h"
 #include "behavior.h"
+#include "player.h"
 #include <iostream>
 
 using namespace std;
@@ -15,10 +16,10 @@ void CollectRent::event(Player *p) {
 		int rent = getRent(getLevel());
 		//check if the group is monopolized
 		if(bh->isMonopoly(getGroup()) && getLevel() == 0) {
-			cout << "Monolopy! Double Rent" << endl;
+			cout << "Monolopy Here!!! Pay DOUBLE Rent" << endl;
 			rent *= 2;
 		}
-		cout << "Pay rent " << rent << endl;
+		cout << getOwner()->getName() <<" owns this property. Pay rent $" << rent << endl;
 		bh->transferMoney(p, getOwner(), rent);
 	}
 }

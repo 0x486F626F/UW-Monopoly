@@ -18,6 +18,6 @@ void NH::event(Player *p) {
 	else if(r < 15) m = -50;
 	else if(r < 17) m = -100;
 	else m = -200;
-	cout << (m > 0 ? "Win" : "Lose") << " Money $" << (m < 0 ? -m : m) << endl;
+	cout << (m > 0 ? "Win" : "Lose") << " $" << (m < 0 ? -m : m) << endl;
 	bh->modifyMoney(p, m);
 }

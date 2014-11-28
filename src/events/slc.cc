@@ -11,7 +11,7 @@ void SLC::event(Player *p) {
 	theCell.event(p);
 	int r = rand() % 24;
 	if(r < 1) {
-		cout << "Advance to Collect OSAP" << endl;
+		cout << "Teehee, Move to Collect OSAP" << endl;
 		bh->getOSAP(p);
 		bh->movePlayerTo(p, 0);
 	}

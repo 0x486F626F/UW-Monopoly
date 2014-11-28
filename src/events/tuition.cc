@@ -8,8 +8,9 @@ Tuition::~Tuition() {}
 
 void	Tuition::event(Player *p) {
 	theCell.event(p);
-	cout << "Pay tuition! $300 or 10\% of total property? (a/b)" << endl;
+	cout << "New term starting, Pay tuition! $300 or 10\% of total net worth? (a/b)" << endl;
 	int m = 300;
 	if(bh->strategyTuition(300, 10, p) == 1) m = bh->cntProperty(p) / 10;
 	bh->modifyMoney(p, -m);
+	cout << "You payed $" << m << endl;
 }

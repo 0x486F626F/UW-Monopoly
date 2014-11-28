@@ -8,6 +8,6 @@ ModifyMoney::~ModifyMoney() {}
 
 void ModifyMoney::event(Player *p) {
 	theCell.event(p);
-	cout << (money > 0 ? "Win" : "Lose") << " Money $" << (money < 0 ? -money : money) << endl;
+	cout << (money > 0 ? "Win" : "Lose") << " $" << (money < 0 ? -money : money) << endl;
 	bh->modifyMoney(p, money);
 }
