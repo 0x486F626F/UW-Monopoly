@@ -1,5 +1,5 @@
 CXX = g++
-CXXFLAGS = -Wall -Wextra -MMD -Iinclude -Iinclude/events -Iinclude/display -Iinclude/strategy
+CXXFLAGS = -Wall -Wextra -MMD -Iinclude -Iinclude/events -Iinclude/display -Iinclude/strategy -g
 EXEC = bb7k
 
 EVENTS = src/events/buyproperty.o src/events/collectrent.o src/events/event.o src/events/nh.o src/events/sendtotimline.o src/events/timline.o src/events/modifymoney.o src/events/rollrent.o src/events/slc.o src/events/showmsg.o src/events/tuition.o src/events/rollrimcup.o

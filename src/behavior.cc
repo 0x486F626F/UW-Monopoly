@@ -257,7 +257,7 @@ void	Behavior::playRound(Player *p) { //{{{
 					cout << "You cannot trade with yourself!" << endl;
 				}
 				else {
-					Player *p2 = Board::getInstance()->getPlayer(name);
+					Player *p2 = Board::getInstance()->getPlayer(name[0]);
 					if(p2) trade(p, p2, c1, c2);
 					else cout << name + " does not exist!" << endl;
 				}
@@ -365,11 +365,11 @@ void	Behavior::trade(Player* p1, Player* p2, const string condition1, const stri
 		cout << p2->getName() << " does not have property " << condition2 << endl;
 		return;
 	}
-	if(c1->isMortgaged() || !c1->getGroup()->noImprovement()) {
+	if(money1 < 0 &&(c1->isMortgaged() || !c1->getGroup()->noImprovement())) {
 		cout << condition1 << " cannot be traded!" << endl;
 		return;
 	}
-	if(c2->isMortgaged() || !c2->getGroup()->noImprovement()) {
+	if(money2 < 0 && (c2->isMortgaged() || !c2->getGroup()->noImprovement())) {
 		cout << condition2 << " cannot be traded!" << endl;
 		return;
 	}

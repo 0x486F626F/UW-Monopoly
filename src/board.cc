@@ -224,8 +224,8 @@ void Board::startGame() {
 	cout << "Game Over" << endl;
 }
 
-Player* Board::getPlayer(const std::string &name) {
+Player* Board::getPlayer(char init) {
 	for(int i = 0; i < numPlayer; i ++)
-		if(players[i]->getInit() == name[0]) return players[i];
+		if(players[i]->getInit() == init) return players[i];
 	return NULL;
 }
