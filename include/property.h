@@ -12,14 +12,10 @@ class Property : public Cell {
 	private:
 		int cost, costImprove, level, prepaid;
 		std::vector <int> rents;
-		//status of the property
-		bool sold, mortgaged;
-		//pointer to the owner of the property (null if no owner)
-		Player *owner;
-		//pointer to the group the property belongs to
-		Group *group;
-      //print the cell. On top is the owner, then seperated by a doted line then is the name of the property, below is the current players in this cell.
-		void generateTextImage();
+		bool sold, mortgaged;   //status of the property
+		Player *owner;   //pointer to the owner of the property (null if no owner)
+		Group *group;   //pointer to the group the property belongs to
+		void generateTextImage();   //print the cell. On top is the owner, then seperated by a doted line then is the name of the property, below is the current players in this cell.
 
 	public:
 		Property();

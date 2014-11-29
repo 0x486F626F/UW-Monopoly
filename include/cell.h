@@ -25,47 +25,47 @@ class Cell {
 		Cell(const int i, const std::string &s);
 		virtual ~Cell();
       
-      //get cell information, ID/name
-		virtual int getID();
+      
+		virtual int getID();   //get cell information, ID/name
 		virtual std::string getName();
 		virtual int getX();
 		virtual int getY();
 		virtual void setX(const int a);
 		virtual void setY(const int a);
-		//add player to game at current cell
-		virtual void addPlayer(Player *p);
-		//remove player from current cell
-		virtual void removePlayer(Player *p);
-		//move player to current cell
-		virtual void movePlayer(Player *p);
-		//get cell image
-		virtual std::vector <std::string> getTextImage();
+		
+		virtual void addPlayer(Player *p);   //add player to game at current cell
+		
+		virtual void removePlayer(Player *p);   //remove player from current cell
+		
+		virtual void movePlayer(Player *p);   //move player to current cell
+		
+		virtual std::vector <std::string> getTextImage();   //get cell image
 		virtual void event(Player *p);
 		virtual void generateTextImage() = 0;
 		virtual void drawXImage() = 0;
       
-      //get purchase price
-		virtual int getCost();
+      
+		virtual int getCost();   //get purchase price
 		virtual void setCost(const int c);
-		//cost of improvement
-		virtual int getCostImprove();
+		
+		virtual int getCostImprove();   //cost of improvement
 		virtual void setCostImprove(const int c);
-		//imporvement level
-		virtual int getLevel();
+		
+		virtual int getLevel();   //imporvement level
 		virtual int	getMaxLevel();
 		virtual void setLevel(const int l);
-		//get owner
-		virtual Player *getOwner();
+		
+		virtual Player *getOwner();   //get owner information
 		virtual void setOwner(Player *p);
 		virtual void swapOwner(Player *p1, Player *p2);
-		//get monopoly group belonging
-		virtual Group *getGroup();
+		
+		virtual Group *getGroup();   //get monopoly group belonging
 		virtual void setGroup(Group *g);
-		//tuition amount
-		virtual void addRent(const int r);
+		
+		virtual void addRent(const int r);   //tuition amount
 		virtual int getRent(const int l);
-		//property status
-		virtual bool isSold();
+		
+		virtual bool isSold();   //property status
 		virtual bool isMortgaged();
 		virtual void mortgage();
 		virtual void unmortgage();

@@ -9,8 +9,7 @@ class Group;
 
 class Facility : public Cell {
 	private:
-	   //get the text image of a facility cell. On top is the name of the facility and below is the current players in this cell
-		void generateTextImage();
+		void generateTextImage();   //get the text image of a facility cell. On top is the name of the facility and below is the current players in this cell
 	public:
 		Facility();
 		Facility(const int i, const std::string &s);

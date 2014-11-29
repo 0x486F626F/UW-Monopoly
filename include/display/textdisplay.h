@@ -9,14 +9,13 @@ class TextDisplay {
 	private:
 		std:: string top, bot, emp;
       
-      //print horizontal/vertical component of the map
-		void printHorizontal(const int w, const int l, const int r, const std::vector <Cell *> &cells);
+		void printHorizontal(const int w, const int l, const int r, const std::vector <Cell *> &cells);   //print horizontal/vertical component of the map
 		void printVertical(const int w, const int l, const int r, const std::vector <Cell *> &cells, const std::string central);
 	public:
 		TextDisplay();
 		~TextDisplay();
       
-      //combine printHorizontal/printVertial to give the full map
-		void printAll(const int w, const int h, const std::vector<Cell *> &cells);
+      
+		void printAll(const int w, const int h, const std::vector<Cell *> &cells);   //combine printHorizontal/printVertial to give the full map
 };
 #endif

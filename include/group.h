@@ -15,14 +15,11 @@ class Group {
 		Group(const int i, const std::string &s);
 		~Group();
 
-		//get the name of the group
-		std::string getName();
-		//get ID of the group
-		int		getID();
-		//check if the group is monopolized
-		bool	isMonopoly();
-		//add a property to the group
-		void	addProperty(Property *p);
+		
+		std::string getName();   //get the name of the group
+		int		getID();   //get ID of the group
+		bool	isMonopoly();   //check if the group is monopolized
+		void	addProperty(Property *p);   //add a property to the group
 		bool	noImprovement();
 };
 

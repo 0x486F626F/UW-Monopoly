@@ -9,18 +9,15 @@ class Strategy;
 
 class Player {
 	private:
-	   //ID of the player
-		int ID;
-		//name of player
-		std::string name;
+	   
+		int ID;   //ID of the player
+		
+		std::string name;   //name of player
 		char nameInit;
-		//number of dice the palyer roll each round
-		int numDice;
-		//pointer to the current position
-		Cell *currentCell;
+		int numDice;   //number of dice the palyer roll each round
+		Cell *currentCell;   //pointer to the current position
 		int money;
-		//what the player owns
-		std::vector <Cell*> property;
+		std::vector <Cell*> property;   //what the player owns
 		std::vector <int> item;
 
 		Strategy *stg;
@@ -33,39 +30,35 @@ class Player {
 		~Player();
 		Player(const int ID, const std::string &s);
 
-		//get ID of the player
-		int		getID();
-		//get name initial of the player
-		char	getInit();
+		
+		int		getID();   //get ID of the player
+		
+		char	getInit();   //get name initial of the player
 		void	setInit(const char c);
-		//get name of player
-		std::string	getName();
+		
+		std::string	getName();   //get name of player
 		void	setName(const std::string &s);
-		//place player to the destinated cell
-		void setCurrentCell(Cell *c);
-		//get current position
-		Cell*	getCurrentCell();
-		//add a property to the player
-		void	addProperty(Cell *c);
-		//remoce a property from a player
-		void	removeProperty(Cell *c);
+		void setCurrentCell(Cell *c);   //place player to the destinated cell
+		Cell*	getCurrentCell();   //get current position
+		void	addProperty(Cell *c);   //add a property to the player
+		void	removeProperty(Cell *c);   //remoce a property from a player
 		Cell*	getFirstProperty();
 		Cell*	findProperty(const std::string &s);
 
 
-		//access player's money balance
-		int		getMoney();
+		
+		int		getMoney();   //access player's money balance
 		void	setMoney(const int m);
 		void	addMoney(const int m);
-		//calculate player's property worth
-		int		cntProperty();
+		
+		int		cntProperty();   //calculate player's property worth
 
-		//set the human player type strategy
-		void	setStrategy(const int type);
+		
+		void	setStrategy(const int type);   //set the human player type strategy
 		Strategy*	getStrategy();
 
-		//how many more times can a player roll
-		int		getLeftRoll();
+		
+		int		getLeftRoll();   //how many more times can a player roll
 		void	setLeftRoll(const int r);
 
 		int		getRest();

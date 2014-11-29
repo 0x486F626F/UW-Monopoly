@@ -208,7 +208,7 @@ void Board::initGame() { //{{{
 	loadMap(mapfile);	
 
 	while(1) {
-		cout << "Input number of players (2~6)" << endl;
+		cout << "Input the number of players (2~6)" << endl;
 		cin >> numPlayer;
 		if(numPlayer >= 2 && numPlayer <= 6) break;
 	}

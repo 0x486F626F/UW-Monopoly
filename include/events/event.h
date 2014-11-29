@@ -24,26 +24,25 @@ class Event : public Cell {
 		std::vector <std::string> getTextImage();
 		void generateTextImage();
 
-		//access cell purchase cost and improvement cost and level
-		int getCost();
+		
+		int getCost();   //access cell purchase cost and improvement cost and level
 		void setCost(const int c);
 		int getCostImprove();
 		void setCostImprove(const int c);
 		int getLevel();
 		int		getMaxLevel();
 		void setLevel(const int l);
-		//get and set owner
-		Player *getOwner();
+		
+		Player *getOwner();   //get and set owner
 		void setOwner(Player *p);
-		//swap owner for trade
-		void swapOwner(Player *p1, Player *p2);
-		//get the group that property belongs to
-		Group *getGroup();
+		void swapOwner(Player *p1, Player *p2);   //swap owner for trade
+		
+		Group *getGroup();   //get the group that property belongs to
 		void setGroup(Group *g);
 		void addRent(const int r);
 		int getRent(const int l);
-		//access cell status
-		bool isSold();
+		
+		bool isSold();   //access cell status
 		bool isMortgaged();
 		void mortgage();
 		void unmortgage();

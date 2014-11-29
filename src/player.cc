@@ -76,7 +76,7 @@ bool	Player::removeItem(const int idItem) {
 void Player::printAssets() {
 	cout << "Name:		" << name << endl;
 	cout << "Money:		" << money << endl;
-	cout << "Total Assets:	" << cntProperty() << endl;
+	cout << "Net Worth:	" << cntProperty() << endl;
 	cout << "Properties:	" << property.size() << endl;
 	for(int i = 0; i < property.size(); i ++)
 		cout << property[i]->getID() << "	" << property[i]->getName() << "	" << property[i]->getCost() << endl;
