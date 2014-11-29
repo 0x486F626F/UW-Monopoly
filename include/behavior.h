@@ -74,8 +74,6 @@ class Behavior {
 		void	unmortgage(Player *p, const std::string &s);
 		void	printAssets(Player *p);
 
-		void	printMsg(const std::string &s);
-
 		//check if the block is monopolized
 		bool	isMonopoly(Group *g);
 

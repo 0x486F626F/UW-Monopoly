@@ -24,6 +24,7 @@ class Board {
 		int width, height;
 		//setup the number of players/cells/groups
 		int numPlayer, numCell, numGroup, numDice;
+		int nowPlayer;
 		std::vector <Cell*> cells;
 		std::vector <Player*> players;
 		std::vector <Group*> groups;
@@ -53,6 +54,7 @@ class Board {
 		Player*	getPlayer(const char init);
 		//print the current state of the board
 		void printBoard();
+		void saveGame(const std::string saveFile);
 
 		void startGame();
 };

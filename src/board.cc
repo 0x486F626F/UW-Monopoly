@@ -171,6 +171,26 @@ void Board::loadMap(const string &mapfile) { //{{{
 void Board::loadGame() {
 }
 
+void Board::saveGame(const string saveFile) {
+	ofstream stream(("save/" + saveFile).c_str());
+	stream << numPlayer << endl;
+	for(int i = 1; i <= numPlayer; i ++) {
+		int now = (nowPlayer + i) % numPlayer;
+		stream << players[now]->getName() << " " << players[now]->getMoney() << " " << players[now]->getCurrentCell()->getID();
+		if(players[now]->getCurrentCell()->getID() == 10) cout << " " << (players[now]->getBlock() != 0);
+		if(players[now]->getBlock() != 0) cout << " " << players[now]->getBlock();
+		stream << endl;
+	}
+	for(int i = 0; i < numCell; i ++) 
+		if(cells[i]->getGroup()) {
+			stream << cells[i]->getName() << " ";
+			if(cells[i]->isSold()) stream << cells[i]->getOwner()->getName() << " ";
+			else stream << "BANK ";
+			if(cells[i]->isMortgaged()) stream << " -1" << endl;
+			else stream << cells[i]->getLevel() << endl;
+		}
+}
+
 void Board::initGame() { //{{{
 	string mapfile = "maps/uw.map";
 	Dice::getInstance(numDice = 2);
@@ -231,10 +251,10 @@ void Board::startGame() {
 	bh->setTesting(testing);
 
 	printBoard();
-	for(int i = 0; !gameEnd(); i = (i + 1) % numPlayer) 
-		if(!players[i]->isBankrupted()) {
-			cout << players[i]->getName() << "'s turn" << endl;
-			bh->playRound(players[i]);
+	for(nowPlayer = 0; !gameEnd(); nowPlayer = (nowPlayer + 1) % numPlayer) 
+		if(!players[nowPlayer]->isBankrupted()) {
+			cout << players[nowPlayer]->getName() << "'s turn" << endl;
+			bh->playRound(players[nowPlayer]);
 		}
 	cout << "Game Over" << endl;
 }

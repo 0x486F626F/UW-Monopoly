@@ -184,8 +184,6 @@ void	Behavior::unmortgage(Player *p, const string &s) { //{{{
 	}
 } //}}}
 
-void	Behavior::printMsg(const string &s) {cout << s << endl;}
-
 bool	Behavior::strategyBuyProperty(Player *p, Cell *c) {return p->getStrategy()->buyProperty(c, p);}
 
 bool	Behavior::same(Player *p1, Player *p2) {return p1->getID() == p2->getID();}
@@ -263,6 +261,12 @@ void	Behavior::playRound(Player *p) { //{{{
 					if(p2) trade(p, p2, c1, c2);
 					else cout << name + " does not exist!" << endl;
 				}
+			}
+			else if(decision == 8) {
+				string fileName;
+				cin >> fileName;
+				if(p->getLeftRoll() > 0) cout << "You cannot save. You have not rolled yet" << endl;
+				else Board::getInstance()->saveGame(fileName);
 			}
 			printBoard();
 		}

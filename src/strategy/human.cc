@@ -25,6 +25,7 @@ int		Human::command(Player *p) {
 		if(cmd == "unmortgage") return 5;
 		if(cmd == "assets") return 6;
 		if(cmd == "trade") return 7;
+		if(cmd == "save") return 8;
 	}
 	return -1;
 }
