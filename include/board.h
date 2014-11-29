@@ -9,7 +9,7 @@ class Cell;
 class Group;
 class Behavior;
 class TextDisplay;
-//class XDisplay;
+class XDisplay;
 
 class Board {
 	private:
@@ -31,7 +31,7 @@ class Board {
 
 		Behavior *bh;
 		TextDisplay *td;
-		//XDisplay *xd;
+		XDisplay *xd;
 
 		Board(const std::string save, const bool testing);
 		~Board();

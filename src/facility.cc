@@ -1,6 +1,7 @@
 #include "facility.h"
 #include "player.h"
-
+#include "xdisplay.h"
+#include <iostream>
 using namespace std;
 
 Facility::Facility() {}
@@ -22,4 +23,8 @@ void Facility::generateTextImage() {
 			tmp += currentPlayer[i]->getInit();
 	tmp.resize(CELLWIDTH, ' ');
 	textImage.push_back(tmp);
+}
+
+void Facility::drawXImage() {
+	XDisplay::getInstance()->drawCell(this);
 }

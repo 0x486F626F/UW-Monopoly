@@ -46,6 +46,7 @@ class Property : public Cell {
 		int		getPrepaid();
 		void	setPrepaid(const int p);
 		void	reset();
+		void	drawXImage();
 };
 
 #endif

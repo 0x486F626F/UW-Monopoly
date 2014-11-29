@@ -12,8 +12,9 @@ TextDisplay::~TextDisplay() {};
 
 void TextDisplay::printHorizontal(const int w, const int l, const int r, const std::vector <Cell *> &cells) {
 	for(int j = 0; j < CELLHEIGHT; j ++) {
-		for(int i = l; i != r; i += l < r ? 1 : -1)
+		for(int i = l; i != r; i += l < r ? 1 : -1) {
 			cout << "|" << cells[i]->getTextImage()[j];
+		}
 		cout << "|" << endl;
 	}
 	for(int i = 0; i < w; i ++)

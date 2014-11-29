@@ -13,6 +13,7 @@ class Group;
 class Cell {
 	protected:
 		int ID;
+		int x, y;
 		std::string name;
 		std::vector <Player*> currentPlayer;
 
@@ -27,6 +28,10 @@ class Cell {
       //get cell information, ID/name
 		virtual int getID();
 		virtual std::string getName();
+		virtual int getX();
+		virtual int getY();
+		virtual void setX(const int a);
+		virtual void setY(const int a);
 		//add player to game at current cell
 		virtual void addPlayer(Player *p);
 		//remove player from current cell
@@ -36,7 +41,8 @@ class Cell {
 		//get cell image
 		virtual std::vector <std::string> getTextImage();
 		virtual void event(Player *p);
-		virtual void generateTextImage();
+		virtual void generateTextImage() = 0;
+		virtual void drawXImage() = 0;
       
       //get purchase price
 		virtual int getCost();

@@ -16,8 +16,13 @@ void Cell::addPlayer(Player *p) {
 	currentPlayer.push_back(p);
 }
 
+void Cell::setX(const int a) {x=a;}
+void Cell::setY(const int a) {y=a;}
+int Cell::getX() {return x;}
+int Cell::getY() {return y;}
+
 void Cell::removePlayer(Player *p) {
-   //removed player does not exist on board
+	//removed player does not exist on board
 	p->setCurrentCell(NULL);
 	//remove player from player list
 	for(vector <Player*>::iterator i = currentPlayer.begin(); i != currentPlayer.end(); i ++)
@@ -31,8 +36,6 @@ void Cell::movePlayer(Player *p) {
 	p->getCurrentCell()->removePlayer(p);
 	addPlayer(p);
 }
-
-void	Cell::generateTextImage() {}
 
 vector <string> Cell::getTextImage() { 
 	generateTextImage();

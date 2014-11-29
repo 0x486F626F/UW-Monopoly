@@ -10,11 +10,16 @@ Event::~Event() { delete &theCell; }
 
 int		Event::getID() { return theCell.getID(); }
 string	Event::getName() { return theCell.getName(); }
+void	Event::setX(const int a) {theCell.setX(a);}
+void	Event::setY(const int a) {theCell.setY(a);}
+int		Event::getX() {return theCell.getX();}
+int		Event::getY() {return theCell.getY();}
 void	Event::addPlayer(Player	*p) { theCell.addPlayer(p); }
 void	Event::removePlayer(Player *p) { theCell.removePlayer(p); }
 void	Event::movePlayer(Player *p) { theCell.movePlayer(p); }
 vector <string> Event::getTextImage() { return theCell.getTextImage(); }
 void	Event::generateTextImage() { theCell.generateTextImage(); }
+void	Event::drawXImage() {theCell.drawXImage();}
 
 void	Event::setCost(const int c) { theCell.setCost(c); } 
 int		Event::getCost() { return theCell.getCost(); }

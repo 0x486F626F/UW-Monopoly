@@ -14,6 +14,7 @@ class Facility : public Cell {
 	public:
 		Facility();
 		Facility(const int i, const std::string &s);
+		void	drawXImage();
 };
 
 #endif

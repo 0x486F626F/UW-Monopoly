@@ -1,5 +1,6 @@
 #include "property.h"
 #include "player.h"
+#include "xdisplay.h"
 #include <iostream>
 using namespace std;
 
@@ -40,6 +41,10 @@ void Property::generateTextImage() {
 	textImage.push_back(tmp);
 }
 
+void	Property::drawXImage() {
+	XDisplay::getInstance()->drawCell(this);
+}
+
 int Property::getCost() { return cost; }
 void Property::setCost(const int c) { cost = c; }
 int Property::getCostImprove() { return costImprove; }
@@ -59,10 +64,7 @@ void Property::addRent(const int r) { rents.push_back(r); }
 int Property::getRent(const int l) { return rents[l]; }
 bool Property::isSold() { return sold; }
 bool Property::isMortgaged() { return mortgaged; }
-void Property::mortgage() {
-	mortgaged = true;
-	//owner->addMoney(cost);
-}
+void Property::mortgage() {mortgaged = true;}
 void Property::unmortgage() {
 	mortgaged = false;
 }

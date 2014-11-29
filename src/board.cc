@@ -5,7 +5,7 @@
 #include "facility.h"
 #include "property.h"
 #include "textdisplay.h"
-//#include "xdisplay.h"
+#include "xdisplay.h"
 #include "player.h"
 #include "behavior.h"
 
@@ -53,7 +53,6 @@ Board::Board(const string save, const bool test) : savefile(save), testing(test)
 } 
 Board::~Board() {
 	delete td;
-	//delete xd;
 	for(int i = 0; i < numCell; i ++)
 		delete cells[i];
 	for(int i = 0; i < numPlayer; i ++)
@@ -116,7 +115,6 @@ void Board::loadMap(const string &mapfile) { //{{{
 
 		stream >> n;
 		for(int i = 0; i < n; i ++) {
-			//set event
 			string eventname;
 			stream >> eventname;
 			if(eventname == "Timline") {
@@ -165,7 +163,20 @@ void Board::loadMap(const string &mapfile) { //{{{
 		getline(stream, tmp);
 		getline(stream, tmp);
 	}
-	//xd = new XDisplay(width, height);
+	for(int i = 0; i < width; i ++) {
+		cells[i + width + height - 2]->setX(i * 50);
+		cells[i + width + height - 2]->setY(0);
+		cells[width - i - 1]->setX(i*50);
+		cells[width - i - 1]->setY((height - 1)*50);
+	}
+	for(int i = 0; i < height - 2; i ++) {
+		cells[width + height - 3 - i]->setX(0);
+		cells[width + height - 3 - i]->setY(i * 50 + 50);
+		cells[width * 2 + height - 2 + i]->setX((width - 1) * 50);
+		cells[width * 2 + height - 2 + i]->setY(i * 50 + 50);
+	}
+	xd = XDisplay::getInstance(width, height);
+	xd->drawLogo();
 } //}}}
 
 void Board::loadGame() {
@@ -205,7 +216,7 @@ void Board::initGame() { //{{{
 	for(int i = 0; i < numPlayer; i ++) {
 		players.push_back(new Player(i, ""));
 		players[i]->setStrategy(0);
-		cout << names[0] << "			" << "Char" << endl;
+		cout << "Name" << "			" << "Char" << endl;
 		for(int j = 0; j < 8; j ++)
 			cout << names[j] << tabs[j] << inits[j] << endl;
 		cout << "Please input a char" << endl;
@@ -227,6 +238,9 @@ bool Board::gameEnd() {
 
 /*****printBoard*****/
 void Board::printBoard() {
+	for(int i = 0; i < numCell; i ++) {
+		cells[i]->drawXImage();
+	}
 	td->printAll(width, height, cells);
 }
 

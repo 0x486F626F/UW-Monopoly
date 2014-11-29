@@ -14,13 +14,17 @@ class Event : public Cell {
 	public:
 		int getID();
 		std::string getName();
+		int getX();
+		int getY();
+		void setX(const int a);
+		void setY(const int a);
 		void addPlayer(Player *p);
 		void removePlayer(Player *p);
 		void movePlayer(Player *p);
 		std::vector <std::string> getTextImage();
 		void generateTextImage();
-      
-      //access cell purchase cost and improvement cost and level
+
+		//access cell purchase cost and improvement cost and level
 		int getCost();
 		void setCost(const int c);
 		int getCostImprove();
@@ -48,6 +52,7 @@ class Event : public Cell {
 		int		getPrepaid();
 		void	setPrepaid(const int p);
 		void	reset();
+		void	drawXImage();
 };
 
 #endif
