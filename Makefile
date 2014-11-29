@@ -1,5 +1,4 @@
 CXX = g++
-#CXXFLAGS = -Wall -Wextra -MMD -Iinclude -Iinclude/events -Iinclude/display -Iinclude/strategy -g
 CXXFLAGS = -Wall -Wextra -Iinclude -Iinclude/events -Iinclude/display -Iinclude/strategy -lX11 -I/usr/X11/include -L/usr/X11/lib -g
 EXEC = bb7k
 
