@@ -179,8 +179,6 @@ void Board::loadMap(const string &mapfile) { //{{{
 	xd->drawLogo();
 } //}}}
 
-void Board::loadGame() {
-}
 
 void Board::saveGame(const string saveFile) {
 	ofstream stream(("save/" + saveFile).c_str());
@@ -215,19 +213,83 @@ void Board::initGame() { //{{{
 
 	for(int i = 0; i < numPlayer; i ++) {
 		players.push_back(new Player(i, ""));
+		//cout << "Human player or Computer? (H/C)" << endl;
 		players[i]->setStrategy(0);
-		cout << "Name" << "			" << "Char" << endl;
-		for(int j = 0; j < 8; j ++)
-			cout << names[j] << tabs[j] << inits[j] << endl;
-		cout << "Please input a char" << endl;
-		int decision = bh->strategyGetChar(players[i]);
-		players[i]->setName(names[decision]);
-		players[i]->setInit(inits[decision]);
-		players[i]->setMoney(1500);
+
+		string name;
+		cout << "Input name:" << endl;
+		cin >> name;
+		if(name == "Bruce") {
+			cout << "Welcome back! Master!" << endl;
+			players[i]->setName("Bruce");
+			players[i]->setInit(name[0]);
+			players[i]->setMoney(15000);
+			for(int j = 0; j < numCell; j ++)
+				if(cells[j]->getName() == "MC" || cells[j]->getName() == "DC")
+					bh->buyProperty(players[i], cells[j]);
+		}
+		else {
+			players[i]->setName(name);
+			players[i]->setInit(name[0]);
+			players[i]->setMoney(1500);
+		}
 		players[i]->setLeftRoll(1);
 		cells[0]->addPlayer(players[i]);
 	}
 } //}}}
+
+void Board::loadGame(const string saveFile) {
+	string mapfile = "maps/uw.map";
+	Dice::getInstance(numDice = 2);
+	loadMap(mapfile);	
+
+	cout << saveFile << endl;
+	ifstream stream(saveFile.c_str());
+	stream >> numPlayer;
+
+	for(int i = 0; i < numPlayer; i ++) {
+		players.push_back(new Player(i, ""));
+		players[i]->setStrategy(0);
+
+		string name;
+		int money, position;
+
+		stream >> name;
+		players[i]->setName(name);
+		players[i]->setInit(name[0]);
+
+		stream >> money;
+		players[i]->setMoney(money);
+
+		stream >> position;
+		cells[position]->addPlayer(players[i]);
+		if(position == 10) {
+			int block;
+			stream >> block;
+			if(block) {
+				stream >> block;
+				players[i]->setBlock(block + 1);
+			}
+		}
+
+		players[i]->setLeftRoll(1);
+	}
+
+	string pName;
+	while(stream >> pName) {
+		string owner;
+		stream >> owner;
+		Player *p = getPlayer(owner[0]);
+		int level;
+		stream >> level;
+		for(int j = 0; j < numCell; j ++) 
+			if(cells[j]->getName() == pName) {
+				bh->buyProperty(p, cells[j]);
+				if(level == -1) cells[j]->mortgage();
+				else cells[j]->setLevel(level);
+			}
+	}
+}
 
 bool Board::gameEnd() {
 	int cnt = 0;
@@ -260,7 +322,7 @@ void Board::movePlayerForward(const int idPlayer, const int step) {
 
 /*****startGame*****/
 void Board::startGame() {
-	if(savefile.length() > 0) loadGame();
+	if(savefile.length() > 0) loadGame("save/" + savefile);
 	else initGame();
 	bh->setTesting(testing);
 

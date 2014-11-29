@@ -39,7 +39,7 @@ class Board {
 		
 		void loadMap(const std::string &mapfile);   //load the map of the game in accordance to the map file
 		void initGame();   //initialize a game
-		void loadGame();
+		void loadGame(const std::string savefile);
 
 		bool gameEnd();   // terminate a game and return false
 

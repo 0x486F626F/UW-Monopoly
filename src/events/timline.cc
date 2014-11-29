@@ -55,6 +55,7 @@ void TimLine::event(Player *p) {
 					cout << "Pay $" << fee << endl << "Rich dude, LEAVE" << endl;
 					bh->modifyMoney(p, -fee);
 					bh->unblock(p);
+					bh->movePlayerForward(p, 0);
 					break;
 				}
 				else cout << "You have insufficient fund!" << endl;
@@ -64,6 +65,7 @@ void TimLine::event(Player *p) {
 				   cout << "You lose a RimCup, Unblocked" << endl;
 					bh->setNumRimCup(bh->getNumRimCup() - 1);
 					bh->unblock(p);
+					bh->movePlayerForward(p, 0);
 					break;
 				}
 				else cout << "No RimCup detected, try again" << endl;
