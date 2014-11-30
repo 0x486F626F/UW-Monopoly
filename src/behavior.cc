@@ -423,6 +423,6 @@ void	Behavior::trade(Player* p1, Player* p2, const string condition1, const stri
 } //}}}
 
 void	Behavior::showmsg(const string &m) {
-	showmsg( m );
+	cout << m << endl;
 	lastmsg = m;
 }
