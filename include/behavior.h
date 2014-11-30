@@ -15,6 +15,7 @@ class Behavior {
 
 		bool	testing;
 		int		numRimCup;
+		std::string	lastmsg;
       
 		//constructor and destructor
 		Behavior();
@@ -81,6 +82,8 @@ class Behavior {
 		void	setNumRimCup(const int num);
 
 		void	trade(Player* p1, Player* p2, const std::string condition1, const std::string condition2);
+
+		void	showmsg(const std::string &m);
 };
 
 #endif

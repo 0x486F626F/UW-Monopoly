@@ -335,7 +335,7 @@ void	Behavior::bankrupt(Player *p, Player *p2) { //{{{
 				}
 				else p2->addMoney(-cost);
 				cost = c->getCost() * 6 / 10;
-				cout << p2->getName() << ": Do you want to unmortgage " << c->getName() << " ( value: $" << c->getCost() << " )" << " now? (y/n)" << endl;
+				cout << p2->getName() + ": Do you want to unmortgage " + c->getName() + " ( value: $" << c->getCost() << string(" )") + " now? (y/n)" << endl;
 				int decision = strategyPrepaid(p2, c);
 				if(decision == 1) {
 					if(p2->getMoney() < cost) {
@@ -421,3 +421,8 @@ void	Behavior::trade(Player* p1, Player* p2, const string condition1, const stri
 	} 
 	else cout << "Trade failed!" << endl;
 } //}}}
+
+void	Behavior::showmsg(const string &m) {
+	cout << m << endl;
+	lastmsg = m;
+}

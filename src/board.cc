@@ -211,7 +211,7 @@ void Board::initGame() { //{{{
 	loadMap(mapfile);	
 
 	while(1) {
-		cout << "Input the number of players (2~6)" << endl;
+		bh->showmsg("Input the number of players (2~6)");
 		cin >> numPlayer;
 		if(numPlayer >= 2 && numPlayer <= 6) break;
 	}
@@ -323,7 +323,8 @@ void Board::movePlayerTo(const int idPlayer, const int idCell, const bool callEv
 void Board::movePlayerForward(const int idPlayer, const int step) {
 	int goal = players[idPlayer]->getCurrentCell()->getID() + step;
 	if(goal >= numCell) {
-		cout << "Collected your OSAP" << endl << players[idPlayer]->getName() << " receives $200" << endl;
+		bh->showmsg("Collected your OSAP");
+		cout << players[idPlayer]->getName() << " receives $200" << endl;
 		players[idPlayer]->addMoney(200);
 	}
 	movePlayerTo(idPlayer, (goal + numCell) % numCell);
