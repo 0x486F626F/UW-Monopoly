@@ -221,15 +221,16 @@ void	Behavior::printBoard() {Board::getInstance()->printBoard();}
 
 void	Behavior::playRound(Player *p) { //{{{
 	if(p->getRest() || p->getBlock()) movePlayerForward(p, 0);
+	vector <int> d;
 	if(!p->getRest() && !p->getBlock()) {
 		int decision;
 		while(decision = strategyCommand(p)) {
 			if(decision == 1) {
 				if(p->getLeftRoll() > 0) {
 					p->setLeftRoll(p->getLeftRoll() - 1);
-					vector <int> d = roll(testing);
+					d = roll(testing);
 #ifdef X
-					XDisplay::getInstance()->drawDice(d);
+					XDisplay::getInstance()->drawDice(d, 1);
 #endif
 					int step = 0;
 					for(int i = 0; i < d.size(); i ++) {
@@ -286,6 +287,7 @@ void	Behavior::playRound(Player *p) { //{{{
 			}
 		}
 	}
+	XDisplay::getInstance()->drawDice(d, 0);
 	p->setLeftRoll(1);
 } //}}}
 

@@ -21,7 +21,7 @@ class XDisplay {
 		void drawCell(Property *c);
 		void drawCell(Facility *c);
 		void drawLogo();
-		void drawDice(const std::vector <int> &d);
+		void drawDice(const std::vector <int> &d, const int c);
 };
 
 #endif

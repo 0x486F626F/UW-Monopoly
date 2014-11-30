@@ -6,4 +6,7 @@ git add src/*.cc
 git add src/events/*.cc
 git add src/strategy/*.cc
 git add src/display/*.cc
-git add uw.map Makefile
+git add maps/*.map
+git add save/*
+git add *Makefile
+git add gitaddall

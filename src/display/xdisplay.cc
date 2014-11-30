@@ -57,12 +57,12 @@ void XDisplay::drawLogo() {
 	xw->drawString(350, height * XCELLHEIGHT / 2 + 40, "By h356zhan q26hu");
 }
 
-void XDisplay::drawDice(const vector<int> &d) {
+void XDisplay::drawDice(const vector<int> &d, const int c) {
 	string tmp = "";
 	for(int i = 0; i < d.size(); i ++) {
-		cout << d[i] << endl;
-		tmp += " " + char('0' + d[i]);
+		char c = '0' + d[i];
+		tmp += c;
+		tmp += " ";
 	}
-	cout << tmp << endl;
-	xw->drawBigString(200, 150, tmp, 1);
+	xw->drawBigString(250, 150, tmp, c);
 }
