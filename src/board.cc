@@ -180,7 +180,7 @@ void Board::loadMap(const string &mapfile) { //{{{
 } //}}}
 
 
-void Board::saveGame(const string saveFile) {
+void Board::saveGame(const string saveFile) { //{{{
 	ofstream stream(("save/" + saveFile).c_str());
 	stream << numPlayer << endl;
 	for(int i = 1; i <= numPlayer; i ++) {
@@ -198,7 +198,7 @@ void Board::saveGame(const string saveFile) {
 			if(cells[i]->isMortgaged()) stream << " -1" << endl;
 			else stream << cells[i]->getLevel() << endl;
 		}
-}
+} //}}}
 
 void Board::initGame() { //{{{
 	string mapfile = "maps/uw.map";
@@ -238,7 +238,7 @@ void Board::initGame() { //{{{
 	}
 } //}}}
 
-void Board::loadGame(const string saveFile) {
+void Board::loadGame(const string saveFile) { //{{{
 	string mapfile = "maps/uw.map";
 	Dice::getInstance(numDice = 2);
 	loadMap(mapfile);	
@@ -277,19 +277,21 @@ void Board::loadGame(const string saveFile) {
 
 	string pName;
 	while(stream >> pName) {
+		cout << pName << endl;
 		string owner;
 		stream >> owner;
-		Player *p = getPlayer(owner[0]);
+		Player *p = getPlayer(owner);
 		int level;
 		stream >> level;
-		for(int j = 0; j < numCell; j ++) 
-			if(cells[j]->getName() == pName) {
-				bh->buyProperty(p, cells[j]);
-				if(level == -1) cells[j]->mortgage();
-				else cells[j]->setLevel(level);
-			}
+		if(owner != "BANK")
+			for(int j = 0; j < numCell; j ++) 
+				if(cells[j]->getName() == pName) {
+					bh->buyProperty(p, cells[j]);
+					if(level == -1) cells[j]->mortgage();
+					else cells[j]->setLevel(level);
+				}
 	}
-}
+} //}}}
 
 bool Board::gameEnd() {
 	int cnt = 0;
@@ -335,8 +337,8 @@ void Board::startGame() {
 	cout << "Game Over" << endl;
 }
 
-Player* Board::getPlayer(char init) {
+Player* Board::getPlayer(const string &name) {
 	for(int i = 0; i < numPlayer; i ++)
-		if(players[i]->getInit() == init) return players[i];
+		if(players[i]->getName() == name) return players[i];
 	return NULL;
 }

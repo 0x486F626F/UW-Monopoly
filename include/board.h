@@ -48,7 +48,7 @@ class Board {
 
 		void movePlayerTo(const int idPlayer, const int idCell, const bool callEvent = 1);
 		void movePlayerForward(const int idPlayer, const int step);
-		Player*	getPlayer(const char init);
+		Player*	getPlayer(const std::string &name);
 		void printBoard();   //print the current state of the board
 		void saveGame(const std::string saveFile);
 
