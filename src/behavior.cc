@@ -9,6 +9,9 @@
 #include <iostream>
 #include <sstream>
 #include <cstdlib>
+#ifdef X
+#include "xdisplay.h"
+#endif
 
 using namespace std;
 
@@ -225,9 +228,15 @@ void	Behavior::playRound(Player *p) { //{{{
 				if(p->getLeftRoll() > 0) {
 					p->setLeftRoll(p->getLeftRoll() - 1);
 					vector <int> d = roll(testing);
+#ifdef X
+					XDisplay::getInstance()->drawDice(d);
+#endif
 					int step = 0;
-					for(int i = 0; i < d.size(); i ++)
+					for(int i = 0; i < d.size(); i ++) {
+						cout << d[i] << " ";
 						step += d[i];
+					}
+					cout << endl;
 					movePlayerForward(p, step);
 					printBoard();
 				}
@@ -334,6 +343,7 @@ void	Behavior::bankrupt(Player *p, Player *p2) { //{{{
 						c->unmortgage();
 					}
 				}
+				else c->setPrepaid(-cost / 6);
 			}
 		}
 	}

@@ -1,6 +1,6 @@
 #ifndef __XDISPLAY_H__
 #define __XDISPLAY_H__
-
+#include <vector>
 class Xwindow;
 class Property;
 class Facility;
@@ -21,6 +21,7 @@ class XDisplay {
 		void drawCell(Property *c);
 		void drawCell(Facility *c);
 		void drawLogo();
+		void drawDice(const std::vector <int> &d);
 };
 
 #endif
