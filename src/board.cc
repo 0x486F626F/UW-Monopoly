@@ -5,9 +5,12 @@
 #include "facility.h"
 #include "property.h"
 #include "textdisplay.h"
-#include "xdisplay.h"
 #include "player.h"
 #include "behavior.h"
+
+#ifdef X
+#include "xdisplay.h"
+#endif
 
 #include "strategy.h"
 #include "human.h"
@@ -175,8 +178,10 @@ void Board::loadMap(const string &mapfile) { //{{{
 		cells[width * 2 + height - 2 + i]->setX((width - 1) * 50);
 		cells[width * 2 + height - 2 + i]->setY(i * 50 + 50);
 	}
+#ifdef X
 	xd = XDisplay::getInstance(width, height);
 	xd->drawLogo();
+#endif
 } //}}}
 
 
@@ -245,7 +250,7 @@ void Board::loadGame(const string saveFile) { //{{{
 	loadMap(mapfile);	
 
 	cout << saveFile << endl;
-	cout << "Save game re-initializing"
+	cout << "Save game re-initializing" << endl;
 	ifstream stream(saveFile.c_str());
 	stream >> numPlayer;
 

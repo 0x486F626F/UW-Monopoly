@@ -1,7 +1,9 @@
 #include "property.h"
 #include "player.h"
-#include "xdisplay.h"
 #include <iostream>
+#ifdef X
+#include "xdisplay.h"
+#endif
 using namespace std;
 
 const string lvName[10] = {"0", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX"};
@@ -42,7 +44,9 @@ void Property::generateTextImage() {
 }
 
 void	Property::drawXImage() {
+#ifdef X
 	XDisplay::getInstance()->drawCell(this);
+#endif
 }
 
 int Property::getCost() { return cost; }

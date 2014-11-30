@@ -1,6 +1,8 @@
 #include "facility.h"
 #include "player.h"
+#ifdef X
 #include "xdisplay.h"
+#endif
 #include <iostream>
 using namespace std;
 
@@ -26,5 +28,7 @@ void Facility::generateTextImage() {
 }
 
 void Facility::drawXImage() {
+#ifdef X
 	XDisplay::getInstance()->drawCell(this);
+#endif
 }
