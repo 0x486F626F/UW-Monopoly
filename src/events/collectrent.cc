@@ -16,7 +16,7 @@ void CollectRent::event(Player *p) {
 		int rent = getRent(getLevel());
 		//check if the group is monopolized
 		if(bh->isMonopoly(getGroup()) && getLevel() == 0) {
-			cout << "Monolopy Here!!! Pay DOUBLE Rent" << endl;
+			bh->showmsg( "Monolopy Here!!! Pay DOUBLE Rent" );
 			rent *= 2;
 		}
 		cout << getOwner()->getName() <<" owns this property. Pay rent $" << rent << endl;

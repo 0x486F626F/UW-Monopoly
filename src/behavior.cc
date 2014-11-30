@@ -60,7 +60,7 @@ void	Behavior::movePlayerForward(Player *p, const int step) { //{{{
 
 void	Behavior::modifyMoney(Player *p, const int m) { //{{{
 	if(p->getMoney() + m < 0) {
-		cout << "Insufficient fund!" << endl;
+		showmsg("Insufficient fund!");
 		lackMoney(-m, p, NULL);
 	}
 	if(p->isBankrupted()) return;
@@ -69,7 +69,7 @@ void	Behavior::modifyMoney(Player *p, const int m) { //{{{
 
 void	Behavior::transferMoney(Player *p1, Player *p2, const int m) { //{{{
 	if(p1->getMoney() - m < 0) {
-		cout << "Insufficient fund!" << endl;
+		showmsg("Insufficient fund!");
 		lackMoney(m, p1, p2);
 	}
 	if(p1->isBankrupted()) return;
@@ -82,7 +82,7 @@ void	Behavior::setMoney(Player *p, const int m) {p->setMoney(m);}
 int		Behavior::cntProperty(Player *p) {return p->cntProperty();}
 
 void	Behavior::getOSAP(Player *p) { //{{{
-	cout << "Pocketed $200 of OSAP, Good Job!" <<endl;
+	showmsg("Pocketed $200 of OSAP, Good Job!");
 	modifyMoney(p, 200);
 } //}}}
 
@@ -104,16 +104,16 @@ void	Behavior::buyProperty(Player *p, Cell *c) { //{{{
 void	Behavior::buyImprove(Player *p, const string &s) { //{{{
 	Cell *c = p->findProperty(s);
 	if(c == NULL) {
-		cout << "You do not own " << s << endl;
+		showmsg("You do not own " + s);
 		return;
 	}
 	else {
 		if(c->getLevel() >= c->getMaxLevel() || !c->getGroup()->isMonopoly()) {
 			cout << c->getLevel() << c->getMaxLevel() << (!c->getGroup()->isMonopoly()) << endl;
-			cout << "This Property cannot be improved" << endl;
+			showmsg("This Property cannot be improved");
 		}
 		else if(!affordable(c->getOwner(), c->getCostImprove())) {
-			cout << "Insufficient fund!" << endl;
+			showmsg("Insufficient fund!");
 		}
 		else {
 			c->getOwner()->addMoney(-c->getCostImprove());
@@ -125,12 +125,12 @@ void	Behavior::buyImprove(Player *p, const string &s) { //{{{
 void	Behavior::sellImprove(Player *p, const string &s) { //{{{
 	Cell *c = p->findProperty(s);
 	if(c == NULL) {
-		cout << "You do not own " << s << endl;
+		showmsg("You do not own " + s);
 		return;
 	} 
 	else {
 		if(c->getLevel() < 1) {
-			cout << "No Improvement to be sold!" << endl;
+			showmsg("No Improvement to be sold!");
 		}
 		else {
 			c->setLevel(c->getLevel() - 1);
@@ -148,15 +148,15 @@ void	Behavior::transferOwnership(Cell *c, Player *p) { //{{{
 void	Behavior::mortgage(Player *p, const string &s) { //{{{
 	Cell *c = p->findProperty(s);
 	if(c == NULL) {
-		cout << "You do not own " << s << endl;
+		showmsg("You do not own " + s);
 		return;
 	}
 	else {
 		if(c->isMortgaged()) {
-			cout << s << " is already mortgaged!" << endl;
+			showmsg(s + " is already mortgaged!");
 		}
 		else if(c->getLevel() > 0) {
-			cout << "Improvements on the property, sell before you can mortgage" << endl;
+			showmsg("Improvements on the property, sell before you can mortgage");
 		}
 		else {
 			c->mortgage();
@@ -168,16 +168,16 @@ void	Behavior::mortgage(Player *p, const string &s) { //{{{
 void	Behavior::unmortgage(Player *p, const string &s) { //{{{
 	Cell *c = p->findProperty(s);
 	if(c == NULL) {
-		cout << "You do not own " << s << endl;
+		showmsg("You do not own " + s);
 		return;
 	}
 	else {
 		int cost = c->getCost() * 6 / 10 - c->getPrepaid();
 		if(!c->isMortgaged()) {
-			cout << s << " is not mortgaged!" << endl;
+			showmsg(s + " is not mortgaged!");
 		}
 		else if(!affordable(c->getOwner(), cost)) {
-			cout << "Insufficient fund!" << endl;
+			showmsg("Insufficient fund!");
 		}
 		else {
 			c->unmortgage();
@@ -237,11 +237,11 @@ void	Behavior::playRound(Player *p) { //{{{
 						cout << d[i] << " ";
 						step += d[i];
 					}
-					cout << endl;
+					showmsg("");
 					movePlayerForward(p, step);
 					printBoard();
 				}
-				else cout << "You have already rolled" << endl;
+				else showmsg("You have already rolled");
 			}
 			else if(decision == 2) {
 				buyImprove(p, strategyGetPropertyName(p));
@@ -270,19 +270,19 @@ void	Behavior::playRound(Player *p) { //{{{
 				string name, c1, c2;
 				cin >> name >> c1 >> c2;
 				if(name == p->getName()) {
-					cout << "You cannot trade with yourself!" << endl;
+					showmsg("You cannot trade with yourself!");
 				}
 				else {
 					Player *p2 = Board::getInstance()->getPlayer(name);
 					if(p2) trade(p, p2, c1, c2);
-					else cout << "Player " + name + " does not exist!" << endl;
+					else showmsg("Player " + name + " does not exist!");
 				}
 				printBoard();
 			}
 			else if(decision == 8) {
 				string fileName;
 				cin >> fileName;
-				if(p->getLeftRoll() > 0) cout << "You cannot save. You have not rolled yet" << endl;
+				if(p->getLeftRoll() > 0) showmsg("You cannot save. You have not rolled yet");
 				else Board::getInstance()->saveGame(fileName);
 			}
 		}
@@ -296,7 +296,7 @@ void	Behavior::playRound(Player *p) { //{{{
 void	Behavior::lackMoney(const int m, Player *p, Player *p2) { //{{{
 	while(p->getMoney() < m) {
 		cout << "Do not have enough money to pay $" << m << endl;
-		cout << "Trade/ Sell improvement/ Mortgage/ Bankrupt?" << endl;
+		showmsg("Trade/ Sell improvement/ Mortgage/ Bankrupt?");
 		int decision = strategyLackMoney(p, m);
 		if(decision == 1) {
 			sellImprove(p, strategyGetPropertyName(p));
@@ -310,7 +310,7 @@ void	Behavior::lackMoney(const int m, Player *p, Player *p2) { //{{{
 			printAssets(p);
 		}
 		else if(decision == 4) {
-			cout << "Trade: not completed" << endl;
+			showmsg("Trade: not completed");
 		}
 		else if(decision == 0) {
 			bankrupt(p, p2);
@@ -323,14 +323,14 @@ void	Behavior::bankrupt(Player *p, Player *p2) { //{{{
 	Cell *c;
 	if(p2) {
 		transferMoney(p, p2, p->getMoney());
-		cout << "Assets Transferred to owner" << endl;
+		showmsg("Assets Transferred to owner");
 		while(c = p->getFirstProperty()) {
 			transferOwnership(c, p2);
 			if(c->isMortgaged()) {
-				cout << "Pay 10\% tax for receiving unmortgaged properties." << endl;
+				showmsg("Pay 10\% tax for receiving unmortgaged properties.");
 				int cost = c->getCost() / 10;
 				if(p2->getMoney() < cost) {
-					cout << "Insufficient fund!" << endl;
+					showmsg("Insufficient fund!");
 					lackMoney(cost, p2);
 				}
 				else p2->addMoney(-cost);
@@ -339,7 +339,7 @@ void	Behavior::bankrupt(Player *p, Player *p2) { //{{{
 				int decision = strategyPrepaid(p2, c);
 				if(decision == 1) {
 					if(p2->getMoney() < cost) {
-						cout << "Insufficient fund!" << endl;
+						showmsg("Insufficient fund!");
 						c->setPrepaid(-cost / 6);
 					}
 					else {
@@ -379,31 +379,31 @@ void	Behavior::trade(Player* p1, Player* p2, const string condition1, const stri
 	Cell* c2 = p2->findProperty(condition2);
 
 	if(money1 >= 0 && !affordable(p1, money1)) {
-		cout << p1->getName() << " has insufficient fund" << endl;
+		showmsg( p1->getName() + " has insufficient fund");
 		return;
 	}
 	if(money2 >= 0 && !affordable(p2, money2)) {
-		cout << p2->getName() << " has insufficient fund" << endl;
+		showmsg( p2->getName() + " has insufficient fund");
 		return;
 	}
 	if(money1 < 0 && !c1) {
-		cout << p1->getName() << " does not own this property " << condition1 << endl;
+		showmsg( p1->getName() + " does not own this property " + condition1 );
 		return;
 	}
 	if(money2 < 0 && !c2) {
-		cout << p2->getName() << " does not own this property " << condition2 << endl;
+		showmsg( p2->getName() + " does not own this property " + condition2 );
 		return;
 	}
 	if(money1 < 0 &&(c1->isMortgaged() || !c1->getGroup()->noImprovement())) {
-		cout << condition1 << " cannot be traded!" << endl;
+		showmsg( condition1 + " cannot be traded!" );
 		return;
 	}
 	if(money2 < 0 && (c2->isMortgaged() || !c2->getGroup()->noImprovement())) {
-		cout << condition2 << " cannot be traded!" << endl;
+		showmsg( condition2 + " cannot be traded!" );
 		return;
 	}
 
-	cout << p2->getName() << ": Do you accept?(y/n)" << endl;
+	showmsg( p2->getName() + ": Do you accept?(y/n)" );
 
 	int decision;
 	if(money1 >= 0 && money2 >= 0) decision = p2->getStrategy()->tradeMM(p1, p2, money1, money2);
@@ -413,16 +413,16 @@ void	Behavior::trade(Player* p1, Player* p2, const string condition1, const stri
 
 
 	if(decision) {
-		cout << "Trade completed!" << endl;
+		showmsg( "Trade completed!");
 		if(money1 >= 0) transferMoney(p1, p2, money1);
 		else transferOwnership(c1, p2);
 		if(money2 >= 0) transferMoney(p2, p1, money2);
 		else transferOwnership(c2, p1);
 	} 
-	else cout << "Trade failed!" << endl;
+	else showmsg( "Trade failed!" );
 } //}}}
 
 void	Behavior::showmsg(const string &m) {
-	cout << m << endl;
+	showmsg( m );
 	lastmsg = m;
 }

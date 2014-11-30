@@ -26,7 +26,7 @@
 #include "rollrimcup.h"
 #include "showmsg.h"
 #include "tuition.h"
-
+#include <string>
 #include <iostream>
 #include <sstream>
 #include <fstream>
@@ -191,8 +191,8 @@ void Board::saveGame(const string saveFile) { //{{{
 	for(int i = 1; i <= numPlayer; i ++) {
 		int now = (nowPlayer + i) % numPlayer;
 		stream << players[now]->getName() << " " << players[now]->getMoney() << " " << players[now]->getCurrentCell()->getID();
-		if(players[now]->getCurrentCell()->getID() == 10) cout << " " << (players[now]->getBlock() != 0);
-		if(players[now]->getBlock() != 0) cout << " " << players[now]->getBlock();
+		if(players[now]->getCurrentCell()->getID() == 10) cout << " "<< (players[now]->getBlock() != 0) << endl;
+		if(players[now]->getBlock() != 0) cout << " "<< players[now]->getBlock() << endl;
 		stream << endl;
 	}
 	for(int i = 0; i < numCell; i ++) 
@@ -222,10 +222,10 @@ void Board::initGame() { //{{{
 		players[i]->setStrategy(0);
 
 		string name;
-		cout << "Input name:" << endl;
+		bh->showmsg("Input name:");
 		cin >> name;
 		if(name == "Bruce") {
-			cout << "Welcome to the game, Master Wayne!" << endl;
+			bh->showmsg("Welcome to the game, Master Wayne!");
 			players[i]->setName("Bruce");
 			players[i]->setInit(name[0]);
 			players[i]->setMoney(15000);
@@ -234,7 +234,7 @@ void Board::initGame() { //{{{
 					bh->buyProperty(players[i], cells[j]);
 		}
 		else {
-		   cout << "Welcome to the game, Player " << name << endl;
+		   bh->showmsg("Welcome to the game, Player " + name);
 			players[i]->setName(name);
 			players[i]->setInit(name[0]);
 			players[i]->setMoney(1500);
@@ -249,8 +249,8 @@ void Board::loadGame(const string saveFile) { //{{{
 	Dice::getInstance(numDice = 2);
 	loadMap(mapfile);	
 
-	cout << saveFile << endl;
-	cout << "Save game re-initializing" << endl;
+	bh->showmsg(saveFile);
+	bh->showmsg("Save game re-initializing");
 	ifstream stream(saveFile.c_str());
 	stream >> numPlayer;
 
@@ -284,7 +284,7 @@ void Board::loadGame(const string saveFile) { //{{{
 
 	string pName;
 	while(stream >> pName) {
-		cout << pName << endl;
+		bh->showmsg(pName);
 		string owner;
 		stream >> owner;
 		Player *p = getPlayer(owner);
@@ -324,7 +324,7 @@ void Board::movePlayerForward(const int idPlayer, const int step) {
 	int goal = players[idPlayer]->getCurrentCell()->getID() + step;
 	if(goal >= numCell) {
 		bh->showmsg("Collected your OSAP");
-		cout << players[idPlayer]->getName() << " receives $200" << endl;
+		bh->showmsg(players[idPlayer]->getName() + " receives $200");
 		players[idPlayer]->addMoney(200);
 	}
 	movePlayerTo(idPlayer, (goal + numCell) % numCell);
@@ -339,12 +339,12 @@ void Board::startGame() {
 	printBoard();
 	for(nowPlayer = 0; !gameEnd(); nowPlayer = (nowPlayer + 1) % numPlayer) 
 		if(!players[nowPlayer]->isBankrupted()) {
-			cout << players[nowPlayer]->getName() << "'s turn" << endl;
+			bh->showmsg( players[nowPlayer]->getName() + "'s turn");
 			bh->playRound(players[nowPlayer]);
 		}
-	cout << "Game Over" << endl;
+	bh->showmsg("Game Over");
 	for(int i = 0; i < numPlayer; i ++)
-		if(players[i]->isBankrupted() != true) cout<< "Great moves, " << players[i]->getName() << " you are the winnner!" << endl;
+		if(players[i]->isBankrupted() != true) bh->showmsg("Great moves, " + players[i]->getName() + " you are the winnner!");
 }
 
 Player* Board::getPlayer(const string &name) {

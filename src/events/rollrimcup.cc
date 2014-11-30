@@ -12,7 +12,7 @@ void RollRimCup::event(Player* p) {
 	if(bh->getNumRimCup() < 4) {
 		int r = rand() % 100;
 		if(r < 50) {
-			cout << "Congradulations! You found a RimCup" << endl;
+			bh->showmsg( "Congradulations! You found a RimCup" );
 			bh->setNumRimCup(bh->getNumRimCup() + 1);
 			bh->addItem(p, "RimCup");
 			return;

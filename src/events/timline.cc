@@ -16,7 +16,7 @@ void TimLine::event(Player *p) {
 	theCell.event(p);
 
 	if(bh->getBlock(p) > 0) {
-		cout << "Sorry, You are blocked in " << getName() << endl;
+		bh->showmsg("Sorry, You are blocked in " + getName() );
 		while(1) {
 			cout << "Do you want to roll dice / pay money $" << fee << " /use " << itemname << "? (r/p/i)" << endl;
 			int itemID = bh->getItemID(itemname);
@@ -27,11 +27,11 @@ void TimLine::event(Player *p) {
 				cout << t[0] << " " << t[1] << endl;
 				//check if the two rolled result is same
 				if(t[0] == t[1]) {
-					cout << "So lucky, You are free!" << endl;
+					bh->showmsg( "So lucky, You are free!" );
 					bh->unblock(p);
 				}
 				else {
-				   cout << "Not so easy, You are still trapped here" << endl;
+				   bh->showmsg( "Not so easy, You are still trapped here" );
 				   bh->addBlock(p);
 				}
 				//if a player got trapped for the third rounds, must pay to leave
@@ -58,17 +58,17 @@ void TimLine::event(Player *p) {
 					p->setLeftRoll(1);
 					break;
 				}
-				else cout << "You have insufficient fund!" << endl;
+				else bh->showmsg( "You have insufficient fund!" );
 			}
 			else if(decision == 2) {
 				if(bh->removeItem(p, "RimCup")) {
-					cout << "You lose a RimCup, Unblocked" << endl;
+					bh->showmsg( "You lose a RimCup, Unblocked" );
 					bh->setNumRimCup(bh->getNumRimCup() - 1);
 					bh->unblock(p);
 					p->setLeftRoll(1);
 					break;
 				}
-				else cout << "No RimCup detected, try again" << endl;
+				else bh->showmsg( "No RimCup detected, try again" );
 			}
 		}
 	}
