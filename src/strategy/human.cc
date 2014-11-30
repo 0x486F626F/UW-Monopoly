@@ -26,6 +26,7 @@ int		Human::command(Player *p) {
 		if(cmd == "assets") return 6;
 		if(cmd == "trade") return 7;
 		if(cmd == "save") return 8;
+		cout << "Invalid Input! Please try again." << endl;
 	}
 	return -1;
 }
@@ -45,6 +46,7 @@ int		Human::lackMoney(Player *p, const int m) {
 		if(cmd == "trade") {
 			return 4;
 		}
+		cout << "Invalid Input! Please try again." << endl;
 	}
 	return -1;
 }
@@ -55,6 +57,7 @@ bool	Human::buyProperty(Cell *b, Player *p) {
 		cin >> cmd;
 		if(cmd == "y") return true;
 		if(cmd == "n") return false;
+		cout << "Invalid Input! Please try again." << endl;
 	}
 	return -1;
 }
@@ -66,6 +69,7 @@ int		Human::unblock(Player *p, const int fee, const int itemID) {
 		if(cmd == "r") return 0;
 		if(cmd == "p") return 1;
 		if(cmd == "i") return 2;
+		cout << "Invalid Input! Please try again." << endl;
 	}
 	return -1;
 }
@@ -76,6 +80,7 @@ int		Human::tuition(const int fee, const int rate, Player *p) {
 		cin >> cmd;
 		if(cmd == "a") return 0;
 		if(cmd == "b") return 1;
+		cout << "Invalid Input! Please try again." << endl;
 	}
 }
 
@@ -85,6 +90,7 @@ int		Human::prepaid(Player *p, Cell *c) {
 		cin >> cmd;
 		if(cmd == "y") return 1;
 		if(cmd == "n") return 0;
+		cout << "Invalid Input! Please try again." << endl;
 	}
 }
 
@@ -94,6 +100,7 @@ bool	Human::tradeMM(Player* p1, Player* p2, const int m1, const int m2) {
 		cin >> cmd;
 		if(cmd == "y") return true;
 		if(cmd == "n") return false;
+		cout << "Invalid Input! Please try again." << endl;
 	}
 	return -1;
 }
@@ -104,6 +111,7 @@ bool	Human::tradeMP(Player* p1, Player* p2, const int m1, Cell* c2) {
 		cin >> cmd;
 		if(cmd == "y") return true;
 		if(cmd == "n") return false;
+		cout << "Invalid Input! Please try again." << endl;
 	}
 	return -1;
 }
@@ -114,6 +122,7 @@ bool	Human::tradePM(Player* p1, Player* p2, Cell* c1, const int m2) {
 		cin >> cmd;
 		if(cmd == "y") return true;
 		if(cmd == "n") return false;
+		cout << "Invalid Input! Please try again." << endl;
 	}
 	return -1;
 }
@@ -124,6 +133,7 @@ bool	Human::tradePP(Player* p1, Player* p2, Cell* c1, Cell* c2) {
 		cin >> cmd;
 		if(cmd == "y") return true;
 		if(cmd == "n") return false;
+		cout << "Invalid Input! Please try again." << endl;
 	}
 	return -1;
 }

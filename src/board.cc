@@ -241,9 +241,18 @@ void Board::initGame() { //{{{
 			players[i]->setMoney(1500);
 		}
 		bh->showmsg("Human or Computer? (H/C)");
-		cin >> name;
-		if(name == "C") players[i]->setStrategy(1);
-		else players[i]->setStrategy(0);
+		while(1) {
+			cin >> name;
+			if(name == "C") {
+				players[i]->setStrategy(1);
+				break;
+			}
+			if(name == "H") {
+			   	players[i]->setStrategy(0);
+				break;
+			}
+			cout << "Invalid Input! Please try again." << endl;
+		}
 		players[i]->setLeftRoll(1);
 		cells[0]->addPlayer(players[i]);
 	}
