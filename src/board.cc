@@ -342,6 +342,8 @@ void Board::startGame() {
 			bh->playRound(players[nowPlayer]);
 		}
 	cout << "Game Over" << endl;
+	for(int i = 0; i < numPlayer; i ++)
+		if(players[i]->isBankrupted() != true) cout<< "Great moves, " << players[i]->getName() << " you are the winnner!" << endl;
 }
 
 Player* Board::getPlayer(const string &name) {

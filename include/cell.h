@@ -3,6 +3,7 @@
 
 #include <vector>
 #include <string>
+#include "player.h"
 
 const int CELLWIDTH = 7;
 const int CELLHEIGHT = 4;

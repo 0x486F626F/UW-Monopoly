@@ -12,5 +12,5 @@ void	Tuition::event(Player *p) {
 	int m = 300;
 	if(bh->strategyTuition(300, 10, p) == 1) m = bh->cntProperty(p) / 10;
 	bh->modifyMoney(p, -m);
-	cout << "You payed $" << m << endl;
+	if (p->isBankrupted() == false) cout << "You payed $" << m << endl;
 }
