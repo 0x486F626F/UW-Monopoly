@@ -314,17 +314,24 @@ void	Behavior::bankrupt(Player *p, Player *p2) { //{{{
 		while(c = p->getFirstProperty()) {
 			transferOwnership(c, p2);
 			if(c->isMortgaged()) {
-				cout << p2->getName() << ": Do you want to pay the 10\% interest now? (y/n)" << endl;
-				int decision = strategyPrepaid(p2, c);
+				cout << "Pay 10\% tax" << endl;
 				int cost = c->getCost() / 10;
-				c->setPrepaid(-cost);
+				if(p2->getMoney() < cost) {
+					cout << "Insufficient fund!" << endl;
+					lackMoney(cost, p2);
+				}
+				else p2->addMoney(-cost);
+				cost = c->getCost() * 6 / 10;
+				cout << p2->getName() << ": Do you want to unmortgage now? (y/n)" << endl;
+				int decision = strategyPrepaid(p2, c);
 				if(decision == 1) {
 					if(p2->getMoney() < cost) {
 						cout << "Insufficient fund!" << endl;
+						c->setPrepaid(-cost / 6);
 					}
 					else {
 						p2->addMoney(-cost);
-						c->setPrepaid(cost);
+						c->unmortgage();
 					}
 				}
 			}
