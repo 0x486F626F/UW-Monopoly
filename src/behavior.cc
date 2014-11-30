@@ -327,7 +327,7 @@ void	Behavior::bankrupt(Player *p, Player *p2) { //{{{
 		while(c = p->getFirstProperty()) {
 			transferOwnership(c, p2);
 			if(c->isMortgaged()) {
-				cout << "Pay 10\% tax" << endl;
+				cout << "Pay 10\% tax for receiving unmortgaged properties." << endl;
 				int cost = c->getCost() / 10;
 				if(p2->getMoney() < cost) {
 					cout << "Insufficient fund!" << endl;
@@ -335,7 +335,7 @@ void	Behavior::bankrupt(Player *p, Player *p2) { //{{{
 				}
 				else p2->addMoney(-cost);
 				cost = c->getCost() * 6 / 10;
-				cout << p2->getName() << ": Do you want to unmortgage now? (y/n)" << endl;
+				cout << p2->getName() << ": Do you want to unmortgage " << c->getName() << " ( value: $" << c->getCost() << " )" << " now? (y/n)" << endl;
 				int decision = strategyPrepaid(p2, c);
 				if(decision == 1) {
 					if(p2->getMoney() < cost) {
@@ -413,11 +413,11 @@ void	Behavior::trade(Player* p1, Player* p2, const string condition1, const stri
 
 
 	if(decision) {
-		cout << p2->getName() << "Trade completed!" << endl;
+		cout << "Trade completed!" << endl;
 		if(money1 >= 0) transferMoney(p1, p2, money1);
 		else transferOwnership(c1, p2);
 		if(money2 >= 0) transferMoney(p2, p1, money2);
 		else transferOwnership(c2, p1);
 	} 
-	else cout << p2->getName() << "Trade failed!" << endl;
+	else cout << "Trade failed!" << endl;
 } //}}}
