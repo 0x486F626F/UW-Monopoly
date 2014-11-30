@@ -38,4 +38,4 @@ A player’s turn starts when the previous player inputs 'next', and the game pr
 
 (out of your turn):
 
-9. In various situations, you may be prompted a question. At your own wisdom, you should give the response in the format specified in the question. For example: “do you wish to unmortgage the property right now? (y/n)”, keying in ‘y’ means yes and ‘n’ for no.
+1. In various situations, you may be prompted a question. At your own wisdom, you should give the response in the format specified in the question. For example: “do you wish to unmortgage the property right now? (y/n)”, keying in ‘y’ means yes and ‘n’ for no.

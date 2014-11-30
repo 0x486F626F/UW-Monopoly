@@ -10,3 +10,4 @@ git add maps/*.map
 git add save/*
 git add *Makefile
 git add gitaddall
+git add README.md
