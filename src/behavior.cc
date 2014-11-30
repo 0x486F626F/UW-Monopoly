@@ -287,7 +287,9 @@ void	Behavior::playRound(Player *p) { //{{{
 			}
 		}
 	}
+#ifdef X
 	XDisplay::getInstance()->drawDice(d, 0);
+#endif
 	p->setLeftRoll(1);
 } //}}}
 
