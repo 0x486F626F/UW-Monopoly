@@ -217,6 +217,7 @@ void	Behavior::printAssets(Player *p) {p->printAssets();}
 void	Behavior::printBoard() {Board::getInstance()->printBoard();}
 
 void	Behavior::playRound(Player *p) { //{{{
+	if(p->getRest() || p->getBlock()) movePlayerForward(p, 0);
 	if(!p->getRest() && !p->getBlock()) {
 		int decision;
 		while(decision = strategyCommand(p)) {
@@ -228,24 +229,29 @@ void	Behavior::playRound(Player *p) { //{{{
 					for(int i = 0; i < d.size(); i ++)
 						step += d[i];
 					movePlayerForward(p, step);
+					printBoard();
 				}
 				else cout << "You have already rolled" << endl;
 			}
 			else if(decision == 2) {
 				buyImprove(p, strategyGetPropertyName(p));
+				printBoard();
 			}
 			else if(decision == 3) {
 				sellImprove(p, strategyGetPropertyName(p));
+				printBoard();
 			}
 			else if(decision == 4) {
 				string name;
 				cin >> name;
 				mortgage(p, name);
+				printBoard();
 			}
 			else if(decision == 5) {
 				string name;
 				cin >> name;
 				unmortgage(p, name);
+				printBoard();
 			}
 			else if(decision == 6) {
 				printAssets(p);
@@ -261,6 +267,7 @@ void	Behavior::playRound(Player *p) { //{{{
 					if(p2) trade(p, p2, c1, c2);
 					else cout << "Player " + name + " does not exist!" << endl;
 				}
+				printBoard();
 			}
 			else if(decision == 8) {
 				string fileName;
@@ -268,12 +275,7 @@ void	Behavior::playRound(Player *p) { //{{{
 				if(p->getLeftRoll() > 0) cout << "You cannot save. You have not rolled yet" << endl;
 				else Board::getInstance()->saveGame(fileName);
 			}
-			printBoard();
 		}
-	}
-	else {
-		movePlayerForward(p, 0);
-		printBoard();
 	}
 	p->setLeftRoll(1);
 } //}}}
