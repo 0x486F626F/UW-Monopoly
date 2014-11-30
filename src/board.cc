@@ -220,7 +220,7 @@ void Board::initGame() { //{{{
 		cout << "Input name:" << endl;
 		cin >> name;
 		if(name == "Bruce") {
-			cout << "Welcome back! Master!" << endl;
+			cout << "Welcome to the game, Master Wayne!" << endl;
 			players[i]->setName("Bruce");
 			players[i]->setInit(name[0]);
 			players[i]->setMoney(15000);
@@ -229,6 +229,7 @@ void Board::initGame() { //{{{
 					bh->buyProperty(players[i], cells[j]);
 		}
 		else {
+		   cout << "Welcome to the game, Player " << name << endl;
 			players[i]->setName(name);
 			players[i]->setInit(name[0]);
 			players[i]->setMoney(1500);
@@ -244,6 +245,7 @@ void Board::loadGame(const string saveFile) { //{{{
 	loadMap(mapfile);	
 
 	cout << saveFile << endl;
+	cout << "Save game re-initializing"
 	ifstream stream(saveFile.c_str());
 	stream >> numPlayer;
 
@@ -316,7 +318,7 @@ void Board::movePlayerTo(const int idPlayer, const int idCell, const bool callEv
 void Board::movePlayerForward(const int idPlayer, const int step) {
 	int goal = players[idPlayer]->getCurrentCell()->getID() + step;
 	if(goal >= numCell) {
-		cout << "Get OSAP of $200" << endl;
+		cout << "Collected your OSAP" << endl << players[idPlayer]->getName() << " receives $200" << endl;
 		players[idPlayer]->addMoney(200);
 	}
 	movePlayerTo(idPlayer, (goal + numCell) % numCell);
