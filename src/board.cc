@@ -14,6 +14,7 @@
 
 #include "strategy.h"
 #include "human.h"
+#include "computer1.h"
 
 #include "buyproperty.h"
 #include "collectrent.h"
@@ -219,10 +220,9 @@ void Board::initGame() { //{{{
 	for(int i = 0; i < numPlayer; i ++) {
 		players.push_back(new Player(i, ""));
 		//cout << "Human player or Computer? (H/C)" << endl;
-		players[i]->setStrategy(0);
 
 		string name;
-		bh->showmsg("Input name:");
+		bh->showmsg("Player" + string("" + char('0' + i)) + "Input name:");
 		cin >> name;
 		if(name == "Bruce") {
 			bh->showmsg("Welcome to the game, Master Wayne!");
@@ -239,6 +239,10 @@ void Board::initGame() { //{{{
 			players[i]->setInit(name[0]);
 			players[i]->setMoney(1500);
 		}
+		bh->showmsg("Human or Computer? (H/C)");
+		cin >> name;
+		if(name == "C") players[i]->setStrategy(1);
+		else players[i]->setStrategy(0);
 		players[i]->setLeftRoll(1);
 		cells[0]->addPlayer(players[i]);
 	}

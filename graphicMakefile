@@ -8,7 +8,7 @@ EVENTS_DEP = ${EVENTS:.o=.d}
 DISPLAY = src/display/textdisplay.o src/display/window.o src/display/xdisplay.o
 DISPLAY_DEP = ${DISPLAY:.o=.d}
 
-STRATEGY =  src/strategy/human.o src/strategy/strategy.o
+STRATEGY =  src/strategy/human.o src/strategy/strategy.o src/strategy/computer1.o
 STRATEGY_DEP = ${STRATEGY:.o=.d}
 	
 OBJECTS = src/behavior.o src/cell.o src/facility.o src/main.o src/property.o src/board.o src/dice.o src/group.o src/player.o

@@ -207,8 +207,6 @@ string	Behavior::strategyGetPropertyName(Player *p) {return p->getStrategy()->ge
 
 int		Behavior::strategyPrepaid(Player *p, Cell *c) {return p->getStrategy()->prepaid(p, c); }
 
-int		Behavior::strategyGetChar(Player *p) {return p->getStrategy()->getChar();}
-
 int		Behavior::getItemID(const string &s) { //{{{
 	for(int i = 0; i < numItem; i ++)
 		if(itemList[i] == s) return i;

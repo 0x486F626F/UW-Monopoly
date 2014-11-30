@@ -22,7 +22,6 @@ class Strategy {
 		virtual bool	tradeMP(Player* p1, Player* p2, const int m1, Cell* c2) = 0;
 		virtual bool	tradePM(Player* p1, Player* p2, Cell* c1, const int m2) = 0;
 		virtual bool	tradePP(Player* p1, Player* p2, Cell* c1, Cell* c2) = 0;
-		virtual int		getChar() = 0;
 };
 
 #endif

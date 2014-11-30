@@ -2,6 +2,7 @@
 #include "cell.h"
 #include "dice.h"
 #include "human.h"
+#include "computer1.h"
 
 #include <iostream>
 
@@ -52,6 +53,7 @@ int		Player::cntProperty() {
 
 void	Player::setStrategy(const int type) { 
 	if(type == 0) stg = new Human;
+	if(type == 1) stg = new Computer1;
 }
 Strategy*	Player::getStrategy() { return stg; }
 
