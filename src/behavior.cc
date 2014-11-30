@@ -308,7 +308,7 @@ void	Behavior::bankrupt(Player *p, Player *p2) { //{{{
 	Cell *c;
 	if(p2) {
 		transferMoney(p, p2, p->getMoney());
-		cout << "Money Transfered!" << endl;
+		cout << "Assets Transferred to owner" << endl;
 		while(c = p->getFirstProperty()) {
 			transferOwnership(c, p2);
 			if(c->isMortgaged()) {
@@ -356,19 +356,19 @@ void	Behavior::trade(Player* p1, Player* p2, const string condition1, const stri
 	Cell* c2 = p2->findProperty(condition2);
 
 	if(money1 >= 0 && !affordable(p1, money1)) {
-		cout << p1->getName() << " does not have enough money!" << endl;
+		cout << p1->getName() << " has insufficient fund" << endl;
 		return;
 	}
 	if(money2 >= 0 && !affordable(p2, money2)) {
-		cout << p2->getName() << " does not have enough money!" << endl;
+		cout << p2->getName() << " has insufficient fund" << endl;
 		return;
 	}
 	if(money1 < 0 && !c1) {
-		cout << p1->getName() << " does not own property " << condition1 << endl;
+		cout << p1->getName() << " does not own this property " << condition1 << endl;
 		return;
 	}
 	if(money2 < 0 && !c2) {
-		cout << p2->getName() << " does not own property " << condition2 << endl;
+		cout << p2->getName() << " does not own this property " << condition2 << endl;
 		return;
 	}
 	if(money1 < 0 &&(c1->isMortgaged() || !c1->getGroup()->noImprovement())) {
@@ -390,11 +390,11 @@ void	Behavior::trade(Player* p1, Player* p2, const string condition1, const stri
 
 
 	if(decision) {
-		cout << p2->getName() << " accepted!" << endl;
+		cout << p2->getName() << "Trade completed!" << endl;
 		if(money1 >= 0) transferMoney(p1, p2, money1);
 		else transferOwnership(c1, p2);
 		if(money2 >= 0) transferMoney(p2, p1, money2);
 		else transferOwnership(c2, p1);
 	} 
-	else cout << p2->getName() << " declined!" << endl;
+	else cout << p2->getName() << "Trade failed!" << endl;
 } //}}}
