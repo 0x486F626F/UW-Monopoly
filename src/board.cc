@@ -222,7 +222,8 @@ void Board::initGame() { //{{{
 		//cout << "Human player or Computer? (H/C)" << endl;
 
 		string name;
-		bh->showmsg("Player" + string("" + char('0' + i)) + "Input name:");
+		string numStr = string("") + char('1' + i);
+		bh->showmsg("Player" + numStr + ": Input name:");
 		cin >> name;
 		if(name == "Bruce") {
 			bh->showmsg("Welcome to the game, Master Wayne!");
@@ -341,8 +342,10 @@ void Board::startGame() {
 	bh->setTesting(testing);
 
 	printBoard();
+	int stepCnt = 1;
 	for(nowPlayer = 0; !gameEnd(); nowPlayer = (nowPlayer + 1) % numPlayer) 
 		if(!players[nowPlayer]->isBankrupted()) {
+			cout << "Round: " << stepCnt ++ << endl;
 			bh->showmsg( players[nowPlayer]->getName() + "'s turn");
 			bh->playRound(players[nowPlayer]);
 		}

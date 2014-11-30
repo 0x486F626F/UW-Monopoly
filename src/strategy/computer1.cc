@@ -12,6 +12,11 @@ Computer1::~Computer1() {}
 string Computer1::getPropertyName() {return propertyName;}
 
 int		Computer1::command(Player *p) {
+	if(rand() % 5 == 0) return 6;
+	if(p->getRandomProperty() && rand() % 5 == 0) {
+		propertyName = p->getRandomProperty()->getName();
+		return 2;
+	}
 	if(p->getLeftRoll()) return 1;
 	else return 0;
 }

@@ -5,7 +5,7 @@
 #include "computer1.h"
 
 #include <iostream>
-
+#include <cstdlib>
 using namespace std;
 
 Player::~Player() {
@@ -38,6 +38,12 @@ Cell*	Player::findProperty(const string &s) {
 	for(vector <Cell*>::iterator i = property.begin(); i != property.end(); i ++)
 		if((*i)->getName() == s) return *i;
 	return NULL;
+}
+
+Cell*	Player::getRandomProperty() {
+	int n = property.size();
+	if(n == 0) return NULL;
+	return property[rand() % n];
 }
 
 int		Player::getMoney() { return money; }

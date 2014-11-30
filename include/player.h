@@ -44,6 +44,7 @@ class Player {
 		void	removeProperty(Cell *c);   //remoce a property from a player
 		Cell*	getFirstProperty();
 		Cell*	findProperty(const std::string &s);
+		Cell*	getRandomProperty();
 
 
 		
