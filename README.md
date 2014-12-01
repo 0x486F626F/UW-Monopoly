@@ -20,6 +20,13 @@ To have graphic display:
 1. cp graphicMakefile Makefile
 2. make
 
+Starting the game:
+---
+
+1. ./bb7k :for regular game play
+2. ./bb7k -testing :for testing mode, which you can specify the roll dice results. For instance "roll 1 2"
+3. ./bb7kn -load file :load a previously saved game, the file must be valid and placed in the save folder
+
 Command list
 ---
 
@@ -34,7 +41,7 @@ A player’s turn starts when the previous player inputs 'next', and the game pr
 5. trade  <player’s full name>  <give>  <receive>: the trade function allows players to trade properties and money mutually. The <player’s full name> should be the full name of the player you wish to trade with and  <give> /<receive> represents what you hope to offer/accept for the trade. Note that a player can only trade with existing player’s in the game and the give/receive must be valid (not exceeding money balance, owned and un-mortgaged properties).
 6. mortgage/unmortgage: a player can choose to mortgage any owned unmortgaged proeprties under his/her name. The player will receive 50 percent of the worth in cash and expected to pay 60 percent in cash when attempting to unmortgage the mortgaged proeprties.
 7. assets: print the player’s all current assets including cash and owned properties.
-8. bankrupt: declare bankrupt and transfer all assets (cash and properties) to the debtor (another player or the bank)
+8. bankrupt: declare bankrupt when you have insufficient fund to repay debts. Upon bankruption, your assets will be transferred to the debtor or the bank.
 
 (out of your turn):
 
