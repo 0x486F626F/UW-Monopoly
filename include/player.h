@@ -24,12 +24,14 @@ class Player {
 		int		leftRoll;
 		int		rest;
 		bool	bankrupted;
+		bool	computerPlayer;
 		int		block;
 
 	public:
 		~Player();
 		Player(const int ID, const std::string &s);
 
+		bool	isComputer();
 		
 		int		getID();   //get ID of the player
 		

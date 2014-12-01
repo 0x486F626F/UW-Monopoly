@@ -17,6 +17,7 @@ Player::Player(const int i, const std::string &s) : ID(i), name(s), numDice(2) {
 	bankrupted = false;
 }
 
+bool	Player::isComputer() {return computerPlayer;}
 int Player::getID() { return ID; }
 char Player::getInit() { return nameInit; }
 void Player::setInit(const char c) {nameInit = c;}
@@ -58,6 +59,8 @@ int		Player::cntProperty() {
 }
 
 void	Player::setStrategy(const int type) { 
+	if(type == 0) computerPlayer = false;
+	else computerPlayer = true;
 	if(type == 0) stg = new Human;
 	if(type == 1) stg = new Computer1;
 }

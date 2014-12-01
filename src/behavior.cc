@@ -400,6 +400,10 @@ void	Behavior::trade(Player* p1, Player* p2, const string condition1, const stri
 		showmsg( condition2 + " cannot be traded!" );
 		return;
 	}
+	if(money1 >= 0 && money2 >= 0) {
+		showmsg("Cannot trade money with money");
+		return;
+	}
 
 	showmsg( p2->getName() + ": Do you accept?(y/n)" );
 
