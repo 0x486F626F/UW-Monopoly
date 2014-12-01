@@ -329,8 +329,8 @@ void Board::loadGame(const string saveFile) { //{{{
 bool Board::gameEnd() {
 	int cnt = 0;
 	for(int i = 0; i < numPlayer; i ++)
-		cnt += (!players[i]->isBankrupted() && !players[i]->isComputer());
-	return cnt < 1;
+		cnt += (!players[i]->isBankrupted());// && !players[i]->isComputer());
+	return cnt <= 1;
 }
 
 /*****printBoard*****/
