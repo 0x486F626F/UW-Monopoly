@@ -224,7 +224,20 @@ void Board::initGame() { //{{{
 		string name;
 		string numStr = string("") + char('1' + i);
 		bh->showmsg("Player" + numStr + ": Input name:");
-		cin >> name;
+		while(1) {
+			cin >> name;
+			if(name == "BANK") bh->showmsg("You cannot be named BANK");
+			else {
+				bool taken = false;
+				for(int j = 0; j < i; j ++)
+					if(players[j]->getName() == name) {
+						bh->showmsg("This name has already been taken");
+						taken = true;
+						break;
+					}
+				if(!taken) break;
+			}
+		}
 		if(name == "Bruce") {
 			bh->showmsg("Welcome to the game, Master Wayne!");
 			players[i]->setName("Bruce");
@@ -235,7 +248,7 @@ void Board::initGame() { //{{{
 					bh->buyProperty(players[i], cells[j]);
 		}
 		else {
-		   bh->showmsg("Welcome to the game, Player " + name);
+			bh->showmsg("Welcome to the game, Player " + name);
 			players[i]->setName(name);
 			players[i]->setInit(name[0]);
 			players[i]->setMoney(1500);
@@ -248,7 +261,7 @@ void Board::initGame() { //{{{
 				break;
 			}
 			if(name == "H") {
-			   	players[i]->setStrategy(0);
+				players[i]->setStrategy(0);
 				break;
 			}
 			cout << "Invalid Input! Please try again." << endl;
@@ -298,7 +311,6 @@ void Board::loadGame(const string saveFile) { //{{{
 
 	string pName;
 	while(stream >> pName) {
-		bh->showmsg(pName);
 		string owner;
 		stream >> owner;
 		Player *p = getPlayer(owner);

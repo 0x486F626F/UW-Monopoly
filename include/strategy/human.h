@@ -24,7 +24,6 @@ class Human : public Strategy {
 		bool	tradeMP(Player* p1, Player* p2, const int m1, Cell* c2);
 		bool	tradePM(Player* p1, Player* p2, Cell* c1, const int m2);
 		bool	tradePP(Player* p1, Player* p2, Cell* c1, Cell* c2);
-		int		getChar();
 };
 
 #endif
