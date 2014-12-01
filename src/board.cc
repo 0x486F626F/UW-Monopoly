@@ -318,7 +318,7 @@ bool Board::gameEnd() {
 	int cnt = 0;
 	for(int i = 0; i < numPlayer; i ++)
 		cnt += (!players[i]->isBankrupted() && !players[i]->isComputer());
-	return cnt <= 1;
+	return cnt < 1;
 }
 
 /*****printBoard*****/
@@ -360,7 +360,10 @@ void Board::startGame() {
 		}
 	bh->showmsg("Game Over");
 	for(int i = 0; i < numPlayer; i ++)
-		if(!players[i]->isBankrupted()) bh->showmsg("Great moves, " + players[i]->getName() + " you are the winnner!");
+		if(!players[i]->isBankrupted()) {
+			bh->showmsg("Great moves, " + players[i]->getName() + " you are the winnner!");
+			break;
+		}
 }
 
 Player* Board::getPlayer(const string &name) {

@@ -226,7 +226,8 @@ void	Behavior::playRound(Player *p) { //{{{
 			if(decision == 1) {
 				if(p->getLeftRoll() > 0) {
 					p->setLeftRoll(p->getLeftRoll() - 1);
-					d = roll(testing);
+					if(p->isComputer()) d = roll(false);
+					else d = roll(testing);
 #ifdef X
 					XDisplay::getInstance()->drawDice(d, 1);
 #endif
