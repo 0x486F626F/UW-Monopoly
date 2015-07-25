@@ -1,5 +1,8 @@
-Building Buyer 7000
-===
+Disclaimer:
+---
+
+According to the University of Waterloo's [Policy 71](https://uwaterloo.ca/secretariat-general-counsel/policies-procedures-guidelines/policy-71), 
+using any part of code in this repository is an academic offence. The author of this repository will not accept any responsibility of any consequence incurred by using the code in this repository for the University of Waterloo. 
 
 Compilation:
 ---
@@ -12,13 +15,15 @@ X environment (graphic display only)
 
 To have only text display:
 
-1. cp textMakefile Makefile
-2. make
+```
+make text
+```
 
 To have graphic display:
 	
-1. cp graphicMakefile Makefile
-2. make
+```
+make graphic
+```
 
 Starting the game:
 ---
